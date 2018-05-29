@@ -3,7 +3,7 @@
 ## Description: 
 Users can create their own community to share photos with specific topics.
 
-Will store user data: uploaded pictures (title, description, location, wow!)
+Will store user data: list of users, communities, uploaded pictures (title, description, location, wow!).
 
 
 ## Minimal:
