@@ -1,7 +1,9 @@
 # cs490 Civitas
 
-## Desception: 
-Users can create their own community to share photos with specific topics. Like a Reddit photo edition. 
+## Description: 
+Users can create their own community to share photos with specific topics.
+
+Will store user data: uploaded pictures (title, description, location, wow!)
 
 
 ## Minimal:
