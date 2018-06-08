@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import './styles.css';
 import Counter from './Component/Counter.jsx';
-import Profile from './Component/Profile.js';
+import Profile from './Component/Profile.jsx';
 import AppStore from './Stores/AppStore.js';
 
 class App extends Component {
