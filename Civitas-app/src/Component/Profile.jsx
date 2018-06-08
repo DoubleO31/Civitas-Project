@@ -21,11 +21,13 @@ class Profile extends React.Component {
             src="./logo.png"
             alt="logo"
           />
-          <img className="profile-picture"
+          <div class="big-cir">
+          <center><img className="profile-picture"
             id="profile-picture"
             src="./profile.png"
             alt="profile"
-          />
+          /></center>
+          </div>
       </div>
       <div class="titles-container">
       <span id="site-heading">

@@ -7,12 +7,15 @@ font-family: Calibri, Sans-Serif, Arial;
 	width: 100%;
 	background-color: #242B57;
 	display: flex;
-	position: sticky;
+	position: relative;
 }
 
 .logo-picture {
 	margin-left: 45%;
   margin-right: auto;
+	width: 160px;
+	height: 50%
+
 
 }
 
@@ -20,10 +23,26 @@ font-family: Calibri, Sans-Serif, Arial;
 	width: 8em;
 	height: auto;
 	border-radius: 50%;
-	margin-top: 12em;
-	margin-left: 5em;
-	position: absolute;
+	margin-top:6px;
+	height:80px;
+	width:80px;
+
+	position: relative;
 }
+
+.big-cir{
+ background-color:none;
+ height:90px;
+ width:90px;
+ border-radius:50%;
+ position: absolute;
+ border-color:#3899D1;
+ border-style:solid;
+ border-width:3px;
+ margin-top: 7em;
+ margin-left: 4em;
+}
+
 
 
 
