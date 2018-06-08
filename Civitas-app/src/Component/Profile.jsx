@@ -16,14 +16,16 @@ class Profile extends React.Component {
     return (
       <div>
       <div className="top-menu-container">
-        <a href="#">
-          {" "}
+          <img className="logo"
+            id="logo-picture"
+            src="./logo.png"
+            alt="logo"
+          />
           <img className="profile-picture"
             id="profile-picture"
-            src="./logo.png"
-            alt="profile picture"
-          />{" "}
-        </a>
+            src="./profile.png"
+            alt="profile"
+          />
       </div>
       <div class="titles-container">
       <span id="site-heading">

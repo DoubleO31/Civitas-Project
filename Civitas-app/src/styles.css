@@ -3,33 +3,29 @@ font-family: Calibri, Sans-Serif, Arial;
 }
 
 .top-menu-container {
-	font-size: 20px;
-	height: 4cm;
+	height: auto;
 	width: 100%;
-	background-color: rgba(0,0,0,1);
-	border-radius: 0px 0px 10px 10px;
+	background-color: #242B57;
 	display: flex;
 	position: sticky;
 }
 
+.logo {
+	margin-left: 45%;
+  margin-right: auto;
+
+}
+
 .profile-picture {
-	width: 60%;
+	width: 8em;
 	height: auto;
 	border-radius: 50%;
-	margin-top: 2em;
-	margin-left: 1em;
-
+	margin-top: 12em;
+	margin-left: 5em;
+	position: absolute;
 }
 
-.profile-picture:hover {
-    position:relative;
-    top:-25px;
-    left:-35px;
-    width:500px;
-    height:auto;
-    display:block;
-    z-index:999;
-}
+
 
 
 .top-menu-button {
