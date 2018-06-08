@@ -34,7 +34,7 @@ class Profile extends React.Component {
       </div>
 
       <div class="highlights-container" id="highlights-container">
-      <button onClick = {this._updatePhoto}> Show Image </button>
+      //<button onClick = {this._updatePhoto}> Show Image </button>
 
       </div>
       </div>
