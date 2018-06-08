@@ -21,11 +21,11 @@ class Profile extends React.Component {
           <img className="profile-picture"
             id="profile-picture"
             src="./logo.png"
-            alt="profile picture"
+            alt="profile"
           />{" "}
         </a>
       </div>
-      <div class="titles-container">
+      <div className="titles-container">
       <span id="site-heading">
       </span>
 
@@ -33,10 +33,7 @@ class Profile extends React.Component {
       </span>
       </div>
 
-      <div class="highlights-container" id="highlights-container">
-      <button onClick = {this._updatePhoto}> Show Image </button>
 
-      </div>
       </div>
     );
   }
