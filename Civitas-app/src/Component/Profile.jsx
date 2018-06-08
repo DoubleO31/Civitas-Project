@@ -16,7 +16,7 @@ class Profile extends React.Component {
     return (
       <div>
       <div className="top-menu-container">
-          <img className="logo"
+          <img className="logo-picture"
             id="logo-picture"
             src="./logo.png"
             alt="logo"
