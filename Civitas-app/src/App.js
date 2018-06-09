@@ -8,6 +8,8 @@ import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Modal from './Component/Modal';
 import Signup from './Component/Signup';
+import UploadButton from './Component/UploadButton.js'
+import UploadWindow from './Component/UploadWindow.js'
 
 class App extends Component {
 
@@ -15,6 +17,7 @@ class App extends Component {
     super();
     this.state = {
       counter: AppStore.getCounterNum(),
+      uploadWindowOpen: AppStore.getUploadWindowStatus(),
       isOpen: false
     }
     this._onChange = this. _onChange.bind(this);
@@ -30,7 +33,8 @@ class App extends Component {
 
   _onChange(){
     this.setState({
-      counter: AppStore.getCounterNum()
+      counter: AppStore.getCounterNum(),
+      uploadWindowOpen: AppStore.getUploadWindowStatus(),
     });
   }
 
@@ -52,6 +56,8 @@ class App extends Component {
         <Highlight/>
         <Highlight/>
         <Highlight/>
+        <UploadButton/>
+        <UploadWindow show={this.state.uploadWindowOpen}/>
         <Modal show={this.state.isOpen}
           onClose={this.toggleModal}>
           <Signup/>

@@ -4,6 +4,7 @@ import { EventEmitter } from 'events';
 const CHANGE_EVENT = 'change';
 
 let _counter = 0;
+let _uploadWindowOpen = false;
 var bgColor = null;
 
 function getHighlightshelper(){
@@ -175,6 +176,10 @@ class Appstore extends EventEmitter {
   getCounterNum(){
     return _counter;
   }
+
+  	getUploadWindowStatus() {
+		return _uploadWindowOpen;
+	}
 }
 
 const _appStore = new Appstore();
@@ -193,6 +198,11 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
     getHighlightshelper();
     _appStore.emitChange();
     break;
+
+    case 'toggleUploadWindow':
+	_uploadWindowOpen = !_uploadWindowOpen;
+	_appStore.emitChange();
+	break;
 
     default:
     break;

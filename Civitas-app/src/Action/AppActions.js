@@ -2,6 +2,21 @@ import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 
 const AppActions = {
 
+  openUploadWindow: function() {
+
+    AppDispatcher.dispatch({
+      actionType: 'toggleUploadWindow',
+    });
+  },
+
+  closeUploadWindow: function(){
+
+    AppDispatcher.dispatch({
+      actionType: 'toggleUploadWindow',
+    });
+  },
+
+
   setCounter: function ( num ){
     AppDispatcher.dispatch(
       {
