@@ -29,7 +29,7 @@ class Profile extends React.Component {
           /></center>
           </div>
       </div>
-      <div class="titles-container">
+      <div className="titles-container">
       <span id="site-heading">
       </span>
 
@@ -37,10 +37,7 @@ class Profile extends React.Component {
       </span>
       </div>
 
-      <div class="highlights-container" id="highlights-container">
-    {/*<button onClick = {this._updatePhoto}> Show Image </button>*/}
 
-      </div>
       </div>
     );
   }

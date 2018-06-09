@@ -4,6 +4,7 @@ import './styles.css';
 import Counter from './Component/Counter.jsx';
 import Profile from './Component/Profile.jsx';
 import AppStore from './Stores/AppStore.js';
+import Highlight from './Component/Highlight.jsx';
 
 class App extends Component {
 
@@ -34,6 +35,10 @@ class App extends Component {
     return (
       <div className="App">
         <Profile/>
+        <Highlight/>
+        <Highlight/>
+        <Highlight/>
+        <Highlight/>
       </div>
     );
   }
