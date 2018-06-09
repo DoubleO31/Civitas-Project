@@ -4,75 +4,68 @@ import { EventEmitter } from 'events';
 const CHANGE_EVENT = 'change';
 
 let _counter = 0;
-let _uploadWindowOpen = false;
 var bgColor = null;
 
-function getHighlightshelper() {
+function getHighlightshelper(){
 	console.log("build 2018-05-25 11:57pm");
 	document.getElementById("highlights-container").innerHTML = "";
 	var highlightsJSON = "highlights - small test.json";
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-<<<<<<< HEAD
     if (this.readyState === 4 && this.status === 200) {
         var myArr = JSON.parse(this.responseText);
 		var myArrLength = myArr.length;
-=======
-		if (this.readyState === 4 && this.status === 200) {
-			var myArr = JSON.parse(this.responseText);
-			var myArrLength = myArr.length;
->>>>>>> Upload-Feature
 
-			// loads the current stylesheet as a variable
-			var myStyle = document.styleSheets[0];
+		// loads the current stylesheet as a variable
+		var myStyle = document.styleSheets[0];
 
 
-			// HTML Template to create each highlight box
+		// HTML Template to create each highlight box
 
-			// <div id="highlightXXX">
-			// <a href="#"><img src="XXX" alt="XXX" ></a>
-			// <div id="highlightXXX-title">XXX</div>
-			// <div id="highlight1-descXXX">XXX</div>
-			// </div>
+		// <div id="highlightXXX">
+		// <a href="#"><img src="XXX" alt="XXX" ></a>
+		// <div id="highlightXXX-title">XXX</div>
+		// <div id="highlight1-descXXX">XXX</div>
+		// </div>
 
 
-			for (let i = 0; i < myArrLength; i++) {
+		for(let i = 0; i< myArrLength; i++){
 
-				let img = document.createElement("img"); // For colorthief to get average color
-				let idNumber = i + 1;
-				let src = myArr[i].src;
-				let title = myArr[i].title;
-				let desc = myArr[i].desc;
-				let href = myArr[i].href;
-				let bgRedChannel = 255;
-				let bgGreenChannel = 255;
-				let bgBlueChannel = 255;
+			let img = document.createElement("img");  // For colorthief to get average color
+			let idNumber = i+1;
+			let src = myArr[i].src;
+			let title = myArr[i].title;
+			let desc = myArr[i].desc;
+			let href = myArr[i].href;
+			let bgRedChannel = 255;
+			let bgGreenChannel = 255;
+			let bgBlueChannel = 255;
 
 
 
-				// for ColorThief creates the unique containers for each highlight
-				img.src = src;
+			// for ColorThief creates the unique containers for each highlight
+			img.src = src;
 
-				// for listener to work, need to call function directly, or preferably using
-				// an anonymous function like this. Otherwise calling fn() will cause it to run
-				// immediately.
-				img.addEventListener("load", function() {
+			// for listener to work, need to call function directly, or preferably using
+			// an anonymous function like this. Otherwise calling fn() will cause it to run
+			// immediately.
+			img.addEventListener("load", function() {
 
-					createHighlightHTML(idNumber, href, title, desc, src);
-					createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgBlueChannel, img);
+			createHighlightHTML(idNumber, href, title, desc, src);
+			createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgBlueChannel, img);
 
 
-				});
-
-			}
+			});
 
 		}
-	};
-	xmlhttp.open("GET", highlightsJSON, true);
-	xmlhttp.send();
+
+    }
+};
+xmlhttp.open("GET", highlightsJSON, true);
+xmlhttp.send();
 }
 
-function createHighlightHTML(idNumber, href, title, desc, src) {
+function createHighlightHTML(idNumber, href, title, desc, src){
 
 	var html = "";
 	html += `<div id="highlight${idNumber}">`;
@@ -89,7 +82,7 @@ function createHighlightHTML(idNumber, href, title, desc, src) {
 
 
 // creates the CSS rules for each highlight
-function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgBlueChannel, img) {
+function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgBlueChannel, img){
 	console.log(img.width);
 	var widthAndHeight = "300px";
 	var titleFontSize = "1.6em";
@@ -102,7 +95,7 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 
 
 	myStyle.insertRule(
-		`#highlight${idNumber} {
+	`#highlight${idNumber} {
 		position: relative;
 		width: ${widthAndHeight};
 		height: ${widthAndHeight};
@@ -111,7 +104,7 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 	);
 
 	myStyle.insertRule(
-		`#highlight${idNumber} img {
+	`#highlight${idNumber} img {
 		position: relative;
 		object-fit: cover;
 		width: ${widthAndHeight};
@@ -129,7 +122,7 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 	);
 
 	myStyle.insertRule(
-		`#highlight${idNumber}-title {
+	`#highlight${idNumber}-title {
 		position: absolute;
 		font-size: ${titleFontSize};
 		background-color: rgba(255,255,255,0.5);
@@ -139,7 +132,7 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 	);
 
 	myStyle.insertRule(
-		`#highlight${idNumber}-desc {
+	`#highlight${idNumber}-desc {
 		font-size: 1.1em;
 		position: absolute;
 		bottom: 0px;
@@ -153,7 +146,7 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 	);
 
 	myStyle.insertRule(
-		`#highlight${idNumber}:hover #highlight${idNumber}-desc {
+	`#highlight${idNumber}:hover #highlight${idNumber}-desc {
 	opacity: 1.0;
 	}`
 	);
@@ -167,52 +160,43 @@ function createHighlightCSS(myStyle, idNumber, bgRedChannel, bgGreenChannel, bgB
 
 class Appstore extends EventEmitter {
 
-	emitChange() {
-		this.emit(CHANGE_EVENT);
-	}
+  emitChange(){
+    this.emit( CHANGE_EVENT);
+  }
 
-	addChangeListener(callback) {
-		this.on(CHANGE_EVENT, callback);
-	}
+  addChangeListener( callback ){
+    this.on( CHANGE_EVENT, callback);
+  }
 
-	removeChangeListener(callback) {
-		this.removeListener(CHANGE_EVENT, callback);
-	}
+  removeChangeListener(callback){
+    this.removeListener (CHANGE_EVENT, callback);
+  }
 
-	getCounterNum() {
-		return _counter;
-	}
-
-	getUploadWindowStatus() {
-		return _uploadWindowOpen;
-	}
+  getCounterNum(){
+    return _counter;
+  }
 }
 
 const _appStore = new Appstore();
 
 export default _appStore;
 
-_appStore.dispatchToken = AppDispatcher.register(action => {
-	switch (action.actionType) {
+_appStore.dispatchToken = AppDispatcher.register( action => {
+  switch ( action.actionType ){
 
-		case 'setCounter':
-			_counter = action.num;
-			_appStore.emitChange();
-			break;
+    case 'setCounter':
+    _counter = action.num;
+    _appStore.emitChange();
+    break;
 
-		case 'getHighlights':
-			getHighlightshelper();
-			_appStore.emitChange();
-			break;
+    case 'getHighlights':
+    getHighlightshelper();
+    _appStore.emitChange();
+    break;
 
-		case 'openUploadWindow':
-			_uploadWindowOpen = !_uploadWindowOpen;
-			_appStore.emitChange();
-			break;
+    default:
+    break;
+  }
 
-		default:
-			break;
-	}
-
-	return true;
+  return true;
 });
