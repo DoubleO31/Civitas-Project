@@ -5,7 +5,6 @@ import Counter from './Component/Counter.jsx';
 import Menubar from './Component/Menubar.jsx';
 import Profilepic from './Component/Profilepic.jsx';
 import AppStore from './Stores/AppStore.js';
-//import PhotoViewerStore from './Stores/PhotoViewerStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Modal from './Component/Modal';
 import Signup from './Component/Signup';

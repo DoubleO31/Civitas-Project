@@ -5,7 +5,7 @@ const CHANGE_EVENT = 'change';
 
 let _counter = 0;
 let _uploadWindowOpen = false;
-let _photoViewerOn = true;
+let _photoViewerOn = false;
 var bgColor = null;
 
 function getHighlightshelper(){
