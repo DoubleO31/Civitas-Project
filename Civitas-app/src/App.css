@@ -22,6 +22,10 @@
   font-size: large;
 }
 
+.UploadButton {
+  margin: 50px;
+}
+
 .PhotoViewer {
   position: fixed;
   top: 50%;
