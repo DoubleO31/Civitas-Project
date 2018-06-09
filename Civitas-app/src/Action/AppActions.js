@@ -2,6 +2,18 @@ import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 
 const AppActions = {
 
+  photoViewerOff:function(){
+    AppDispatcher.dispatch({
+      actionType: 'photoViewerOff',
+    });
+  },
+
+  photoViewerOn: function(){
+    AppDispatcher.dispatch({
+      actionType: 'photoViewerOn',
+    });
+  },
+
   openUploadWindow: function() {
 
     AppDispatcher.dispatch({

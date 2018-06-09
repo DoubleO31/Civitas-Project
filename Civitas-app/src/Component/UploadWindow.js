@@ -8,7 +8,7 @@ class UploadWindow extends React.Component {
 	}
 
 	_closeUploadWindow = () => {
-AppActions.closeUploadWindow();
+		AppActions.closeUploadWindow();
 	}
 
 	render() {
@@ -37,15 +37,18 @@ AppActions.closeUploadWindow();
 		};
 
 
-		return ( < div className = "backdrop"
-			style = { backdropStyle } >
-			<div className = "modal"
-			style = { modalStyle } > { this.props.children }
-
-			<div className = "footer">
-			<button onClick = { this._closeUploadWindow }>
-			Close </button>  </div>
-			</div>  </div>
+		return ( 
+			<div className = "backdrop" style = { backdropStyle } >
+				<div className = "modal" style = { modalStyle } > 
+					<h1>Share Your Photos</h1>
+					<div>
+						<button> Upload </button>
+					</div>
+					<div className = "footer" >
+						<button onClick = { this._closeUploadWindow }>Close </button> 
+					</div >
+				</div>
+			</div >
 		);
 	}
 }

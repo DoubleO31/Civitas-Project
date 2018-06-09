@@ -11,6 +11,9 @@ class Highlight extends React.Component {
   //   AppActions.getHighlights();
   // }
 
+  _openPhotoViewer = () => {
+    AppActions.photoViewerOn();
+  }
 
   render() {
     return (
@@ -20,6 +23,7 @@ class Highlight extends React.Component {
       </a>
       <div id="highlight1-title">title</div>
       <div id="highlight1-desc">desc</div>
+      <button onClick={this._openPhotoViewer}>Enlarge Photo</button>
     </div>
     );
   }

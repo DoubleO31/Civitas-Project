@@ -5,19 +5,23 @@ import Counter from './Component/Counter.jsx';
 import Menubar from './Component/Menubar.jsx';
 import Profilepic from './Component/Profilepic.jsx';
 import AppStore from './Stores/AppStore.js';
+//import PhotoViewerStore from './Stores/PhotoViewerStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Modal from './Component/Modal';
 import Signup from './Component/Signup';
 import UploadButton from './Component/UploadButton.js'
 import UploadWindow from './Component/UploadWindow.js'
+import PhotoViewer from './Component/PhotoViewer.js'
 
 class App extends Component {
 
   constructor(){
     super();
+console.log(AppStore.getPhotoViewerStatus());
     this.state = {
       counter: AppStore.getCounterNum(),
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
+      photoViewerOn: AppStore.getPhotoViewerStatus(),
       isOpen: false
     }
     this._onChange = this. _onChange.bind(this);
@@ -32,9 +36,12 @@ class App extends Component {
   }
 
   _onChange(){
+    console.log('onchange is called');
+    console.log(AppStore.getPhotoViewerStatus());
     this.setState({
       counter: AppStore.getCounterNum(),
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
+      photoViewerOn: AppStore.getPhotoViewerStatus(),
     });
   }
 
@@ -58,10 +65,12 @@ class App extends Component {
         <Highlight/>
         <UploadButton/>
         <UploadWindow show={this.state.uploadWindowOpen}/>
+
         <Modal show={this.state.isOpen}
           onClose={this.toggleModal}>
           <Signup/>
         </Modal>
+        <PhotoViewer show={this.state.photoViewerOn}/>
       </div>
     );
   }

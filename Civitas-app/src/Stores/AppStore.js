@@ -5,6 +5,7 @@ const CHANGE_EVENT = 'change';
 
 let _counter = 0;
 let _uploadWindowOpen = false;
+let _photoViewerOn = true;
 var bgColor = null;
 
 function getHighlightshelper(){
@@ -177,9 +178,13 @@ class Appstore extends EventEmitter {
     return _counter;
   }
 
-  	getUploadWindowStatus() {
-		return _uploadWindowOpen;
+  getUploadWindowStatus() {
+	return _uploadWindowOpen;
 	}
+
+	  getPhotoViewerStatus() {
+  	return _photoViewerOn;
+  }
 }
 
 const _appStore = new Appstore();
@@ -188,6 +193,18 @@ export default _appStore;
 
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
+
+
+    case 'photoViewerOn':
+    _photoViewerOn = true;
+    _appStore.emitChange();
+    break;
+
+    case 'photoViewerOff':
+    console.log(_photoViewerOn);
+    _photoViewerOn = false;
+    _appStore.emitChange();
+    break;
 
     case 'setCounter':
     _counter = action.num;
