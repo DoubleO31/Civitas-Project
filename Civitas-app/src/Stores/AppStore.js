@@ -13,15 +13,15 @@ function getHighlightshelper() {
 	var highlightsJSON = "highlights - small test.json";
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-<<<<<<< HEAD
+//<<<<<<< HEAD
     if (this.readyState === 4 && this.status === 200) {
         var myArr = JSON.parse(this.responseText);
 		var myArrLength = myArr.length;
-=======
+//=======
 		if (this.readyState === 4 && this.status === 200) {
 			var myArr = JSON.parse(this.responseText);
 			var myArrLength = myArr.length;
->>>>>>> Upload-Feature
+//>>>>>>> Upload-Feature
 
 			// loads the current stylesheet as a variable
 			var myStyle = document.styleSheets[0];
@@ -192,7 +192,7 @@ const _appStore = new Appstore();
 
 export default _appStore;
 
-_appStore.dispatchToken = AppDispatcher.register(action => {
+Appstore.dispatchToken = AppDispatcher.register(action => {
 	switch (action.actionType) {
 
 		case 'setCounter':
