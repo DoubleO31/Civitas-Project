@@ -1,7 +1,7 @@
 import React from "react";
 import AppActions from '../Action/AppActions.js';
 
-class Profile extends React.Component {
+class Menubar extends React.Component {
   constructor(){
     super();
     this._updatePhoto = this._updatePhoto.bind(this);
@@ -21,13 +21,6 @@ class Profile extends React.Component {
             src="./logo.png"
             alt="logo"
           />
-          <div class="big-cir">
-          <center><img className="profile-picture"
-            id="profile-picture"
-            src="./profile.png"
-            alt="profile"
-          /></center>
-          </div>
       </div>
       <div className="titles-container">
       <span id="site-heading">
@@ -43,4 +36,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default Menubar;
