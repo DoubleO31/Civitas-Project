@@ -11,7 +11,7 @@ import AppActions from '../Action/AppActions.js';
           alt="profile"
         />
         <button onClick={onClick} Class="signup">
-          Sign Up
+          Log in 
         </button>
         </center>
 
