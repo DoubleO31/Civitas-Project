@@ -71,7 +71,7 @@ class App extends Component {
     console.log("source: " + obj.src);
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.source} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/> 
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/> 
      )
  }
 

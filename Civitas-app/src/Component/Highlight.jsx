@@ -16,7 +16,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   return (
     <button style = {style}>
     <a href={link}>
-    <img src={source} alt={title}/>
+    <img src={require(`${source}`)} alt={title}/>
     </a>
     <div id="highlight1-title">{title}</div>
     <div id="highlight1-desc">{desc}</div>
