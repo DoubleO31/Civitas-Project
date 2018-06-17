@@ -1,58 +1,54 @@
-import React from "react";
-import AppActions from '../Action/AppActions.js';
+import React from 'react';
+let Highlight = function statelessFunctionComponentClass(props) {
+  let source = props.source;
+  let link = props.link;
+  let title = props.title;
+  let desc = props.desc;
 
-class Highlight extends React.Component {
-  // constructor(){
-  //   super();
-  //   this._updatePhoto = this._updatePhoto.bind(this);
-  // }
+  let style = {
+    position: 'relative',
+    width: '300px',
+    height: '300px',
+    background: 'blue',
+    display: 'inline-block'
+  };
 
-  // _updatePhoto(){
-  //   AppActions.getHighlights();
-  // }
-
-  _openPhotoViewer = () => {
-    AppActions.photoViewerOn();
-  }
-
-  render() {
-    return (
-      <div id="highlight1">
-      <a href="#">
-      <img src={require('../1.jpg')} />
-      </a>
-      <div id="highlight1-title">title</div>
-      <div id="highlight1-desc">desc</div>
-      <button onClick={this._openPhotoViewer}>Enlarge Photo</button>
-    </div>
+  return (
+    <button style = {style}>
+    <a href={link}>
+    <img src={source} alt={title}/>
+    </a>
+    <div id="highlight1-title">{title}</div>
+    <div id="highlight1-desc">{desc}</div>
+    </button>
     );
-  }
-}
+};
 
 export default Highlight;
 
 
 
+// OLD IMPLEMENTATION BELOW
+// import React from "react";
+// import AppActions from '../Action/AppActions.js';
 
-    // <div className="top-menu-container">
-    //     <a href="#">
-    //       {" "}
-    //       <img className="profile-picture"
-    //         id="profile-picture"
-    //         src="./logo.png"
-    //         alt="profile picture"
-    //       />{" "}
-    //     </a>
-    //   </div>
-    //   <div class="titles-container">
-    //   <span id="site-heading">
-    //   </span>
+// class Highlight extends React.Component {
+//   constructor(props){
+//     super(props);
+//   }
 
-    //   <span id="site-subheading">
-    //   </span>
-    //   </div>
+//   render() {
+//     return (
+//       <div id="highlight1">
+//       <a href="#">
+//       <img src={require('../1.jpg')} />
+//       </a>
+//       <div id="highlight1-title">title</div>
+//       <div id="highlight1-desc">desc</div>
+//       <button onClick={this._openPhotoViewer}>Enlarge Photo</button>
+//     </div>
+//     );
+//   }
+// }
 
-    //   <div class="highlights-container" id="highlights-container">
-    //   <button onClick = {this._updatePhoto}> Show Image </button>
-
-    //   </div>
+// export default Highlight;
