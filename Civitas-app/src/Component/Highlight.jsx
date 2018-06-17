@@ -1,6 +1,6 @@
 import React from 'react';
 let Highlight = function statelessFunctionComponentClass(props) {
-  let source = props.source;
+  let source = (props.source);
   let link = props.link;
   let title = props.title;
   let desc = props.desc;
@@ -16,7 +16,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   return (
     <button style = {style}>
     <a href={link}>
-    <img src={require(`${source}`)} alt={title}/>
+    <img src={source} alt={title} style= {style}/>
     </a>
     <div id="highlight1-title">{title}</div>
     <div id="highlight1-desc">{desc}</div>
