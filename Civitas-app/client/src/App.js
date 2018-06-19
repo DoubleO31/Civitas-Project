@@ -5,8 +5,7 @@ import Menubar from './Component/Menubar.jsx';
 import Profilepic from './Component/Profilepic.jsx';
 import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
-import Modal from './Component/Modal';
-import Signup from './Component/Signup';
+import Signup from './Component/Signup.jsx';
 import UploadButton from './Component/UploadButton.js'
 import UploadWindow from './Component/UploadWindow.js'
 import PhotoViewer from './Component/PhotoViewer.js'
@@ -20,31 +19,18 @@ class App extends Component {
     this.state = {
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
-      isOpen: false,
-      response: ''
+      signupWindowOpen: AppStore.getSignupWindowStatus(),
     }
     this._onChange = this. _onChange.bind(this);
   }
 
   componentDidMount(){
     AppStore.addChangeListener(this._onChange);
-    this.callApi()
-      .then(res => this.setState({response: res.express}))
-      .catch(err => console.log(err));
   }
 
   componentWillUnmount(){
     AppStore.removeChangeListener(this._onChange);
   }
-
-  callApi = async () => {
-    const response = await fetch('/api/hello');
-    const body = await response.json();
-
-    if(response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
 
   _onChange(){
     console.log('onchange is called');
@@ -52,12 +38,7 @@ class App extends Component {
     this.setState({
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
-    });
-  }
-
-  toggleModal = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
+      signupWindowOpen: AppStore.getSignupWindowStatus(),
     });
   }
 
@@ -81,7 +62,7 @@ class App extends Component {
     console.log("source: " + obj.src);
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/> 
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
      )
  }
 
@@ -91,7 +72,8 @@ class App extends Component {
       <div className="App">
       <Menubar/>
       <div>
-      <Profilepic onClick={this.toggleModal}/>
+      <Profilepic/>
+      <Signup show={this.state.signupWindowOpen}/>
       </div>
       <div className = "HighlightsContainer">
       {this.parseJson()}
@@ -99,12 +81,7 @@ class App extends Component {
       <UploadButton/>
       <UploadWindow show={this.state.uploadWindowOpen}/>
 
-      <Modal show={this.state.isOpen}
-      onClose={this.toggleModal}>
-      <Signup/>
-      </Modal>
       <PhotoViewer show={this.state.photoViewerOn}/>
-      <p className="App-intro">{this.state.response} </p>
       </div>
       );
   }

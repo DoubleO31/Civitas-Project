@@ -14,6 +14,18 @@ const AppActions = {
     });
   },
 
+  signupWindowOff:function(){
+    AppDispatcher.dispatch({
+      actionType: 'signupWindowOff',
+    });
+  },
+
+  signupWindowOn: function(){
+    AppDispatcher.dispatch({
+      actionType: 'signupWindowOn',
+    });
+  },
+
   openUploadWindow: function() {
 
     AppDispatcher.dispatch({
