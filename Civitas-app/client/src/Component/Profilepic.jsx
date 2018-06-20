@@ -1,8 +1,18 @@
 import React from "react";
 import AppActions from '../Action/AppActions.js';
 
+class Profilepic extends React.Component {
 
-  const Profilepic = ({ onClick }) => (
+  constructor(props) {
+		super(props);
+	}
+
+  _openSignupWindow = () => {
+    AppActions.signupWindowOn();
+
+  }
+  render() {
+    return(
     <div>
         <div class="big-cir">
         <center><img className="profile-picture"
@@ -10,14 +20,16 @@ import AppActions from '../Action/AppActions.js';
           src="./profile.png"
           alt="profile"
         />
-        <button onClick={onClick} Class="signup">
-          Log in 
+        <button onClick={this._openSignupWindow} Class="signup">
+          Log in
         </button>
         </center>
 
         </div>
     </div>
   );
+}
+}
 
 
 export default Profilepic;

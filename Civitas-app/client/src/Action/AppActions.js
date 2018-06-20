@@ -20,6 +20,7 @@ const AppActions = {
     });
   },
 
+
   signupWindowOn: function(){
     AppDispatcher.dispatch({
       actionType: 'signupWindowOn',

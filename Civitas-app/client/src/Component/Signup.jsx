@@ -2,23 +2,43 @@ import React from "react";
 import AppActions from '../Action/AppActions.js';
 
 class Signup extends React.Component {
-  constructor(){
-    super();
+  constructor(props) {
+		super(props);
+	}
+
+  _closeUploadWindow = () => {
+    AppActions.signupWindowOff();
   }
 
 
-/* Login window borrow from 3school */
   render() {
+    if (!this.props.show) {
+      return null;
+    }
+
+    const backdropStyle = {
+      position: 'fixed',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      right: 0,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      padding: 50
+    };
+
+    const modalStyle = {
+      backgroundColor: '#fff',
+      borderRadius: 5,
+      maxWidth: 500,
+      minHeight: 300,
+      margin: '0 auto',
+      padding: 30
+    };
+
     return (
-      <div id="id01" class="modal">
+      <div style = { backdropStyle } >
+				<div style = { modalStyle } >
 
-        <form class="modal-content animate" action="/action_page.php">
-          <div class="imgcontainer">
-            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <img src="./profile.png" alt="Avatar" class="avatar"/>
-          </div>
-
-          <div class="container">
             <label for="uname"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required/>
 
@@ -29,10 +49,10 @@ class Signup extends React.Component {
             <label>
               <input type="checkbox" checked="checked" name="remember"/> Remember me
             </label>
-          </div>
+            <button onClick = { this._closeUploadWindow }>Close </button>
 
             <span class="psw">Forgot <a href="#">password?</a></span>
-        </form>
+        </div>
       </div>
     );
   }

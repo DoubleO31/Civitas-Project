@@ -37,15 +37,15 @@ class UploadWindow extends React.Component {
 		};
 
 
-		return ( 
-			<div className = "backdrop" style = { backdropStyle } >
-				<div className = "modal" style = { modalStyle } > 
+		return (
+			<div style = { backdropStyle } >
+				<div style = { modalStyle } >
 					<h1>Share Your Photos</h1>
 					<div>
 						<button> Upload </button>
 					</div>
-					<div className = "footer" >
-						<button onClick = { this._closeUploadWindow }>Close </button> 
+					<div>
+						<button onClick = { this._closeUploadWindow }>Close </button>
 					</div >
 				</div>
 			</div >

@@ -9,7 +9,6 @@ import Signup from './Component/Signup.jsx';
 import UploadButton from './Component/UploadButton.js'
 import UploadWindow from './Component/UploadWindow.js'
 import PhotoViewer from './Component/PhotoViewer.js'
-import data from './highlights.json'
 
 class App extends Component {
 
@@ -73,14 +72,13 @@ class App extends Component {
       <Menubar/>
       <div>
       <Profilepic/>
-      <Signup show={this.state.signupWindowOpen}/>
       </div>
       <div className = "HighlightsContainer">
       {this.parseJson()}
       </div>
       <UploadButton/>
       <UploadWindow show={this.state.uploadWindowOpen}/>
-
+      <Signup show={this.state.signupWindowOpen}/>
       <PhotoViewer show={this.state.photoViewerOn}/>
       </div>
       );

@@ -55,7 +55,6 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
     break;
 
 		case 'signupWindowOn':
-		console.log('its working');
 		_signupWindowOn = true;
 		_appStore.emitChange();
 		break;
