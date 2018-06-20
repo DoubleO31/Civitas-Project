@@ -24,12 +24,24 @@ class App extends Component {
   }
 
   componentDidMount(){
-    AppStore.addChangeListener(this._onChange);
-  }
+      AppStore.addChangeListener(this._onChange);
+      this.callApi()
+        .then(res => this.setState({response: res.express}))
+        .catch(err => console.log(err));
+    }
 
   componentWillUnmount(){
-    AppStore.removeChangeListener(this._onChange);
-  }
+      AppStore.removeChangeListener(this._onChange);
+    }
+
+    callApi = async () => {
+      const response = await fetch('/api/hello');
+      const body = await response.json();
+
+      if(response.status !== 200) throw Error(body.message);
+
+      return body;
+    };
 
   _onChange(){
     console.log('onchange is called');
@@ -70,9 +82,7 @@ class App extends Component {
     return (
       <div className="App">
       <Menubar/>
-      <div>
       <Profilepic/>
-      </div>
       <div className = "HighlightsContainer">
       {this.parseJson()}
       </div>
@@ -80,6 +90,7 @@ class App extends Component {
       <UploadWindow show={this.state.uploadWindowOpen}/>
       <Signup show={this.state.signupWindowOpen}/>
       <PhotoViewer show={this.state.photoViewerOn}/>
+      <p className="App-intro">{this.state.response} </p>
       </div>
       );
   }

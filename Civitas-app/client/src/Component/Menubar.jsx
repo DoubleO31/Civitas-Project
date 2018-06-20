@@ -1,15 +1,10 @@
 import React from "react";
-import AppActions from '../Action/AppActions.js';
 
 class Menubar extends React.Component {
-  constructor(){
-    super();
-    this._updatePhoto = this._updatePhoto.bind(this);
+  constructor(props){
+    super(props);
   }
 
-  _updatePhoto(){
-    AppActions.getHighlights();
-  }
 
 
   render() {
