@@ -2,6 +2,15 @@ import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 
 const AppActions = {
 
+  // Receive inital photo data
+  ReceivePhotos: function (data) {
+    AppDispatcher.handleAction({
+      actionType: 'receivePhotos',
+      data: data
+    })
+  },
+
+
   photoViewerOff:function(){
     AppDispatcher.dispatch({
       actionType: 'photoViewerOff',

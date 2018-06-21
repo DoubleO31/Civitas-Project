@@ -22,13 +22,15 @@ class App extends Component {
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
     }
+
     this._onChange = this. _onChange.bind(this);
   }
 
   componentDidMount(){
       AppStore.addChangeListener(this._onChange);
       this.callApi()
-        .then(res => this.setState({response: res.express}))
+        .then(res => this.setState({
+          photos: AppStore.getPhotos()}))
         .catch(err => console.log(err));
     }
 
@@ -53,21 +55,9 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
+      selectedPhoto: AppStore.getSelected()
     });
   }
-
-  // parseJson(){
-  //   var data = require('./highlights.json');
-  //   for (var i = 0; i < data.length; i++) {
-  //     var obj = data[i];
-  //     console.log("source: " + obj.src);
-  //   }
-  //   {
-  //     return data.map((Highlight, key) =>
-  //       <Highlight source={obj.src} link = {obj.href} title = {obj.title} desc = {obj.desc}/>
-  //       )
-  //   }
-  // }
 
   parseJson(){
    var data = require('./highlights.json');
@@ -94,7 +84,7 @@ class App extends Component {
       <Signup show={this.state.signupWindowOpen}/>
       <Login show={this.state.loginWindowOpen}/>
       <PhotoViewer show={this.state.photoViewerOn}/>
-      <p className="App-intro">{this.state.response} </p>
+      <p className="App-intro">{this.state.selectedPhoto} </p>
       </div>
       );
   }

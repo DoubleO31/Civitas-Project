@@ -9,6 +9,18 @@ let _signupWindowOn = false;
 let _loginWindowOn = false;
 var bgColor = null;
 
+// Define initial data points copied from shopping cart tutorial
+var _photos = {}, _selected = null;
+
+// Method to load photo data from mock
+function loadPhotoData(data) {
+  _photos = data;
+  //_selected = data[0].variants[0];
+}
+
+function setSelected(index) {
+  _selected = _photos[index];
+}
 
 class Appstore extends EventEmitter {
 
@@ -22,6 +34,15 @@ class Appstore extends EventEmitter {
 
   removeChangeListener(callback){
     this.removeListener (CHANGE_EVENT, callback);
+  }
+
+  // Return Photo data
+  getPhotos(){
+    return _photos;
+  }
+
+  getSelected() {
+    return _selected;
   }
 
   getUploadWindowStatus() {
@@ -47,7 +68,9 @@ export default _appStore;
 
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
-
+    case 'receivePhotos':
+    loadPhotoData(action.data);
+    break;
 
     case 'photoViewerOn':
     _photoViewerOn = true;
