@@ -1,13 +1,19 @@
 import React from "react";
 import AppActions from '../Action/AppActions.js';
 
-class Signup extends React.Component {
+class Login extends React.Component {
   constructor(props) {
 		super(props);
 	}
 
   _closeUploadWindow = () => {
-    AppActions.signupWindowOff();
+    AppActions.loginWindowOff();
+  }
+
+  _openSignupWindow = () => {
+    AppActions.loginWindowOff();
+    AppActions.signupWindowOn();
+
   }
 
 
@@ -30,7 +36,7 @@ class Signup extends React.Component {
       backgroundColor: '#fff',
       borderRadius: 5,
       maxWidth: 500,
-      minHeight: 300,
+      minHeight: 400,
       margin: '0 auto',
       padding: 30
     };
@@ -45,12 +51,19 @@ class Signup extends React.Component {
             <label for="psw"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required/>
 
-            <button type="submit">Sign up</button>
-            <button onClick = { this._closeUploadWindow }>Close </button>
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"/> Remember me
+            </label>
+            <button onClick = { this._closeUploadWindow }> Close </button>
+
+            <span class="psw">
+            Forgot <a href="#">password?</a></span>
+            <button onClick={this._openSignupWindow} class = "signup"> Signup </button>
         </div>
       </div>
     );
   }
 }
 
-export default Signup;
+export default Login;

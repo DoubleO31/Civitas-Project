@@ -6,6 +6,7 @@ const CHANGE_EVENT = 'change';
 let _uploadWindowOpen = false;
 let _photoViewerOn = false;
 let _signupWindowOn = false;
+let _loginWindowOn = false;
 var bgColor = null;
 
 
@@ -34,6 +35,10 @@ class Appstore extends EventEmitter {
 	getSignupWindowStatus() {
 		return _signupWindowOn;
 	}
+
+  getLoginWindowStatus() {
+    return _loginWindowOn;
+  }
 }
 
 const _appStore = new Appstore();
@@ -63,6 +68,16 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
 		_signupWindowOn = false;
 		_appStore.emitChange();
 		break;
+
+    case 'loginWindowOn':
+    _loginWindowOn = true;
+    _appStore.emitChange();
+    break;
+
+    case 'loginWindowOff':
+    _loginWindowOn = false;
+    _appStore.emitChange();
+    break;
 
 
     case 'toggleUploadWindow':

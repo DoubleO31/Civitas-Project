@@ -43,11 +43,6 @@ font-family: Calibri, Sans-Serif, Arial;
 }
 
 
-.signup {
-	margin-top:6px;
-	position: relative;;
-}
-
 .big-cir .signup:hover {
     background-color: black;
     color: white;}
@@ -142,5 +137,10 @@ img.avatar {
 
 span.psw {
     float: right;
+    padding-top: 16px;
+}
+
+signup {
+    float: left;
     padding-top: 16px;
 }

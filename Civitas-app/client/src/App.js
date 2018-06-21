@@ -6,6 +6,7 @@ import Profilepic from './Component/Profilepic.jsx';
 import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Signup from './Component/Signup.jsx';
+import Login from './Component/Login.jsx';
 import UploadButton from './Component/UploadButton.js'
 import UploadWindow from './Component/UploadWindow.js'
 import PhotoViewer from './Component/PhotoViewer.js'
@@ -19,6 +20,7 @@ class App extends Component {
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
+      loginWindowOpen: AppStore.getLoginWindowStatus(),
     }
     this._onChange = this. _onChange.bind(this);
   }
@@ -50,6 +52,7 @@ class App extends Component {
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
+      loginWindowOpen: AppStore.getLoginWindowStatus(),
     });
   }
 
@@ -89,6 +92,7 @@ class App extends Component {
       <UploadButton/>
       <UploadWindow show={this.state.uploadWindowOpen}/>
       <Signup show={this.state.signupWindowOpen}/>
+      <Login show={this.state.loginWindowOpen}/>
       <PhotoViewer show={this.state.photoViewerOn}/>
       <p className="App-intro">{this.state.response} </p>
       </div>

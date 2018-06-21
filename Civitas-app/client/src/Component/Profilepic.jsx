@@ -7,23 +7,24 @@ class Profilepic extends React.Component {
 		super(props);
 	}
 
-  _openSignupWindow = () => {
-    AppActions.signupWindowOn();
-
+  _openLoginWindow = () => {
+    AppActions.loginWindowOn();
   }
+
+
   render() {
     return(
     <div>
-        <div class="big-cir">
-        <center><img className="profile-picture"
+        <div className="big-cir">
+        <img className="profile-picture"
           id="profile-picture"
           src="./profile.png"
           alt="profile"
         />
-        <button onClick={this._openSignupWindow} Class="signup">
+        <button onClick={this._openLoginWindow} className="login">
           Log in
         </button>
-        </center>
+
 
         </div>
     </div>

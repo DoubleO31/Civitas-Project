@@ -27,6 +27,19 @@ const AppActions = {
     });
   },
 
+  loginWindowOff:function(){
+    AppDispatcher.dispatch({
+      actionType: 'loginWindowOff',
+    });
+  },
+
+
+  loginWindowOn: function(){
+    AppDispatcher.dispatch({
+      actionType: 'loginWindowOn',
+    });
+  },
+
   openUploadWindow: function() {
 
     AppDispatcher.dispatch({
@@ -51,34 +64,6 @@ const AppActions = {
 
   },
 
-  createHighlightHTML: function( idNumber, href, title, desc, src ){
-    AppDispatcher.dispatch(
-      {
-        actionType: 'createHighlightHTML',
-        idNumber:idNumber,
-        href:href,
-        title:title,
-        desc:desc,
-        src:src
-      }
-    );
-
-  },
-
-  createHighlightCSS: function( myStyle, idNumber, bgRedChannel, bgGreenChannel, bgBlueChannel, img ){
-    AppDispatcher.dispatch(
-      {
-        actionType: 'createHighlightCSS',
-        myStyle:myStyle,
-        idNumber:idNumber,
-        bgRedChannel:bgRedChannel,
-        bgGreenChannel:bgGreenChannel,
-        bgBlueChannel:bgBlueChannel,
-        img:img
-      }
-    );
-
-  },
 
 
 
