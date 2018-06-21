@@ -7,9 +7,9 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
   let style = {
     position: 'relative',
-    width: '300px',
-    height: '300px',
-    background: 'blue',
+    width: '400px',
+    height: '400px',
+    background: 'white',
     display: 'inline-block'
   };
 
