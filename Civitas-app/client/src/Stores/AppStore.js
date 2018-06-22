@@ -9,6 +9,16 @@ let _signupWindowOn = false;
 let _loginWindowOn = false;
 var bgColor = null;
 
+var _photos = {};
+var _selectedPhoto = null;
+
+function loadPhotoData(data) {
+  _photos = data;
+}
+
+function setSelectedPhoto(index) {
+  _selectedPhoto = _photos[index];
+}
 
 class Appstore extends EventEmitter {
 
@@ -24,11 +34,15 @@ class Appstore extends EventEmitter {
     this.removeListener (CHANGE_EVENT, callback);
   }
 
+  getSelectedPhoto(){
+    return _selectedPhoto;
+  }
+
   getUploadWindowStatus() {
 	return _uploadWindowOpen;
 	}
 
-	  getPhotoViewerStatus() {
+	getPhotoViewerStatus() {
   	return _photoViewerOn;
   }
 
@@ -48,6 +62,13 @@ export default _appStore;
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
 
+    case 'receiveData':
+    loadPhotoData(action.data);
+    break;
+
+    case 'setSelectedPhoto':
+    setSelectedPhoto(action.data);
+    break;
 
     case 'photoViewerOn':
     _photoViewerOn = true;

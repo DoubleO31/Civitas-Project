@@ -25,30 +25,3 @@ let Highlight = function statelessFunctionComponentClass(props) {
 };
 
 export default Highlight;
-
-
-
-// OLD IMPLEMENTATION BELOW
-// import React from "react";
-// import AppActions from '../Action/AppActions.js';
-
-// class Highlight extends React.Component {
-//   constructor(props){
-//     super(props);
-//   }
-
-//   render() {
-//     return (
-//       <div id="highlight1">
-//       <a href="#">
-//       <img src={require('../1.jpg')} />
-//       </a>
-//       <div id="highlight1-title">title</div>
-//       <div id="highlight1-desc">desc</div>
-//       <button onClick={this._openPhotoViewer}>Enlarge Photo</button>
-//     </div>
-//     );
-//   }
-// }
-
-// export default Highlight;

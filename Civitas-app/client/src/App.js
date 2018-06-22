@@ -7,9 +7,9 @@ import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Signup from './Component/Signup.jsx';
 import Login from './Component/Login.jsx';
-import UploadButton from './Component/UploadButton.js'
-import UploadWindow from './Component/UploadWindow.js'
-import PhotoViewer from './Component/PhotoViewer.js'
+import UploadButton from './Component/UploadButton.js';
+import UploadWindow from './Component/UploadWindow.js';
+import PhotoViewer from './Component/PhotoViewer.js';
 
 class App extends Component {
 
@@ -21,29 +21,30 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
+      photo: {}
     }
     this._onChange = this. _onChange.bind(this);
   }
 
+callApi = async() =>{
+  const response = await fetch('/api/hello');
+  const body = await response.json();
+
+  if(response.status !== 200) throw Error(body.message);
+
+  return body;
+};
+
   componentDidMount(){
       AppStore.addChangeListener(this._onChange);
       this.callApi()
-        .then(res => this.setState({response: res.express}))
-        .catch(err => console.log(err));
+      .then(res=>this.setState({photo: res}))
+      .catch(err => console.log(err));
     }
 
   componentWillUnmount(){
       AppStore.removeChangeListener(this._onChange);
     }
-
-    callApi = async () => {
-      const response = await fetch('/api/hello');
-      const body = await response.json();
-
-      if(response.status !== 200) throw Error(body.message);
-
-      return body;
-    };
 
   _onChange(){
     console.log('onchange is called');
@@ -53,33 +54,26 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
+      selectedPhoto: AppStore.getSelectedPhoto(),
     });
   }
 
-  // parseJson(){
-  //   var data = require('./highlights.json');
-  //   for (var i = 0; i < data.length; i++) {
-  //     var obj = data[i];
-  //     console.log("source: " + obj.src);
-  //   }
-  //   {
-  //     return data.map((Highlight, key) =>
-  //       <Highlight source={obj.src} link = {obj.href} title = {obj.title} desc = {obj.desc}/>
-  //       )
-  //   }
-  // }
+ //  parseJson(){
+ //   //var data = this.state.response;
+ //   var data = require('./highlights.json')
+ //   for (var i = 0; i < data.length; i++) {
+ //    var obj = data[i];
+ //    console.log("source: " + obj.src);
+ //  }
+ //   return data.map((obj, key) =>
+ //    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
+ //     )
+ // }
 
-  parseJson(){
-   var data = require('./highlights.json');
-   for (var i = 0; i < data.length; i++) {
-    var obj = data[i];
-    console.log("source: " + obj.src);
-  }
-   return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
-     )
- }
-
+      parseJson(){
+        var data = this.state.photo;
+        return <Highlight source = {data.src} link={data.href} title={data.title} desc={data.desc} key = {data.src} />
+      }
 
   render() {
     return (
@@ -88,6 +82,7 @@ class App extends Component {
       <Profilepic/>
       <div className = "HighlightsContainer">
       {this.parseJson()}
+      
       </div>
       <UploadButton/>
       <UploadWindow show={this.state.uploadWindowOpen}/>
