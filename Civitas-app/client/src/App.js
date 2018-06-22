@@ -21,7 +21,7 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
-      photo: {}
+      photos: []
     }
     this._onChange = this. _onChange.bind(this);
   }
@@ -38,7 +38,7 @@ callApi = async() =>{
   componentDidMount(){
       AppStore.addChangeListener(this._onChange);
       this.callApi()
-      .then(res=>this.setState({photo: res}))
+      .then(res=>this.setState({photos: res}))
       .catch(err => console.log(err));
     }
 
@@ -58,22 +58,19 @@ callApi = async() =>{
     });
   }
 
- //  parseJson(){
- //   //var data = this.state.response;
- //   var data = require('./highlights.json')
- //   for (var i = 0; i < data.length; i++) {
- //    var obj = data[i];
- //    console.log("source: " + obj.src);
- //  }
- //   return data.map((obj, key) =>
- //    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
- //     )
- // }
+  parseJson(){
+   var data = this.state.photos;
+   // var data = require('./highlights.json');
+       console.log(Array.isArray(data));
+   for (var i = 0; i < data.length; i++) {
+    var obj = data[i];
 
-      parseJson(){
-        var data = this.state.photo;
-        return <Highlight source = {data.src} link={data.href} title={data.title} desc={data.desc} key = {data.src} />
-      }
+  }
+   return data.map((obj, key) =>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
+     )
+ }
+
 
   render() {
     return (
