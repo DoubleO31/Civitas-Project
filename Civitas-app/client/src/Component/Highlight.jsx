@@ -13,8 +13,10 @@ let Highlight = function statelessFunctionComponentClass(props) {
     display: 'inline-block'
   };
 
+
+
   return (
-    <button style = {style}>
+    <button style = {style} >
     <a href={link}>
     <img src={source} alt={title} style= {style}/>
     </a>

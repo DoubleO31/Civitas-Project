@@ -60,7 +60,6 @@ callApi = async() =>{
 
   parseJson(){
    var data = this.state.photos;
-   // var data = require('./highlights.json');
        console.log(Array.isArray(data));
    for (var i = 0; i < data.length; i++) {
     var obj = data[i];
@@ -77,11 +76,12 @@ callApi = async() =>{
       <div className="App">
       <Menubar/>
       <Profilepic/>
+            <UploadButton/>
       <div className = "HighlightsContainer">
       {this.parseJson()}
       
       </div>
-      <UploadButton/>
+
       <UploadWindow show={this.state.uploadWindowOpen}/>
       <Signup show={this.state.signupWindowOpen}/>
       <Login show={this.state.loginWindowOpen}/>
