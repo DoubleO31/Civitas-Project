@@ -7,9 +7,11 @@ import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
 import Signup from './Component/Signup.jsx';
 import Login from './Component/Login.jsx';
-import UploadButton from './Component/UploadButton.js'
-import UploadWindow from './Component/UploadWindow.js'
-import PhotoViewer from './Component/PhotoViewer.js'
+import UploadButton from './Component/UploadButton.js';
+import UploadWindow from './Component/UploadWindow.js';
+import PhotoViewer from './Component/PhotoViewer.js';
+import PhotoData from '../PhotoData.js';
+import AppAPI from './utils/AppAPI.js';
 
 class App extends Component {
 
@@ -21,6 +23,7 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
+      selectedPhoto: null,
     }
 
     this._onChange = this. _onChange.bind(this);
