@@ -20,6 +20,7 @@ const AppActions = {
   // },
 
 
+
   photoViewerOff: function(){
     AppDispatcher.dispatch({
       actionType: 'photoViewerOff',

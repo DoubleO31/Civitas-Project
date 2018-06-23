@@ -67,11 +67,19 @@ callApi = async() =>{
 
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => console.log(key)}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => this.handleClick(key)}/>
      )
  }
 
 
+handleClick(i){
+  this.setState({
+    selectedPhoto: this.state.photos[i],
+  });
+
+  AppActions.photoViewerOn();
+  console.log(i);
+}
 
 
   render() {
