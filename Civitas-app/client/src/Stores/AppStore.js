@@ -16,8 +16,8 @@ function loadPhotoData(data) {
   _photos = data;
 }
 
-function setSelectedPhoto(index) {
-  _selectedPhoto = _photos[index];
+function setSelectedPhoto(obj) {
+  _selectedPhoto = obj;
 }
 
 class Appstore extends EventEmitter {
@@ -68,6 +68,7 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
 
     case 'setSelectedPhoto':
     setSelectedPhoto(action.data);
+    _appStore.emitChange();
     break;
 
     case 'photoViewerOn':

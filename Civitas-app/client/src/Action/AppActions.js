@@ -19,6 +19,12 @@ const AppActions = {
   //   })
   // },
 
+  setSelectedPhoto: function(obj){
+    AppDispatcher.dispatch({
+      actionType: 'setSelectedPhoto',
+      data: obj
+    });
+  },
 
 
   photoViewerOff: function(){

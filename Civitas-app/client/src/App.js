@@ -10,6 +10,7 @@ import Login from './Component/Login.jsx';
 import UploadButton from './Component/UploadButton.js';
 import UploadWindow from './Component/UploadWindow.js';
 import PhotoViewer from './Component/PhotoViewer.js';
+import AppActions from './Action/AppActions.js';
 
 class App extends Component {
 
@@ -22,7 +23,7 @@ class App extends Component {
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       photos: [],
-      selectedPhoto: ''
+      selectedPhoto: {},
     }
     this._onChange = this. _onChange.bind(this);
   }
@@ -67,18 +68,19 @@ callApi = async() =>{
 
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => this.handleClick(key)}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => this.handleClick(obj)}/>
      )
  }
 
 
-handleClick(i){
-  this.setState({
-    selectedPhoto: this.state.photos[i],
-  });
+handleClick(obj){
+  AppActions.setSelectedPhoto(obj);
 
-  //AppActions.photoViewerOn();
-  console.log(i);
+  console.log(typeof obj.src);
+  console.log(this.state.selectedPhoto.src);
+console.log(typeof this.state.selectedPhoto);
+  AppActions.photoViewerOn();
+
 }
 
 
