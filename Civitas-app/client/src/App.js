@@ -77,7 +77,7 @@ handleClick(i){
     selectedPhoto: this.state.photos[i],
   });
 
-  AppActions.photoViewerOn();
+  //AppActions.photoViewerOn();
   console.log(i);
 }
 
