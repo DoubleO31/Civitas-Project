@@ -16,7 +16,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
 
   return (
-    <button style = {style} >
+    <button style = {style} onClick={props.onClick}>
     <a href={link}>
     <img src={source} alt={title} style= {style}/>
     </a>

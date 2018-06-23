@@ -21,7 +21,8 @@ class App extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
-      photos: []
+      photos: [],
+      selectedPhoto: ''
     }
     this._onChange = this. _onChange.bind(this);
   }
@@ -66,9 +67,11 @@ callApi = async() =>{
 
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={obj.src}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => console.log(key)}/>
      )
  }
+
+
 
 
   render() {
