@@ -23,7 +23,7 @@ class App extends Component {
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       photos: [],
-      selectedPhoto: {},
+      selectedPhoto: AppStore.getSelectedPhoto(),
     }
     this._onChange = this. _onChange.bind(this);
   }
@@ -49,8 +49,8 @@ callApi = async() =>{
     }
 
   _onChange(){
-    console.log('onchange is called');
-    console.log(AppStore.getPhotoViewerStatus());
+    //console.log('onchange is called');
+    //console.log(AppStore.getPhotoViewerStatus());
     this.setState({
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
@@ -62,23 +62,18 @@ callApi = async() =>{
 
   parseJson(){
    var data = this.state.photos;
-       console.log(Array.isArray(data));
    for (var i = 0; i < data.length; i++) {
     var obj = data[i];
 
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={i} onClick={() => this.handleClick(obj)}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={key} onClick={() => this.handleClick(obj)}/>
      )
  }
 
 
 handleClick(obj){
-  AppActions.setSelectedPhoto(obj);
-
-  console.log(typeof obj.src);
-  console.log(this.state.selectedPhoto.src);
-console.log(typeof this.state.selectedPhoto);
+  AppActions.setSelectedPhoto(obj.src);
   AppActions.photoViewerOn();
 
 }
@@ -98,7 +93,7 @@ console.log(typeof this.state.selectedPhoto);
       <UploadWindow show={this.state.uploadWindowOpen}/>
       <Signup show={this.state.signupWindowOpen}/>
       <Login show={this.state.loginWindowOpen}/>
-      <PhotoViewer show={this.state.photoViewerOn}/>
+      <PhotoViewer show={this.state.photoViewerOn} selectedPhoto={this.state.selectedPhoto}/>
       <p className="App-intro">{this.state.response} </p>
       </div>
       );

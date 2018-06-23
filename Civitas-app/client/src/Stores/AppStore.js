@@ -10,7 +10,7 @@ let _loginWindowOn = false;
 var bgColor = null;
 
 var _photos = {};
-var _selectedPhoto = null;
+var _selectedPhoto = {};
 
 function loadPhotoData(data) {
   _photos = data;

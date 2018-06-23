@@ -15,10 +15,9 @@ class PhotoViewer extends React.Component {
 		if (!this.props.show) {
 			return null;
 		}
-
 		return ( 
 		<div class='PhotoViewer'>
-      <img src={"/highlights/1.jpg"} />
+      <img src={this.props.selectedPhoto} />
       <div>title</div>
       <div>desc</div>
       <button onClick={this._closePhotoViewer}>Close Viewer</button>
