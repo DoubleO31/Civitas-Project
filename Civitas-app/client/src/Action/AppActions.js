@@ -2,23 +2,6 @@ import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 
 const AppActions = {
 
-  // Receive inital product data
-  // receivePhotos:function(data) {
-  //   var data = JSON.parse(localStorage.getItem('photos'));
-  //   AppDispatcher.dispatch({
-  //     actionType: 'receiveData',
-  //     data: data
-  //   })
-  // },
-
-  // // Set currently selected product variation
-  // selectProduct: function (index) {
-  //   AppDispatcher.dispatch({
-  //     actionType: 'setSelectedPhoto',
-  //     data: index
-  //   })
-  // },
-
   setSelectedPhoto: function(obj){
     AppDispatcher.dispatch({
       actionType: 'setSelectedPhoto',

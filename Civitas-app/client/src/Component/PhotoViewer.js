@@ -17,9 +17,9 @@ class PhotoViewer extends React.Component {
 		}
 		return ( 
 		<div class='PhotoViewer'>
-      <img src={this.props.selectedPhoto} />
-      <div>title</div>
-      <div>desc</div>
+      <img src={this.props.selectedPhoto.src} />
+      <div> {this.props.selectedPhoto.title}</div>
+      <div>{this.props.selectedPhoto.desc}</div>
       <button onClick={this._closePhotoViewer}>Close Viewer</button>
     </div>
 		);

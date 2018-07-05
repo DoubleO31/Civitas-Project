@@ -34,6 +34,11 @@
   z-index: 2;
 }
 
+.PhotoViewer div {
+  color: white;
+  background-color: #999999;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

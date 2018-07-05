@@ -41,15 +41,16 @@ class UploadWindow extends React.Component {
 			<div style = { backdropStyle } >
 				<div style = { modalStyle } >
 					<h1>Share Your Photos</h1>
-					<div>
-						<button> Upload </button>
-					</div>
+					<form action="fileupload" method="post" enctype="multipart/form-data">
+						<input type="file" name="filetoupload" /><br/>
+						<input type="submit" />
+					</form>					
 					<div>
 						<button onClick = { this._closeUploadWindow }>Close </button>
 					</div >
 				</div>
 			</div >
-		);
+			);
 	}
 }
 

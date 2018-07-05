@@ -16,7 +16,6 @@ class App extends Component {
 
   constructor(){
     super();
-    console.log(AppStore.getPhotoViewerStatus());
     this.state = {
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
@@ -29,7 +28,7 @@ class App extends Component {
   }
 
 callApi = async() =>{
-  const response = await fetch('/api/hello');
+  const response = await fetch('/api/highlights');
   const body = await response.json();
 
   if(response.status !== 200) throw Error(body.message);
@@ -73,11 +72,9 @@ callApi = async() =>{
 
 
 handleClick(obj){
-  AppActions.setSelectedPhoto(obj.src);
+  AppActions.setSelectedPhoto(obj);
   AppActions.photoViewerOn();
-
 }
-
 
   render() {
     return (
@@ -94,7 +91,6 @@ handleClick(obj){
       <Signup show={this.state.signupWindowOpen}/>
       <Login show={this.state.loginWindowOpen}/>
       <PhotoViewer show={this.state.photoViewerOn} selectedPhoto={this.state.selectedPhoto}/>
-      <p className="App-intro">{this.state.response} </p>
       </div>
       );
   }
