@@ -1,4 +1,6 @@
 import React from 'react';
+import WowButton from './WowButton.jsx';
+
 let Highlight = function statelessFunctionComponentClass(props) {
   let source = props.source;
   let link = props.link;
@@ -60,6 +62,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <button style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
+    <WowButton source={source} arrID = {1 /*how do you pass the array index?*/}/>
     </button>
     );
 };

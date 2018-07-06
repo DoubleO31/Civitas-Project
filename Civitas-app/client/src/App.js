@@ -11,6 +11,7 @@ import UploadButton from './Component/UploadButton.js';
 import UploadWindow from './Component/UploadWindow.js';
 import PhotoViewer from './Component/PhotoViewer.js';
 import AppActions from './Action/AppActions.js';
+import WowButton from './Component/WowButton.jsx';
 
 class App extends Component {
 
