@@ -1,4 +1,4 @@
-const express = require('express');
+/* const express = require('express');
 const fs = require('fs');
 
 const app = express();
@@ -17,4 +17,15 @@ fs.readFile('./highlights.json', (err, data) => {
 
     app.listen(port, () => console.log(`Listening on port ${port}`));
 });
+ */
+ 
+const express = require('express');
 
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.get('/api/hello', (req, res) => {
+  res.send({ express: 'Hello From Express' });
+});
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
