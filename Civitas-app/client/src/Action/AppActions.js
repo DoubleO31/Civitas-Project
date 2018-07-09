@@ -2,6 +2,15 @@ import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 
 const AppActions = {
 
+// !!!
+  wowPhoto: function(photoIndex){
+    AppDispatcher.dispatch({
+      actionType: 'wowPhoto',
+      index: photoIndex
+    });
+  },
+
+
   setSelectedPhoto: function(obj){
     AppDispatcher.dispatch({
       actionType: 'setSelectedPhoto',
