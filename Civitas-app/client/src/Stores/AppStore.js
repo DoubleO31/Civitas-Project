@@ -16,16 +16,6 @@ function loadPhotoData(data) {
   _photos = data;
 }
 
-function incrementWow(photoIndex){
-  // !!!
-  // change the wow count associated with the specific photo in the database
-}
-
-function decrementWow(photoIndex){
-  // !!!
-  // change the wow count associated with the specific photo in the database
-}
-
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
 }
@@ -63,8 +53,6 @@ class Appstore extends EventEmitter {
   getLoginWindowStatus() {
     return _loginWindowOn;
   }
-
-
 }
 
 const _appStore = new Appstore();
@@ -73,13 +61,6 @@ export default _appStore;
 
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
-
-    // case 'wowPhoto':
-    // if (!_photos[action.index].clicked){
-    //   incrementWow(action.index);
-    // } else {
-    //   decrementWow(action.index);
-    // }
 
     case 'receiveData':
     loadPhotoData(action.data);
