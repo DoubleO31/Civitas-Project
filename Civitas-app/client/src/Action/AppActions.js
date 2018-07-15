@@ -9,6 +9,21 @@ const AppActions = {
     });
   },
 
+  wowIncrement: function(wowed, count) {
+    console.log('wowincrement called');
+    AppDispatcher.dispatch ({
+      actionType: 'wowIncrement',
+      data: [wowed, count]
+    });
+  },
+
+  wowDecrement: function(wowed, count) {
+    console.log('wowdecrement called');
+    AppDispatcher.dispatch ({
+      actionType: ' wowDecrement',
+      data: [wowed, count]
+    });
+  },
 
   photoViewerOff: function(){
     AppDispatcher.dispatch({

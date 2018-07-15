@@ -63,7 +63,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <div style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    <WowButton source={source}/>
+    <WowButton className={source} source={source}/>
     </div>
     );
 };
