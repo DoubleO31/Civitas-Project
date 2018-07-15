@@ -6,6 +6,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let link = props.link;
   let title = props.title;
   let desc = props.desc;
+  let count = props.count;
 
   let style = {
     position: 'relative',
@@ -59,16 +60,11 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
 
   return (
-    <button style = {style} onClick={props.onClick}>
+    <div style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
-<<<<<<< HEAD
-    <WowButton className={source} source={source}/>
+    <WowButton source={source}/>
     </div>
-=======
-    <WowButton source={source} arrID = {1 /*how do you pass the array index?*/}/>
-    </button>
->>>>>>> parent of 2633675f... wowbutton using react
     );
 };
 

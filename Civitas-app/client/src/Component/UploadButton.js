@@ -15,7 +15,7 @@ class UploadButton extends React.Component {
 	}
 
 	render() {
-		return ( < button className='UploadButton' onClick = { this._openUploadWindow } >
+		return ( < button class='UploadButton' onClick = { this._openUploadWindow } >
 			Upload Your Photo
 			</button>
 		);
