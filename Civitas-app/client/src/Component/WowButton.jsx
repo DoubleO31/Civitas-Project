@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import AppActions from '../Action/AppActions.js';
 import AppStore from '../Stores/AppStore.js';
@@ -79,13 +80,43 @@ class WowButton extends React.Component {
 				<button id={this.props.source} style={cssStyle} onClick={this._WowHandleClick} >
 				Wow! 
 				<div> {this.state.count} </div>
+=======
+import React from 'react';
+let WowButton = function steatelessFunctionComponentClass(props) {
+	let source = props.source;
+	let arrID = props.arrID;
+
+	let style = {
+		fontSize: '1em',
+		backgroundColor: 'lightblue',
+		color: 'yellow',
+		position: 'absolute',
+		width: 'auto',
+		height: 'auto',
+		textAlign: 'justify',
+		right: '0px',
+		top: '150px',
+		borderRadius: '100%'
+	}
+
+	return (
+		<button id={source} style={style} onClick={props.onClick}>
+		Wow! 
+		<div> 29k </div>
+>>>>>>> parent of 2633675f... wowbutton using react
 	{/* need to make a call to server to get number of wows, and when clicked 
 		to $inc wow by 1. Maybe set some timeout so can't keep toggling. Need
-	to also change the colour of the button if pressed?*/}
+		to also change the colour of the button if pressed?*/}
 
+<<<<<<< HEAD
 	</button>
 	);	
 		}
 	};	
+=======
+		</button>
+		);
+};
+>>>>>>> parent of 2633675f... wowbutton using react
 
 	export default WowButton;
