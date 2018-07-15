@@ -64,10 +64,9 @@ callApi = async() =>{
    var data = this.state.photos;
    for (var i = 0; i < data.length; i++) {
     var obj = data[i];
-
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={key} onClick={() => this.handleClick(obj)}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={key} arrID={key} onClick={() => this.handleClick(obj)}/>
      )
  }
 

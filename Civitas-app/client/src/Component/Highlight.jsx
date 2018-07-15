@@ -6,7 +6,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let link = props.link;
   let title = props.title;
   let desc = props.desc;
-  let count = props.count;
+  let arrID = props.arrID;
 
   let style = {
     position: 'relative',
@@ -60,11 +60,11 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
 
   return (
-    <div style = {style} onClick={props.onClick}>
+    <span style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    <WowButton source={source}/>
-    </div>
+    <WowButton arrID={arrID}/>
+    </span>
     );
 };
 
