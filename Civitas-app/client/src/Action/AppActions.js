@@ -72,6 +72,12 @@ const AppActions = {
 
   },
 
+  logout: function(){
+    AppDispatcher.dispatch({
+      actionType: 'logout',
+    });
+  },
+
 
 
 

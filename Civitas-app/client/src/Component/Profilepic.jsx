@@ -1,5 +1,7 @@
 import React from "react";
 import AppActions from '../Action/AppActions.js';
+import Auth from '../modules/Auth';
+import { Link } from 'react-router-dom';
 
 class Profilepic extends React.Component {
 
@@ -9,6 +11,10 @@ class Profilepic extends React.Component {
 
   _openLoginWindow = () => {
     AppActions.loginWindowOn();
+  }
+
+  _logout = () => {
+    AppActions.logout();
   }
 
 
@@ -21,9 +27,15 @@ class Profilepic extends React.Component {
           src="./profile.png"
           alt="profile"
         />
-        <button onClick={this._openLoginWindow} className="login">
-          Log in
-        </button>
+        {Auth.isUserAuthenticated() ? (
+          <button onClick={this._logout} className="login">
+            Log out
+          </button>
+        ) : (
+          <button onClick={this._openLoginWindow} className="login">
+            Log in
+          </button>
+        )}
 
 
         </div>

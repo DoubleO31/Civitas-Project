@@ -1,5 +1,6 @@
 import AppDispatcher from '../Dispatcher/AppDispatcher.js';
 import { EventEmitter } from 'events';
+import Auth from '../modules/Auth';
 
 const CHANGE_EVENT = 'change';
 
@@ -18,6 +19,10 @@ function loadPhotoData(data) {
 
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
+}
+
+function logout() {
+  Auth.deauthenticateUser();
 }
 
 class Appstore extends EventEmitter {
@@ -98,6 +103,11 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
 
     case 'loginWindowOff':
     _loginWindowOn = false;
+    _appStore.emitChange();
+    break;
+
+    case 'logout':
+    logout();
     _appStore.emitChange();
     break;
 

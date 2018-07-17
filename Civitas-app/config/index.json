@@ -1,0 +1,4 @@
+{
+    "dbUri": "mongodb://m001-student:m001-mongodb-basics@sandbox-shard-00-00-hizuc.mongodb.net:27017,sandbox-shard-00-01-hizuc.mongodb.net:27017,sandbox-shard-00-02-hizuc.mongodb.net:27017/civitas?ssl=true&replicaSet=Sandbox-shard-0&authSource=admin&retryWrites=truemongodb://username:password@host/database",
+  "jwtSecret": "a secret phrase!!"
+}
