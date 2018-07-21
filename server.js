@@ -3,6 +3,7 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./config');
+require("dotenv").config();
 
 // const fs = require('fs');
 const app = express();
