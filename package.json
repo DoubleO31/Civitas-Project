@@ -2,7 +2,6 @@
   "name": "Civitas-app",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && npm install && npm start",
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
