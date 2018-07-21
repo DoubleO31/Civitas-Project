@@ -8,10 +8,12 @@ let _uploadWindowOpen = false;
 let _photoViewerOn = false;
 let _signupWindowOn = false;
 let _loginWindowOn = false;
+let _wowed = false;
 var bgColor = null;
 
 var _photos = {};
 var _selectedPhoto = {};
+var _wowCount = 0;
 
 function loadPhotoData(data) {
   _photos = data;
@@ -23,6 +25,9 @@ function setSelectedPhoto(obj) {
 
 function logout() {
   Auth.deauthenticateUser();
+function loadWowDetails(data) {
+  _wowCount = data[1];
+  _wowed = data[0];
 }
 
 class Appstore extends EventEmitter {
@@ -57,6 +62,14 @@ class Appstore extends EventEmitter {
 
   getLoginWindowStatus() {
     return _loginWindowOn;
+  }
+
+  getWowed() {
+    return _wowed;
+  }
+
+  getWowCount() {
+    return _wowCount;
   }
 }
 
@@ -113,9 +126,24 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
 
 
     case 'toggleUploadWindow':
-	_uploadWindowOpen = !_uploadWindowOpen;
-	_appStore.emitChange();
-	break;
+  	_uploadWindowOpen = !_uploadWindowOpen;
+    _appStore.emitChange();
+    break;
+
+
+    case 'wowIncrement':
+    loadWowDetails(action.data);
+    _wowed = true;
+    _wowCount = _wowCount + 1;
+    _appStore.emitChange();
+    break;
+
+    case 'wowDecrement':
+    loadWowDetails(action.data);
+    _wowed = false;
+    _wowCount = _wowCount - 1;
+    _appStore.emitChange();
+    break;
 
     default:
     break;
