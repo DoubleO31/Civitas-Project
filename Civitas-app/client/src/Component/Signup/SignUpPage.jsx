@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import SignUpForm from './SignUpForm.jsx';
+import AppActions from '../../Action/AppActions.js';
 
 
 
@@ -25,6 +26,7 @@ class SignUpPage extends React.Component {
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
   }
+
 
   /**
    * Process the form.
@@ -59,7 +61,9 @@ class SignUpPage extends React.Component {
         localStorage.setItem('successMessage', xhr.response.message);
 
         // make a redirect
-        this.context.router.replace('/login');
+        //this.context.router.replace('/login');
+        AppActions.signupWindowOff();
+        AppActions.loginWindowOn();
       } else {
         // failure
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Auth from '../../modules/Auth';
 import Dashboard from './Dashboard.jsx';
 import { Link } from 'react-router-dom';
+import AppActions from '../../Action/AppActions.js';
 
 
 class DashboardPage extends React.Component {
@@ -15,6 +16,10 @@ class DashboardPage extends React.Component {
     this.state = {
       secretData: ''
     };
+  }
+
+  _closeLoginWindow = () => {
+    AppActions.loginWindowOff();
   }
 
   /**
@@ -45,7 +50,7 @@ class DashboardPage extends React.Component {
     return (
       <div>
       <Dashboard secretData={this.state.secretData} />
-      <Link to="/"><h1>Back to home page</h1></Link>
+      <Link to="/" onClick={this._closeLoginWindow}><h1>Back to home page</h1></Link>
       </div>
     );
   }
