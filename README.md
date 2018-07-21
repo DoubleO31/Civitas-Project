@@ -1,5 +1,9 @@
 # cs490 Civitas
 
+## Assignment 4:
+Server.js retrieves all highlight entries (containing title, description, and source for each image) from MongoDB and sends it to app for rendering.
+
+
 ## Description: 
 Users can create their own community to share photos with specific topics.
 
