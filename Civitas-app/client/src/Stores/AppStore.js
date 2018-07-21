@@ -24,7 +24,8 @@ function setSelectedPhoto(obj) {
 }
 
 function logout() {
-  Auth.deauthenticateUser();
+  Auth.deauthenticateUser();}
+
 function loadWowDetails(data) {
   _wowCount = data[1];
   _wowed = data[0];
@@ -119,11 +120,6 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
     _appStore.emitChange();
     break;
 
-    case 'logout':
-    logout();
-    _appStore.emitChange();
-    break;
-
 
     case 'toggleUploadWindow':
   	_uploadWindowOpen = !_uploadWindowOpen;
@@ -142,6 +138,11 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
     loadWowDetails(action.data);
     _wowed = false;
     _wowCount = _wowCount - 1;
+    _appStore.emitChange();
+    break;
+
+    case 'logout':
+    logout();
     _appStore.emitChange();
     break;
 

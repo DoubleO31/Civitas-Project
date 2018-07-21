@@ -15,9 +15,15 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	if (err) throw err;
 	var dbo = db.db("civitas");
 
-    app.get('/api/highlights', function(req, res){
-    	res.send(data);
-    });
+	dbo.collection("highlights").find({}).toArray((err, result) => {
+		if (err) throw err;
+
+
+		app.get('/api/highlights', function(req, res){
+			// console.log(req);
+			res.send(result);
+		});
+	});
 });
 
 // connect to the database and load models
@@ -48,16 +54,3 @@ app.use('/auth', authRoutes);
 //app.use('/api', apiRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-	dbo.collection("highlights").find({}).toArray((err, result) => {
-		if (err) throw err;
-
-
-		app.get('/api/highlights', function(req, res){
-			// console.log(req);
-			res.send(result);
-		});
-
-		app.listen(port, () => console.log(`Listening on port ${port}`));
-
-	});
-});
