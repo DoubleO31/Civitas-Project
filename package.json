@@ -2,8 +2,8 @@
   "name": "Civitas-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install && npm run build"
+      "start": "node server.js",
+      "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
     "bcrypt": "^3.0.0",
