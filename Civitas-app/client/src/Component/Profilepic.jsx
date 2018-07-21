@@ -21,6 +21,7 @@ class Profilepic extends React.Component {
   render() {
     return(
     <div>
+    <Link to="/dashboard">
         <div className="big-cir">
         <img className="profile-picture"
           id="profile-picture"
@@ -39,6 +40,7 @@ class Profilepic extends React.Component {
 
 
         </div>
+        </Link>
     </div>
   );
 }

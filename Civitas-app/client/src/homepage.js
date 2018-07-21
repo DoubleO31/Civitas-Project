@@ -86,7 +86,7 @@ handleClick(obj){
       <div className="App">
       <Menubar/>
       <Profilepic/>
-            <UploadButton/>
+      <UploadButton/>
       <div className = "HighlightsContainer">
       {this.parseJson()}
 

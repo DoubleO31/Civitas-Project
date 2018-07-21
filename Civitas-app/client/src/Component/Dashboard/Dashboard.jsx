@@ -8,7 +8,7 @@ const Dashboard = ({ secretData }) => (
   <MuiThemeProvider>
   <Card className="container">
     <CardTitle
-      title="Dashboard"
+      title="Profile Page"
       subtitle="You should get access to this page only after authentication."
     />
 
