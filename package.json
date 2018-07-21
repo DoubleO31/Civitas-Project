@@ -2,7 +2,7 @@
   "name": "Civitas-app",
   "version": "1.0.0",
   "scripts": {
-      "start": "node server.js",
+      "start": "node server",
       "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "dependencies": {
@@ -20,6 +20,10 @@
     "multer": "^1.3.1",
     "express": "^4.16.3"
   },
+  "cacheDirectories": [
+  "node_modules",
+  "react-ui/node_modules"
+],
   "devDependencies": {
     "concurrently": "^3.5.0"
   },
