@@ -54,4 +54,6 @@ const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
 //app.use('/api', apiRoutes);
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+app.listen(PORT, function () {
+	console.error();
+});
