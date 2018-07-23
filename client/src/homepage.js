@@ -71,7 +71,7 @@ callApi = async() =>{
 
   }
    return data.map((obj, key) =>
-    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} key={key} onClick={() => this.handleClick(obj)}/>
+    <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} wow={obj.wow} key={key} onClick={() => this.handleClick(obj)}/>
      )
  }
 

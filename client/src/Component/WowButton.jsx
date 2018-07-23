@@ -4,11 +4,12 @@ class WowButton extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			count: 0,  // call this.props.count later
+			count: this.props.wow,  // call this.props.count later
 			wowed: false,
 			arrID: this.props.arrID
 		}
 		// console.log(this.props.arrID);
+		// console.log(this.props.wow);
 	}
 
 	handleClick = (e) => {
@@ -19,12 +20,15 @@ class WowButton extends React.Component {
 				count: prevState.count + 1,
 				wowed: !prevState.wowed
 			}));
+		//callApi
+
 	} else {
 		this.setState((prevState, {count, wowed }) => 
 			({
 				count: prevState.count - 1,
 				wowed: !prevState.wowed
 			}));
+		// callApi
 	}};
 
 // how do you make the proper calls to node.js????
