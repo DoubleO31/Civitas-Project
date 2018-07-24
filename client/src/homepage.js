@@ -50,6 +50,7 @@ callApi = async() =>{
 
   componentWillUnmount(){
       AppStore.removeChangeListener(this._onChange);
+      // 
     }
 
   _onChange(){
@@ -67,9 +68,7 @@ callApi = async() =>{
   parseJson(){
    var data = this.state.photos;
    for (var i = 0; i < data.length; i++) {
-    var obj = data[i];
-
-  }
+    var obj = data[i];}
    return data.map((obj, key) =>
     <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} wow={obj.wow} key={key} onClick={() => this.handleClick(obj)}/>
      )

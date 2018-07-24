@@ -41,15 +41,6 @@ class WowButton extends React.Component {
 		return body;
 	};
 
-	componentDidMount(){
-		// call node.js API
-		this.callApi();
-	}
-
-	componentWillUnmount(){
-		// nothing necessary here
-	}
-
 	render () {
 		var cssStyle = {
 			fontSize: '.8em',
