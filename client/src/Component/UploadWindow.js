@@ -17,30 +17,62 @@ class UploadWindow extends React.Component {
 		AppActions.closeUploadWindow();
 	}
 
+	makeid = () => {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 12; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
 	fileChangedHandler = (event) => {
   this.setState({selectedFile: event.target.files[0]});
 }
 
 
-uploadHandler = () => {
-	console.log(this.state.selectedFile)
-  const formData = new FormData()
-  formData.append('image', this.state.selectedFile, this.state.selectedFile.name)
-	fetch('/upload', {
-	method: 'POST',
-	body: formData,
-})
-.then(function(res) {
-    return res.json();
-})
-.then(function(parsedData) {
-	this.setState({photoURL: parsedData.imageUrl});
-	console.log(this.state.photoURL);
-}.bind(this))
-.catch(error => {
-      console.error(error);
-    });
-}
+	uploadHandler = () => {
+	  const formData = new FormData()
+		//to do empty file
+	  formData.append('image', this.state.selectedFile, this.makeid())
+		fetch('/upload', {
+		method: 'POST',
+		body: formData,
+	})
+	.then(function(res) {
+	    return res.json();
+	})
+	.then(function(parsedData) {
+		this.setState({photoURL: parsedData.imageUrl});
+		console.log(this.state.photoURL);
+		this.uploadmongodb();
+
+	}.bind(this))
+	.catch(error => {
+	      console.error(error);
+	    });
+	}
+
+	uploadmongodb = () =>{
+		fetch('/mongodbupload', {
+			method: 'POST',
+			  headers: {
+			    'Accept': 'application/json',
+			    'Content-Type': 'application/json',
+			  },
+			  body: JSON.stringify({
+			    src: this.state.photoURL,
+			    title: "test",
+					desc: "test",
+					wow: 0
+			  })
+			})
+		}
+
+
+
+
 
 	render() {
 		if (!this.props.show) {

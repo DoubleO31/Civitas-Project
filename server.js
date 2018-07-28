@@ -18,6 +18,9 @@ const port = process.env.PORT || 5000;
 var MongoClient = require('mongodb').MongoClient;
 var uri = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox-hizuc.mongodb.net/test?retryWrites=true";
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	if (err) throw err;
 	var dbo = db.db("civitas");
@@ -28,6 +31,17 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 			res.send(result);
 		});
 	});
+
+	app.post('/mongodbupload', function(request, response, next) {
+	  const data = request.body;
+		console.log(data);
+		dbo.collection("highlights").insertOne(data, function(err, res) {
+		if (err) throw err;
+		// close the connection to db when you are done with it
+		db.close();
+	});
+});
+
 });
 
 // connect to the database and load models
