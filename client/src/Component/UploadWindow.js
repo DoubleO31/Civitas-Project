@@ -1,15 +1,46 @@
 import React, { Component } from "react";
 import AppActions from '../Action/AppActions.js';
+import axios from 'axios';
 
 class UploadWindow extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+		selectedFile: null,
+		photoURL: null
+	}
+	this.uploadHandler = this.uploadHandler.bind(this);
 	}
 
 	_closeUploadWindow = () => {
 		AppActions.closeUploadWindow();
 	}
+
+	fileChangedHandler = (event) => {
+  this.setState({selectedFile: event.target.files[0]});
+}
+
+
+uploadHandler = () => {
+	console.log(this.state.selectedFile)
+  const formData = new FormData()
+  formData.append('image', this.state.selectedFile, this.state.selectedFile.name)
+	fetch('/upload', {
+	method: 'POST',
+	body: formData,
+})
+.then(function(res) {
+    return res.json();
+})
+.then(function(parsedData) {
+	this.setState({photoURL: parsedData.imageUrl});
+	console.log(this.state.photoURL);
+}.bind(this))
+.catch(error => {
+      console.error(error);
+    });
+}
 
 	render() {
 		if (!this.props.show) {
@@ -41,10 +72,8 @@ class UploadWindow extends React.Component {
 			<div style = { backdropStyle } >
 				<div style = { modalStyle } >
 					<h1>Share Your Photos</h1>
-					<form action="fileupload" method="post" enctype="multipart/form-data">
-						<input type="file" name="filetoupload" /><br/>
-						<input type="submit" />
-					</form>					
+						<input type="file" onChange={this.fileChangedHandler} />
+					<button onClick={this.uploadHandler}>Upload!</button>
 					<div>
 						<button onClick = { this._closeUploadWindow }>Close </button>
 					</div >

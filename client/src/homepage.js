@@ -50,7 +50,7 @@ callApi = async() =>{
 
   componentWillUnmount(){
       AppStore.removeChangeListener(this._onChange);
-      // 
+      //
     }
 
   _onChange(){

@@ -3,6 +3,13 @@ const fs = require('fs');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const config = require('./config');
+const Multer = require('multer');
+const memoryStorage = require('multer');
+const storage = require('@google-cloud/storage');
+var path = require('path');
+const router = express.Router();
+const imgUpload = require('./imgUpload');
+
 
 // const fs = require('fs');
 const app = express();
@@ -17,10 +24,7 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 
 	dbo.collection("highlights").find({}).toArray((err, result) => {
 		if (err) throw err;
-
-
 		app.get('/api/highlights', function(req, res){
-			// console.log(req);
 			res.send(result);
 		});
 	});
@@ -52,5 +56,25 @@ const authRoutes = require('./server/routes/auth');
 const apiRoutes = require('./server/routes/api');
 app.use('/auth', authRoutes);
 //app.use('/api', apiRoutes);
+
+
+
+
+//UploadWindow
+const multer = Multer({
+  storage: Multer.MemoryStorage,
+  fileSize: 5 * 1024 * 1024
+});
+
+// Process the file upload and upload to Google Cloud Storage.
+app.post('/upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
+  const data = request.body;
+  if (request.file && request.file.cloudStoragePublicUrl) {
+    data.imageUrl = request.file.cloudStoragePublicUrl;
+  }
+	console.log(data);
+  response.send(data);
+})
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

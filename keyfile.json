@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "civitas-211123",
+  "private_key_id": "5ea0991dbd54f40c4fa76d77bcc91a9c4c80661e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDDn7mHS9ms+Pty\n6qdo0Yp88gPLwRXKbIGAWHnj6welV2UaDuGEGsk/+LGRKFCkLtOWVDs1jn+AGunP\ntI2MzqssekfwIdaIHU/YQx6XOxM1hYG5unidfFcgFEnSn863I9eSYdujzhmwVSKK\nHgkobZxYAMb4P5nxerl37tJPh6VvoSwN4eQlQ+WAmuf+DLSvUZyelKf6yFHsj8OG\nMtZsd7PzTBR31DmOhKT0z07sHzwmZO1rCkT5aYforb0xid2P/mjuM/iRobBzj+as\n37MC8CYR/KF4KylmW+sXY2yjHKQgifJoX3h7olU0WMkOSWiPXMscjS0eVW+oyDbP\n3FCp+WelAgMBAAECggEAHS5m6RajU9OtArFGpB1Z3hXmA2TRVimwebpOWHWXZY6E\nujSNEdKYbG6x4kLpdfcMQL5eOg4rLoC/7xLHvhZC34wleLM7gtYd3SyfVBTlDSoA\ntiQUWP29gL9gscbSpGwi0fxqB2SNCB+dsDfByveVh7p5888yV3IkrOOBw4kAYIcf\nQZb74YCoG63hhjW2nHHDzCBLaXMbnaxwWqbJ/vJVqFPkrGuQDTx8Pg9/zNcJacnJ\nBwZHWifVHXPn3ij2z/aTtUFCeVBC7GuMpCwszHBJ5x62QVA0ke9NskfxJv87ldPr\nYe9LhquUCGPITrWGsAHNU6E795gCGddCHjMywIt/YwKBgQDvMxEm92yCtM5AA1Hq\nMndDSb7+Azn7eaU5pKjP14u59H1OQQ98m+brKuFIg93eK0rglZvp499eOhA1ESsJ\nz04aB+mMSADc1cXVoYhgv6kA2/doeOLmPJF8iNuZj2CamgG+r+spikIQs3TtM95C\n2bX0gyGtcahpxX2vJrl3l5gd3wKBgQDRXSVuGOiu7qUNlEiE9ZrUAe5oqUAOkKCU\nWmSlQBv9joiIyCOVwbeHQu340QWHj2/HlclRCgNRqA8+z/GxW+6Fn8/D+W1SLqox\nLFli7WO0mrP84KZfvwCtZ9de+mTKpYuGyobe+esxW55zn7at9sFMopRAI2wBp23P\n/OW0XrOi+wKBgQC/udz7sMKHGclfwcl8wKqbgpbWH1vwV5a512OABLL4gCGYAcoa\nBRRYVuxwJVJG68h+ryxjksTNUBkBkBtBJ6rgbosiZ+xZFfgWvf0EH1ulVqq+UHb+\nOHocqc3rDeNOyDax02vYxfsiS9Vi83opdzvDGwB5d2qYLTYKmC180EObXQKBgQCl\nv4RegUHVHAF3mqk++eI1bcH9AeFApqc6S8XaPcLrHehhwXDKoq5VW1ti3Lfv9lKc\nQ605hx/RiadoJuBFdW6EQ10M3W763Q7IF0A83YtN9BwCWyfcLS6wGcGb48ff1ud7\nMuNLq7fTP6FWEF9jojKuJRgRHvnm5VI+kwyXm1HD+QKBgEY/uj8asJZr6iWcnrul\nYVWxvLnnWxa5xaKVEN0fZPIlfkBrSUL61mYV6MdYs19x//MRkltAbsHvrRP6i1Vv\n/l4KuRto6vpbm+pnpAtXVZmYjK55wjor1zE+1YUhqaECTrKMcWwnWW3e9AER7yJt\ntiYivHC7dKSzkRVdXBwXGuk8\n-----END PRIVATE KEY-----\n",
+  "client_email": "citivasapp@civitas-211123.iam.gserviceaccount.com",
+  "client_id": "102253657739910529350",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/citivasapp%40civitas-211123.iam.gserviceaccount.com"
+}
