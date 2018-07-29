@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import AppActions from '../Action/AppActions.js';
-import axios from 'axios';
 
 class UploadWindow extends React.Component {
 
@@ -32,9 +31,12 @@ class UploadWindow extends React.Component {
 }
 
 
-	uploadHandler = () => {
+	uploadHandler = (up) => {
+		up.preventDefault();
 	  const formData = new FormData()
 		//to do empty file
+		console.log(this.state.selectedFile);
+
 	  formData.append('image', this.state.selectedFile, this.makeid())
 		fetch('/upload', {
 		method: 'POST',
@@ -44,9 +46,10 @@ class UploadWindow extends React.Component {
 	    return res.json();
 	})
 	.then(function(parsedData) {
-		this.setState({photoURL: parsedData.imageUrl});
+		if(parsedData.imageUrl){
+			this.setState({photoURL: parsedData.imageUrl});
 		console.log(this.state.photoURL);
-		this.uploadmongodb();
+		this.uploadmongodb();}
 
 	}.bind(this))
 	.catch(error => {
@@ -63,8 +66,8 @@ class UploadWindow extends React.Component {
 			  },
 			  body: JSON.stringify({
 			    src: this.state.photoURL,
-			    title: "test",
-					desc: "test",
+			    title: this.fileTitle.value,
+					desc: this.fileDesc.value,
 					wow: 0
 			  })
 			})
@@ -104,8 +107,18 @@ class UploadWindow extends React.Component {
 			<div style = { backdropStyle } >
 				<div style = { modalStyle } >
 					<h1>Share Your Photos</h1>
+					<form onSubmit={this.uploadHandler}>
+					<div>
 						<input type="file" onChange={this.fileChangedHandler} />
-					<button onClick={this.uploadHandler}>Upload!</button>
+					</div>
+					<div>
+						<input ref={(ref) => { this.fileTitle = ref; }} type="text" placeholder="Enter the desired title of file" />
+					</div>
+					<div>
+						<input ref={(ref) => { this.fileDesc = ref; }} type="text" placeholder="Enter the desired description of file" />
+					</div>
+					<button>Upload!</button>
+					</form>
 					<div>
 						<button onClick = { this._closeUploadWindow }>Close </button>
 					</div >
