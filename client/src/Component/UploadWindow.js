@@ -49,7 +49,9 @@ class UploadWindow extends React.Component {
 		if(parsedData.imageUrl){
 			this.setState({photoURL: parsedData.imageUrl});
 		console.log(this.state.photoURL);
-		this.uploadmongodb();}
+		this.uploadmongodb();} else {
+			alert("Please select a file to upload");
+		}
 
 	}.bind(this))
 	.catch(error => {
