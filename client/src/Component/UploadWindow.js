@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import AppActions from '../Action/AppActions.js';
+var EXIF = require('exif-js');
+var latitude;
+var longitude;
 
 class UploadWindow extends React.Component {
 
@@ -7,7 +10,9 @@ class UploadWindow extends React.Component {
 		super(props);
 		this.state = {
 		selectedFile: null,
-		photoURL: null
+		photoURL: null,
+		long: 0,
+		lat: 0
 	}
 	this.uploadHandler = this.uploadHandler.bind(this);
 	}
@@ -35,7 +40,28 @@ class UploadWindow extends React.Component {
 		up.preventDefault();
 	  const formData = new FormData()
 		//to do empty file
-		console.log(this.state.selectedFile);
+		if(this.state.selectedFile){
+			EXIF.getData(this.state.selectedFile, function() {
+				var lat = EXIF.getTag(this, "GPSLatitude");
+				var latRef = EXIF.getTag(this, "GPSLatitudeRef");
+				var long = EXIF.getTag(this, "GPSLongitude");
+				var longRef = EXIF.getTag(this, "GPSLongitudeRef");
+				if (lat && long && latRef && longRef){
+					if (latRef == "S") {
+						latitude = (lat[0]*-1) + (( (lat[1]*-60) + (lat[2]*-1) ) / 3600);
+					} else {
+						latitude = lat[0] + (( (lat[1]*60) + lat[2] ) / 3600);
+					}
+
+					if (longRef == "W") {
+						longitude = (long[0]*-1) + (( (long[1]*-60) + (long[2]*-1) ) / 3600);
+					} else {
+						longitude = long[0] + (( (long[1]*60) + long[2] ) / 3600);
+					}
+				}
+			});
+
+
 
 	  formData.append('image', this.state.selectedFile, this.makeid())
 		fetch('/upload', {
@@ -47,16 +73,22 @@ class UploadWindow extends React.Component {
 	})
 	.then(function(parsedData) {
 		if(parsedData.imageUrl){
-			this.setState({photoURL: parsedData.imageUrl});
+			this.setState(
+				{photoURL: parsedData.imageUrl,
+				long: longitude,
+				lat: latitude});
 		console.log(this.state.photoURL);
+		console.log(this.state.lat,this.state.long);
 		this.uploadmongodb();} else {
-			alert("Please select a file to upload");
-		}
+		alert("Upload fail please try again");
+	}
 
 	}.bind(this))
 	.catch(error => {
 	      console.error(error);
-	    });
+	    });		}	else {
+					alert("Please select a file to upload");
+				}
 	}
 
 	uploadmongodb = () =>{
@@ -70,9 +102,13 @@ class UploadWindow extends React.Component {
 			    src: this.state.photoURL,
 			    title: this.fileTitle.value,
 					desc: this.fileDesc.value,
-					wow: 0
+					wow: 0,
+					latitude: this.state.lat,
+					longitude: this.state.long
 			  })
-			})
+			}).catch(error => {
+				 	console.error(error);
+				});
 		}
 
 

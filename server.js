@@ -38,7 +38,6 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		dbo.collection("highlights").insertOne(data, function(err, res) {
 		if (err) throw err;
 		// close the connection to db when you are done with it
-		db.close();
 	});
 });
 
