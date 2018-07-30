@@ -93,6 +93,12 @@ const AppActions = {
     });
   },
 
+  reloadphoto: function(){
+    AppDispatcher.dispatch({
+      actionType: 'receiveData',
+    });
+  },
+
 
 
 

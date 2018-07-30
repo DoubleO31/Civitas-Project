@@ -16,6 +16,7 @@ import SignUpPage from './Component/Signup/SignUpPage.jsx';
 import LoginPage from './Component/Login/LoginPage.jsx';
 import { Link, IndexLink } from 'react-router-dom';
 import Auth from './modules/Auth';
+var data;
 
 class Homepage extends Component {
 
@@ -26,7 +27,8 @@ class Homepage extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
-      photos: [],
+      //photos: AppStore.loadPhotoData(),
+      photos:[],
       selectedPhoto: AppStore.getSelectedPhoto(),
     }
     this._onChange = this. _onChange.bind(this);
@@ -40,6 +42,8 @@ callApi = async() =>{
 
   return body;
 };
+
+
 
   componentDidMount(){
       AppStore.addChangeListener(this._onChange);
@@ -66,7 +70,6 @@ callApi = async() =>{
   }
 
   parseJson(){
-   var data = this.state.photos;
    for (var i = 0; i < data.length; i++) {
     var obj = data[i];}
    return data.map((obj, key) =>
@@ -87,7 +90,8 @@ handleClick(obj){
       <Profilepic/>
       <UploadButton/>
       <div className = "HighlightsContainer">
-      {this.parseJson()}
+      { data =this.state.photos,
+        this.parseJson()}
 
       </div>
 

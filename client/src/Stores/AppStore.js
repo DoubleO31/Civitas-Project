@@ -11,13 +11,10 @@ let _loginWindowOn = false;
 let _wowed = false;
 var bgColor = null;
 
-var _photos = {};
+var _photos = [];
 var _selectedPhoto = {};
 var _wowCount = 0;
 
-function loadPhotoData(data) {
-  _photos = data;
-}
 
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
@@ -30,6 +27,9 @@ function loadWowDetails(data) {
   _wowCount = data[1];
   _wowed = data[0];
 }
+
+
+
 
 class Appstore extends EventEmitter {
 
@@ -72,6 +72,21 @@ class Appstore extends EventEmitter {
   getWowCount() {
     return _wowCount;
   }
+
+  callApi = async() =>{
+    const response = await fetch('/api/highlights');
+    const body = await response.json();
+
+    if(response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  loadPhotoData() {
+    this.callApi()
+    .then(res=>this.setState({_photos: res}))
+    .catch(err => console.log(err));
+  }
 }
 
 const _appStore = new Appstore();
@@ -82,7 +97,7 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
 
     case 'receiveData':
-    loadPhotoData(action.data);
+    this.loadPhotoData();
     break;
 
     case 'setSelectedPhoto':
