@@ -27,10 +27,6 @@ class Homepage extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
-<<<<<<< HEAD
-=======
-      //photos: AppStore.loadPhotoData(),
->>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
       photos:[],
       selectedPhoto: AppStore.getSelectedPhoto(),
     }
@@ -73,10 +69,7 @@ callApi = async() =>{
   }
 
   parseJson(){
-<<<<<<< HEAD
   var data = this.state.photos;
-=======
->>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
    for (var i = 0; i < data.length; i++) {
     var obj = data[i];}
    return data.map((obj, key) =>
@@ -97,7 +90,7 @@ handleClick(obj){
       <Profilepic/>
       <UploadButton/>
       <div className = "HighlightsContainer">
-      { data =this.state.photos,
+      {
         this.parseJson()}
 
       </div>
