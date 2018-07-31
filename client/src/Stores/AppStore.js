@@ -11,13 +11,11 @@ let _loginWindowOn = false;
 let _wowed = false;
 var bgColor = null;
 
-var _photos = {};
+var _photos = [];
 var _selectedPhoto = {};
 var _wowCount = 0;
+var useremail;
 
-function loadPhotoData(data) {
-  _photos = data;
-}
 
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
@@ -30,6 +28,10 @@ function loadWowDetails(data) {
   _wowCount = data[1];
   _wowed = data[0];
 }
+
+
+
+
 
 class Appstore extends EventEmitter {
 
@@ -72,6 +74,11 @@ class Appstore extends EventEmitter {
   getWowCount() {
     return _wowCount;
   }
+
+  getuserinfo() {
+    return useremail;
+  }
+
 }
 
 const _appStore = new Appstore();
@@ -81,9 +88,6 @@ export default _appStore;
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
 
-    case 'receiveData':
-    loadPhotoData(action.data);
-    break;
 
     case 'setSelectedPhoto':
     setSelectedPhoto(action.data);
@@ -145,6 +149,12 @@ _appStore.dispatchToken = AppDispatcher.register( action => {
     logout();
     _appStore.emitChange();
     break;
+
+    case 'setUserinfo':
+    useremail = action.data;
+    _appStore.emitChange();
+    break;
+
 
     default:
     break;

@@ -37,11 +37,19 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		console.log(data);
 		dbo.collection("highlights").insertOne(data, function(err, res) {
 		if (err) throw err;
-		// close the connection to db when you are done with it
 	});
 });
 
+	app.post('/usersinfo', function(request, response, next) {
+		const data = request.body;
+		console.log(data);
+		dbo.collection("users").find({email: data.email}).toArray((err, result) => {
+			if (err) throw err;
+			response.send(result);
+	});
 });
+});
+
 
 // connect to the database and load models
 require('./server/models').connect(config.dbUri);
@@ -85,9 +93,8 @@ app.post('/upload', multer.single('image'), imgUpload.uploadToGcs, function(requ
   if (request.file && request.file.cloudStoragePublicUrl) {
     data.imageUrl = request.file.cloudStoragePublicUrl;
   }
-	console.log(data);
   response.send(data);
-})
+});
 
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

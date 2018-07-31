@@ -93,6 +93,14 @@ const AppActions = {
     });
   },
 
+  saveuserinfo: function(obj){
+    AppDispatcher.dispatch({
+      actionType: 'setUserinfo',
+      data: obj
+    });
+  },
+
+
 
 
 

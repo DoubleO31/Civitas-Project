@@ -79,7 +79,8 @@ class UploadWindow extends React.Component {
 				lat: latitude});
 		console.log(this.state.photoURL);
 		console.log(this.state.lat,this.state.long);
-		this.uploadmongodb();} else {
+		this.uploadmongodb();
+	} else {
 		alert("Upload fail please try again");
 	}
 
@@ -108,6 +109,7 @@ class UploadWindow extends React.Component {
 			  })
 			}).catch(error => {
 				 	console.error(error);
+					alert("Upload fail please try again");
 				});
 		}
 

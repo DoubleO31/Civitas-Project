@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import Auth from '../../modules/Auth';
 import LoginForm from './LoginForm.jsx';
+import AppActions from '../../Action/AppActions.js'
 
 
 class LoginPage extends React.Component {
@@ -81,6 +82,7 @@ class LoginPage extends React.Component {
       }
     });
     xhr.send(formData);
+    AppActions.saveuserinfo(this.state.user.email);
   }
 
   /**
