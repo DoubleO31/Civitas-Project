@@ -8,6 +8,8 @@ import {
   GoogleMap,
   Marker
 } from "react-google-maps";
+import AppActions from "../../Action/AppActions.js";
+import {Link} from "react-router-dom";
 
 const MyMapComponent = withScriptjs(
   withGoogleMap(props => (
@@ -80,6 +82,10 @@ class DashboardPage extends React.Component {
     this.delayedShowMarker();
   };
 
+  _logout = () => {
+    AppActions.logout();
+  };
+
   /**
    * This method will be executed after initial rendering.
    */
@@ -90,17 +96,18 @@ class DashboardPage extends React.Component {
     return (
       <div>
         <Menubar />
-        <h1>
-          Welcome back {this.display()}
-          <MyMapComponent
-            isMarkerShown={this.state.isMarkerShown}
-            onMarkerClick={this.handleMarkerClick}
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx55KjQx3iDjCF4RTdo4PD_WfEWLiADVE&v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{height: `100%`}} />}
-            containerElement={<div style={{height: `400px`}} />}
-            mapElement={<div style={{height: `100%`}} />}
-          />
-        </h1>
+        <div style={{position: "fixed", top: 100, color: "white"}}>
+          <h1>Welcome back {this.display()}!</h1>
+        </div>
+        <button onClick={this._logout} ><Link to="/" >Log out</Link></button>
+        <MyMapComponent
+          isMarkerShown={this.state.isMarkerShown}
+          onMarkerClick={this.handleMarkerClick}
+          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx55KjQx3iDjCF4RTdo4PD_WfEWLiADVE&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style={{height: `100%`}} />}
+          containerElement={<div style={{height: `400px`}} />}
+          mapElement={<div style={{height: `100%`}} />}
+        />
       </div>
     );
   }
