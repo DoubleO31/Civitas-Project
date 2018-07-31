@@ -93,6 +93,7 @@ const AppActions = {
     });
   },
 
+<<<<<<< HEAD
   saveuserinfo: function(obj){
     AppDispatcher.dispatch({
       actionType: 'setUserinfo',
@@ -101,6 +102,14 @@ const AppActions = {
   },
 
 
+=======
+  reloadphoto: function(){
+    AppDispatcher.dispatch({
+      actionType: 'receiveData',
+    });
+  },
+
+>>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
 
 
 

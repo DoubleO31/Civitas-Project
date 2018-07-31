@@ -32,7 +32,10 @@ function loadWowDetails(data) {
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
 class Appstore extends EventEmitter {
 
   emitChange(){
@@ -75,10 +78,27 @@ class Appstore extends EventEmitter {
     return _wowCount;
   }
 
+<<<<<<< HEAD
   getuserinfo() {
     return useremail;
   }
 
+=======
+  callApi = async() =>{
+    const response = await fetch('/api/highlights');
+    const body = await response.json();
+
+    if(response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  loadPhotoData() {
+    this.callApi()
+    .then(res=>this.setState({_photos: res}))
+    .catch(err => console.log(err));
+  }
+>>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
 }
 
 const _appStore = new Appstore();
@@ -88,6 +108,12 @@ export default _appStore;
 _appStore.dispatchToken = AppDispatcher.register( action => {
   switch ( action.actionType ){
 
+<<<<<<< HEAD
+=======
+    case 'receiveData':
+    this.loadPhotoData();
+    break;
+>>>>>>> d16d04bbb105d75b29641f21287e01ac6be5e6da
 
     case 'setSelectedPhoto':
     setSelectedPhoto(action.data);
