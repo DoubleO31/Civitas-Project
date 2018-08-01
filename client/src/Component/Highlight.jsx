@@ -10,34 +10,16 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let wow = props.wow;
 
   let style = {
-    position: 'relative',
-    width: '400px',
-    height: '400px',
     background: `url(${source})`,
+    // position: 'relative',
+    // width: '400px',
+    // height: '400px',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    display: 'inline-flex',
-    padding: '0px 0px 0px 0px',
-    margin: '5px 5px 5px 5px',
-    /**
-      try to implement the hover functionality to show description.
-      may generate external css sheet, or figure out some how 
-      generate it in-line style. So far does not work. 
-    **/
-    ":hover": {
-      cursor: "pointer",
-      backgroundColor: "rgb(255,0,0)",
-      color: "rgb(255,0,0)"
-    }
+    // display: 'inline-flex',
+    // padding: '0px 0px 0px 0px',
+    // margin: '5px 5px 5px 5px',
   };
-
-  let picStyle = {
-    position: 'center',
-    width: '400px',
-    height: '400px',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
 
   let titleStyle = {
     position: 'absolute',
@@ -60,13 +42,24 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let highlightDescName = source + title + "desc";
 
 
-  return (
-    <span style = {style} onClick={props.onClick}>
-    <div id={highlightTitleName} style = {titleStyle}>{title}</div>
-    <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    <WowButton arrID = {arrID} wow = {wow}/>
-    </span>
-    );
+  // return (
+  //   <span style = {style} onClick={props.onClick}>
+  //   // <div id={highlightTitleName} style = {titleStyle}>{title}</div>
+  //   // <div id={highlightDescName} style = {descStyle}>{desc}</div>
+  //   // <WowButton arrID = {arrID} wow = {wow}/>
+  //   </span>
+  //   );
+
+
+return(
+<span class="highlight" style={style} onClick={props.onClick}>
+   <div class="highlight_overlay">
+   <p>Hello</p>
+   </div>
+</span>
+)
+
+
 };
 
 export default Highlight;

@@ -14,6 +14,8 @@ import AppActions from './Action/AppActions.js';
 import WowButton from './Component/WowButton.jsx';
 import SignUpPage from './Component/Signup/SignUpPage.jsx';
 import LoginPage from './Component/Login/LoginPage.jsx';
+import HighlightsContainer from './Component/HighlightsContainer.jsx';
+
 import { Link, IndexLink } from 'react-router-dom';
 import Auth from './modules/Auth';
 var data;
@@ -86,20 +88,18 @@ handleClick(obj){
   render() {
     return (
       <div className="App">
-      <Menubar/>
-      <Profilepic/>
-      <UploadButton/>
-      <div className = "HighlightsContainer">
-      {
-        this.parseJson()}
+  <Menubar/>
+  <Profilepic/>
+  <UploadButton/>
+  <div className="HighlightsContainer">
+    <HighlightsContainer data={this.state.photos}/>
+  </div>
+  <UploadWindow show={this.state.uploadWindowOpen}/>
+  <SignUpPage show={this.state.signupWindowOpen}/>
 
-      </div>
-
-      <UploadWindow show={this.state.uploadWindowOpen}/>
-      <SignUpPage show={this.state.signupWindowOpen}/>
-      <LoginPage show={this.state.loginWindowOpen}/>
-      <PhotoViewer show={this.state.photoViewerOn} selectedPhoto={this.state.selectedPhoto}/>
-      </div>
+  <LoginPage show={this.state.loginWindowOpen}/>
+  <PhotoViewer show={this.state.photoViewerOn} selectedPhoto={this.state.selectedPhoto}/>
+</div>
       );
   }
 

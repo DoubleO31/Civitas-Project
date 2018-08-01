@@ -39,6 +39,48 @@
   background-color: #999999;
 }
 
+.highlight {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  /* backgroundSize: cover; */
+  /* backgroundPosition: center; */
+  display: inline-flex;
+  padding: 0px 0px 0px 0px;
+
+}
+
+.highlight:hover {
+  cursor: pointer;
+}
+
+.highlight_overlay {
+background: rgba(229, 182, 177, 0.9);
+height: 100%;
+width: 100%;
+grid-column: 1 / -1;
+grid-row: 1 / -1;
+position: relative;
+display: grid;
+justify-items: center;
+align-items: center;
+position: absolute;
+
+transition: 1s;
+-webkit-transition: 1s;
+
+opacity: 0;
+transform
+transition: all 0.3s ease-in-out;
+}
+
+.highlight_overlay:hover {
+  display: block;
+  opacity: 0.9;
+  transform: translateY(0%);
+
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
