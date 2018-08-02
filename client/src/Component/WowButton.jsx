@@ -24,7 +24,7 @@ class WowButton extends React.Component {
 			})
 		}).catch(error => {
 			console.error(error);
-			alert("failed to increase wow");
+			// alert("failed to increase wow");
 		});
 		// console.log("finished running mongodbIncWow");
 	};
@@ -42,7 +42,7 @@ class WowButton extends React.Component {
 			})
 		}).catch(error => {
 			console.error(error);
-			alert("failed to decrease wow");
+			// alert("failed to decrease wow");
 		});
 		// console.log("finished running mongodbDecWow");
 	};
@@ -56,7 +56,7 @@ class WowButton extends React.Component {
 					wowed: !prevState.wowed
 				}));
 			this.mongodbIncWow();
-			console.log("mongodbincWow ran " + this.props.id);
+			// console.log("mongodbincWow ran " + this.props.id);
 
 		} else {
 			this.setState((prevState, {count, wowed }) => 
@@ -65,7 +65,7 @@ class WowButton extends React.Component {
 					wowed: !prevState.wowed
 				}));
 			this.mongodbDecWow();
-			console.log("mongodbdecWow ran " + this.props.id);
+			// console.log("mongodbdecWow ran " + this.props.id);
 		}};
 
 		render () {
