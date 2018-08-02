@@ -1,5 +1,6 @@
 import React from 'react';
 import WowButton from './WowButton.jsx';
+import Auth from '../modules/Auth';
 
 let Highlight = function statelessFunctionComponentClass(props) {
   let source = props.source;
@@ -56,7 +57,8 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <span style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    <WowButton id = {id} wow = {wow}/>
+    {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
+
     </span>
     );
 };
