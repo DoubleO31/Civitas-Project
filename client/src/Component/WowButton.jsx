@@ -81,15 +81,16 @@ class WowButton extends React.Component {
 		render () {
 			var cssStyle = {
 				fontSize: '.8em',
-				backgroundColor: 'lightblue',
-				color: 'yellow',
+				fontWeight: 'bold',
+				backgroundColor: 'rgba(0,33,255,0.5)',
+				color: '#00b7ff',
 				position: 'absolute',
 				width: '3em',
 				height: '3em',
 				textAlign: 'center',
 				right: '10px',
 				top: '200px',
-				borderRadius: '0%',
+				borderRadius: '15%',
 				zIndex: '0',
 				padding: '0px 0px 0px 0px',
 			}

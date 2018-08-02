@@ -32,11 +32,11 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		});
 	});
 
-		app.get('/api/highlights2', function(req, res){
-			dbo.collection("highlights").find({}).toArray((err, result) => {
-				if (err) throw err;
-				res.send(result);
-				console.log("call2");
+	app.get('/api/highlights2', function(req, res){
+		dbo.collection("highlights").find({}).toArray((err, result) => {
+			if (err) throw err;
+			res.send(result);
+			console.log("call2");
 		});
 	});
 
@@ -57,27 +57,84 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		});
 	});
 
+	/*
+	db.photos.update(
+    { 
+        "_id": ObjectId("54bb201aa3a0f26f885be2a3"), 
+        "likes": { "$ne": ObjectId("54bb2244a3a0f26f885be2a4") }
+    },
+    {
+        "$inc": { "likeCount": 1 },
+        "$push": { "likes": ObjectId("54bb2244a3a0f26f885be2a4") }
+    }
+)
+
+	*/
+
 	app.post('/mongodbIncWow', function(request, response, next) {
 		var objid = require('mongodb').ObjectID(request.body.id);
+		var userid = request.body.user;
 		// console.log("getting ready to wow" + objid);
+		dbo.collection("highlights").find({wowList: request.body.user})
 		dbo.collection("highlights").updateOne(
-			{"_id": objid},
-			{ $inc: {"wow": +1}}
+
+			{
+				"_id": objid,
+				"wowList": {$ne: userid}
+			},
+			{
+				$inc: {"wow": +1},
+				$push: {"wowList": userid}
+			}
+
 			);
 
+		dbo.collection("users").updateOne(
+		{
+			"email": userid,
+			"wowed": {$ne: objid}
+		},
+		{
+			$push: {"wowed": objid}
+		}
+		);
 	});
 
 	app.post('/mongodbDecWow', function(request, response, next) {
 		var objid = require('mongodb').ObjectID(request.body.id);
+		var userid = request.body.user;
 		// console.log("getting ready to unwow" + objid);
 		dbo.collection("highlights").updateOne(
-			{"_id": objid},
-			{ $inc: {"wow": -1}}
+
+			{
+				"_id": objid,
+				"wowList": userid
+			},
+			{
+				$inc: {"wow": -1},
+				$pull: {"wowList": userid}
+			}
 			);
 
 		// console.log("unwowed " + objid);
 
+		dbo.collection("users").updateOne(
+		{
+			"email": userid,
+			"wowed": objid
+		},
+		{
+			$pull: {"wowed": objid}
+		}
+		);
 	});
+
+	app.get('/mongodbGetWow', function(request, response, next) {
+		var objid = require('mongodb').ObjectID(request.body.id);
+		var userid = request.body.user;
+
+
+	})
 
 });
 
