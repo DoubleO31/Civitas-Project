@@ -14,6 +14,7 @@ var bgColor = null;
 var _photos = [];
 var _selectedPhoto = {};
 var _wowCount = 0;
+var update = false;
 
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
@@ -30,6 +31,10 @@ function loadWowDetails(data) {
 
 function saveuserinfo(data) {
   localStorage.setItem("userinfo", data);
+}
+
+function updatehighlights() {
+  update = true;
 }
 
 class Appstore extends EventEmitter {
@@ -75,6 +80,15 @@ class Appstore extends EventEmitter {
 
   getuserinfo() {
     return localStorage.getItem("userinfo");
+  }
+
+  highlightsstatus() {
+    if (update) {
+      update = false;
+      return true;
+    } else {
+      return update;
+    }
   }
 }
 
@@ -145,6 +159,11 @@ _appStore.dispatchToken = AppDispatcher.register(action => {
 
     case "setUserinfo":
       saveuserinfo(action.data);
+      _appStore.emitChange();
+      break;
+
+    case "updatehighlights":
+      updatehighlights();
       _appStore.emitChange();
       break;
 

@@ -16,7 +16,6 @@ import SignUpPage from "./Component/Signup/SignUpPage.jsx";
 import LoginPage from "./Component/Login/LoginPage.jsx";
 import {Link, IndexLink} from "react-router-dom";
 import Auth from "./modules/Auth";
-var data;
 
 class Homepage extends Component {
   constructor() {
@@ -27,13 +26,23 @@ class Homepage extends Component {
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       photos: [],
-      selectedPhoto: AppStore.getSelectedPhoto()
+      selectedPhoto: AppStore.getSelectedPhoto(),
+      updatestatus:false
     };
     this._onChange = this._onChange.bind(this);
   }
 
   callApi = async () => {
     const response = await fetch("/api/highlights");
+    const body = await response.json();
+
+    if (response.status !== 200) throw Error(body.message);
+
+    return body;
+  };
+
+  callApi2 = async () => {
+    const response = await fetch("/api/highlights2");
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -50,7 +59,7 @@ class Homepage extends Component {
 
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange);
-    //
+
   }
 
   _onChange() {
@@ -61,13 +70,21 @@ class Homepage extends Component {
       photoViewerOn: AppStore.getPhotoViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
-      selectedPhoto: AppStore.getSelectedPhoto()
+      selectedPhoto: AppStore.getSelectedPhoto(),
+      updatestatus: AppStore.highlightsstatus()
     });
   }
 
   handleClick(obj) {
     AppActions.setSelectedPhoto(obj);
     AppActions.photoViewerOn();
+  }
+
+  updatehighlights(){
+    this.callApi2()
+      .then(res => this.setState({photos: res}))
+      .catch(err => console.log(err));
+      return <HighlightsContainer data={this.state.photos}/>
   }
 
   render() {
@@ -77,7 +94,7 @@ class Homepage extends Component {
         <Profilepic />
         <UploadButton />
         <div className="HighlightsContainer">
-          <HighlightsContainer data={this.state.photos} />
+          {this.state.updatestatus ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/> }
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />

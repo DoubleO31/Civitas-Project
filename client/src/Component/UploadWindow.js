@@ -80,6 +80,7 @@ class UploadWindow extends React.Component {
 					console.log(this.state.photoURL);
 					console.log(this.state.lat,this.state.long);
 					this.uploadmongodb();
+					AppActions.updatehighlights();
 				} else {
 					alert("Upload fail please try again");
 				}

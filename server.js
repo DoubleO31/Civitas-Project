@@ -26,14 +26,23 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 
 	dbo.collection("highlights").find({}).toArray((err, result) => {
 		if (err) throw err;
+		console.log("call1");
 		app.get('/api/highlights', function(req, res){
 			res.send(result);
 		});
 	});
 
+		app.get('/api/highlights2', function(req, res){
+			dbo.collection("highlights").find({}).toArray((err, result) => {
+				if (err) throw err;
+				res.send(result);
+				console.log("call2");
+		});
+	});
+
 	app.post('/mongodbupload', function(request, response, next) {
 		const data = request.body;
-		console.log(data);
+		//console.log(data);
 		dbo.collection("highlights").insertOne(data, function(err, res) {
 			if (err) throw err;
 		});
@@ -41,7 +50,7 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 
 	app.post('/usersinfo', function(request, response, next) {
 		const data = request.body;
-		console.log(data);
+		//console.log(data);
 		dbo.collection("users").find({email: data.email}).toArray((err, result) => {
 			if (err) throw err;
 			response.send(result);
@@ -56,7 +65,6 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 			{ $inc: {"wow": +1}}
 			);
 
-		// console.log("wowed " + objid);
 	});
 
 	app.post('/mongodbDecWow', function(request, response, next) {
@@ -68,7 +76,7 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 			);
 
 		// console.log("unwowed " + objid);
-		
+
 	});
 
 });

@@ -100,6 +100,12 @@ const AppActions = {
     });
   },
 
+  updatehighlights: function(){
+    AppDispatcher.dispatch({
+      actionType: 'updatehighlights',
+    });
+  },
+
 
 
 
