@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AppActions from '../Action/AppActions.js';
+import AppStore from "../Stores/AppStore.js";
 
 class WowButton extends React.Component {
 
@@ -14,6 +15,7 @@ class WowButton extends React.Component {
 
 	mongodbIncWow(){
 		// console.log("running mongodbIncWow");
+		let userinfo = AppStore.getuserinfo();
 		fetch('/mongodbIncWow', {
 			method: 'POST',
 			headers: {
@@ -21,7 +23,8 @@ class WowButton extends React.Component {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				id: this.props.id
+				id: this.props.id,
+				user: userinfo
 			})
 		}).catch(error => {
 			console.error(error);
@@ -32,6 +35,7 @@ class WowButton extends React.Component {
 
 	mongodbDecWow(){
 		// console.log("running mongodbDecWow");
+		let userinfo = AppStore.getuserinfo();
 		fetch('/mongodbDecWow', {
 			method: 'POST',
 			headers: {
@@ -39,7 +43,8 @@ class WowButton extends React.Component {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				id: this.props.id
+				id: this.props.id,
+				user: userinfo
 			})
 		}).catch(error => {
 			console.error(error);
