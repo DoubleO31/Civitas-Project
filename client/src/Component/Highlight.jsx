@@ -2,45 +2,23 @@ import React from 'react';
 import WowButton from './WowButton.jsx';
 
 let Highlight = function statelessFunctionComponentClass(props) {
+
   let source = props.source;
   let link = props.link;
   let title = props.title;
   let desc = props.desc;
   let arrID = props.arrID;
   let wow = props.wow;
+  let averageColour = props.averageColour;
 
-  let style = {
+  let highlightStyle = {
     background: `url(${source})`,
-    // position: 'relative',
-    // width: '400px',
-    // height: '400px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    // display: 'inline-flex',
-    // padding: '0px 0px 0px 0px',
-    // margin: '5px 5px 5px 5px',
   };
 
-  let titleStyle = {
-    position: 'absolute',
-    fontSize:'2em',
-    background: 'grey',
-    textAlign: 'center',
-    top: '5px',
-    width: '400px'
+
+  let overlayStyle = {
+    background:averageColour,
   }
-
-  let descStyle = {
-    fontSize: '1.1em',
-    position: 'absolute',
-    bottom: '0px',
-    backgroundColor: 'grey',
-
-  }
-
-  let highlightTitleName = source + title + "title";
-  let highlightDescName = source + title + "desc";
-
 
   // return (
   //   <span style = {style} onClick={props.onClick}>
@@ -52,10 +30,12 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
 
 return(
-<span class="highlight" style={style} onClick={props.onClick}>
-   <div class="highlight_overlay">
-   <p>Hello</p>
+<span class="highlight" style={highlightStyle} onClick={props.onClick}>
+   <div class="highlight_overlay" style={overlayStyle}>
+     <h3 class="overlay_title">{title}</h3>
+     <p class="overlay_description">{desc}</p>
    </div>
+   <WowButton arrId={arrID} wow={wow}/>
 </span>
 )
 

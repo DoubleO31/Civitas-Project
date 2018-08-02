@@ -41,10 +41,10 @@
 
 .highlight {
   position: relative;
-  width: 400px;
-  height: 400px;
-  /* backgroundSize: cover; */
-  /* backgroundPosition: center; */
+  width: 20em;
+  height: 20em;
+  background-size: cover;
+  background-position: center;
   display: inline-flex;
   padding: 0px 0px 0px 0px;
 
@@ -55,31 +55,38 @@
 }
 
 .highlight_overlay {
-background: rgba(229, 182, 177, 0.9);
+/* background: rgba(229, 182, 177, 0.9); */
 height: 100%;
 width: 100%;
 grid-column: 1 / -1;
 grid-row: 1 / -1;
 position: relative;
 display: grid;
-justify-items: center;
+justify-content: center;
 align-items: center;
 position: absolute;
-
-transition: 1s;
+/* transition: 1s; */
 -webkit-transition: 1s;
-
 opacity: 0;
 transform
 transition: all 0.3s ease-in-out;
 }
 
 .highlight_overlay:hover {
-  display: block;
+  display: grid;
   opacity: 0.9;
   transform: translateY(0%);
 
 }
+
+.highlight_title {
+  font-size: 1.2em;
+}
+
+.highlight_description {
+  font-size: 1.1em;
+}
+
 
 @keyframes App-logo-spin {
   from {
