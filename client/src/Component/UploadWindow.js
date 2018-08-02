@@ -105,8 +105,10 @@ class UploadWindow extends React.Component {
 					title: this.fileTitle.value,
 					desc: this.fileDesc.value,
 					wow: 0,
+					averageColour: "rgba(299,182,177,0.8)",
 					latitude: this.state.lat,
-					longitude: this.state.long
+					longitude: this.state.long,
+					wowList: []
 				})
 			}).catch(error => {
 				console.error(error);
