@@ -49,23 +49,25 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	});
 
 	app.post('/mongodbIncWow', function(request, response, next) {
-		console.log("getting ready to wow" + request.id);
+		var objid = require('mongodb').ObjectID(request.body.id);
+		// console.log("getting ready to wow" + objid);
 		dbo.collection("highlights").updateOne(
-			{"_id": request.id},
+			{"_id": objid},
 			{ $inc: {"wow": +1}}
 			);
 
-		console.log("wowed " + request.id);
+		// console.log("wowed " + objid);
 	});
 
 	app.post('/mongodbDecWow', function(request, response, next) {
-		console.log("getting ready to unwow" + request.id);
+		var objid = require('mongodb').ObjectID(request.body.id);
+		// console.log("getting ready to unwow" + objid);
 		dbo.collection("highlights").updateOne(
-			{"_id": request.id},
+			{"_id": objid},
 			{ $inc: {"wow": -1}}
 			);
 
-		console.log("unwowed " + request.id);
+		// console.log("unwowed " + objid);
 		
 	});
 

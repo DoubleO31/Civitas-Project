@@ -12,7 +12,7 @@ class WowButton extends React.Component {
 	};
 
 	mongodbIncWow(){
-		console.log("running mongodbIncWow");
+		// console.log("running mongodbIncWow");
 		fetch('/mongodbIncWow', {
 			method: 'POST',
 			headers: {
@@ -26,11 +26,11 @@ class WowButton extends React.Component {
 			console.error(error);
 			alert("failed to increase wow");
 		});
-		console.log("finished running mongodbIncWow");
+		// console.log("finished running mongodbIncWow");
 	};
 
 	mongodbDecWow(){
-		console.log("running mongodbDecWow");
+		// console.log("running mongodbDecWow");
 		fetch('/mongodbDecWow', {
 			method: 'POST',
 			headers: {
@@ -44,7 +44,7 @@ class WowButton extends React.Component {
 			console.error(error);
 			alert("failed to decrease wow");
 		});
-		console.log("finished running mongodbDecWow");
+		// console.log("finished running mongodbDecWow");
 	};
 
 	handleClick = (e) => {
