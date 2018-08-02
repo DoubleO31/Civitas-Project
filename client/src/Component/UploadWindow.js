@@ -140,7 +140,7 @@ class UploadWindow extends React.Component {
         <h1>Share Your Photos</h1>
         <form onSubmit={this.uploadHandler}>
           <div>
-            <input type="file" onChange={this.fileChangedHandler}/>
+            <input type="file" accept='image/*' onChange={this.fileChangedHandler}/>
           </div>
           <div>
             <input ref={(ref) => {
