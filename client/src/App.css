@@ -4,6 +4,7 @@ body {
 }
 
 .App {
+  /* this is making logo to stay in the middle */
   text-align: center;
 }
 
@@ -26,6 +27,30 @@ body {
 .App-intro {
   font-size: large;
 }
+
+/* NAV BAR */
+.nav-bar {
+  background: #242B57;
+  display: block;
+}
+
+.nav-bar #logo-picture {
+  /* margin-left: 5%; */
+  /* margin-right: auto; */
+  width: 10em;
+  /* height: 50%; */
+  /* z-index: 100; */
+}
+
+.nav-bar .logo-picture {
+  // this is not working. Dont know why
+  left: 2em;
+}
+
+.nav-bar li {
+  display: inline-block;
+}
+
 
 .UploadButton {
   margin: 50px;
