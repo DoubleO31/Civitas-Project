@@ -5,13 +5,10 @@ import Menubar from "./Component/Menubar.jsx";
 import Profilepic from "./Component/Profilepic.jsx";
 import AppStore from "./Stores/AppStore.js";
 import HighlightsContainer from "./Component/HighlightsContainer.jsx";
-import Signup from "./Component/Signup.jsx";
-import Login from "./Component/Login.jsx";
 import UploadButton from "./Component/UploadButton.js";
 import UploadWindow from "./Component/UploadWindow.js";
 import PhotoViewer from "./Component/PhotoViewer.js";
 import AppActions from "./Action/AppActions.js";
-import WowButton from "./Component/WowButton.jsx";
 import SignUpPage from "./Component/Signup/SignUpPage.jsx";
 import LoginPage from "./Component/Login/LoginPage.jsx";
 import {Link, IndexLink} from "react-router-dom";
@@ -92,9 +89,9 @@ class Homepage extends Component {
       <div className="App">
         <Menubar />
         <Profilepic />
-        <UploadButton />
+        {Auth.isUserAuthenticated() ? <UploadButton /> : null}
         <div className="HighlightsContainer">
-          {this.state.updatestatus ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/> }
+          {this.state.updatestatus ? this.updatehighlights() : (this.state.photos.length < 1 ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/> )}
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />
