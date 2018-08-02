@@ -9,7 +9,7 @@ import Signup from './Component/Signup.jsx';
 import Login from './Component/Login.jsx';
 import UploadButton from './Component/UploadButton.js';
 import UploadWindow from './Component/UploadWindow.js';
-import PhotoViewer from './Component/PhotoViewer.js';
+import PhotoViewer from './Component/PhotoViewer.jsx';
 import AppActions from './Action/AppActions.js';
 import WowButton from './Component/WowButton.jsx';
 import SignUpPage from './Component/Signup/SignUpPage.jsx';
