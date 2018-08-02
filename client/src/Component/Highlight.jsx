@@ -13,6 +13,8 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
   let highlightStyle = {
     background: `url(${source})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   };
 
 
@@ -20,25 +22,16 @@ let Highlight = function statelessFunctionComponentClass(props) {
     background:averageColour,
   }
 
-  // return (
-  //   <span style = {style} onClick={props.onClick}>
-  //   // <div id={highlightTitleName} style = {titleStyle}>{title}</div>
-  //   // <div id={highlightDescName} style = {descStyle}>{desc}</div>
-  //   // <WowButton arrID = {arrID} wow = {wow}/>
-  //   </span>
-  //   );
 
-
-return(
-<span class="highlight" style={highlightStyle} onClick={props.onClick}>
-   <div class="highlight_overlay" style={overlayStyle}>
-     <h3 class="overlay_title">{title}</h3>
-     <p class="overlay_description">{desc}</p>
-   </div>
-   <WowButton arrId={arrID} wow={wow}/>
-</span>
-)
-
+  return(
+  <span class="highlight" style={highlightStyle} onClick={props.onClick}>
+     <div class="highlight_overlay" style={overlayStyle}>
+       <h3 class="overlay_title">{title}</h3>
+       <p class="overlay_description">{desc}</p>
+     </div>
+     <WowButton arrId={arrID} wow={wow}/>
+  </span>
+  )
 
 };
 
