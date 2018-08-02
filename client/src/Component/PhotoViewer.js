@@ -12,12 +12,16 @@ class PhotoViewer extends React.Component {
 	}
 
 	render() {
+		let cssStyle = {
+			height : "30em"
+		}
+
 		if (!this.props.show) {
 			return null;
 		}
 		return ( 
 		<div class='PhotoViewer'>
-      <img src={this.props.selectedPhoto.src} />
+      <img src={this.props.selectedPhoto.src} style={cssStyle} />
       <div> {this.props.selectedPhoto.title}</div>
       <div>{this.props.selectedPhoto.desc}</div>
       <button onClick={this._closePhotoViewer}>Close Viewer</button>
