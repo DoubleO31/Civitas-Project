@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AppActions from '../Action/AppActions.js';
 
 class WowButton extends React.Component {
 
@@ -58,6 +59,8 @@ class WowButton extends React.Component {
 			this.mongodbIncWow();
 			// console.log("mongodbincWow ran " + this.props.id);
 
+			AppActions.updatehighlights();
+
 		} else {
 			this.setState((prevState, {count, wowed }) => 
 				({
@@ -66,6 +69,8 @@ class WowButton extends React.Component {
 				}));
 			this.mongodbDecWow();
 			// console.log("mongodbdecWow ran " + this.props.id);
+
+			AppActions.updatehighlights();
 		}};
 
 		render () {
