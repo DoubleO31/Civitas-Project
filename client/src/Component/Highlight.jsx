@@ -8,6 +8,8 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let desc = props.desc;
   let arrID = props.arrID;
   let wow = props.wow;
+  let id = props.id;
+  let averageColour = props.averageColour;
 
   let style = {
     position: 'relative',
@@ -19,16 +21,6 @@ let Highlight = function statelessFunctionComponentClass(props) {
     display: 'inline-flex',
     padding: '0px 0px 0px 0px',
     margin: '5px 5px 5px 5px',
-    /**
-      try to implement the hover functionality to show description.
-      may generate external css sheet, or figure out some how 
-      generate it in-line style. So far does not work. 
-    **/
-    ":hover": {
-      cursor: "pointer",
-      backgroundColor: "rgb(255,0,0)",
-      color: "rgb(255,0,0)"
-    }
   };
 
   let picStyle = {
@@ -42,7 +34,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let titleStyle = {
     position: 'absolute',
     fontSize:'2em',
-    background: 'grey',
+    background: averageColour,
     textAlign: 'center',
     top: '5px',
     width: '400px'
@@ -52,7 +44,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     fontSize: '1.1em',
     position: 'absolute',
     bottom: '0px',
-    backgroundColor: 'grey',
+    backgroundColor: averageColour,
 
   }
 
@@ -64,7 +56,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <span style = {style} onClick={props.onClick}>
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    <WowButton arrID = {arrID} wow = {wow}/>
+    <WowButton id = {id} wow = {wow}/>
     </span>
     );
 };

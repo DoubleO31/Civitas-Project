@@ -14,7 +14,7 @@ import Highlight from "./Highlight.jsx";
       //   var obj = data[i];
       // }
        return this.props.data.map((obj, key) =>
-         <Highlight source={obj.src} link={obj.href} title={obj.title} desc={obj.desc} wow={obj.wow} key={key} onClick={()=> this.handleClick(obj)}/>
+         <Highlight id={obj._id} source={obj.src} averageColour={obj.averageColour} link={obj.href} title={obj.title} desc={obj.desc}  wow={obj.wow} key={key} onClick={()=> this.handleClick(obj)}/>
       )
   }
 }

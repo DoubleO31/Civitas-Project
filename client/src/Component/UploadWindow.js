@@ -9,12 +9,12 @@ class UploadWindow extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		selectedFile: null,
-		photoURL: null,
-		long: 0,
-		lat: 0
-	}
-	this.uploadHandler = this.uploadHandler.bind(this);
+			selectedFile: null,
+			photoURL: null,
+			long: 0,
+			lat: 0
+		}
+		this.uploadHandler = this.uploadHandler.bind(this);
 	}
 
 	_closeUploadWindow = () => {
@@ -22,23 +22,23 @@ class UploadWindow extends React.Component {
 	}
 
 	makeid = () => {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		var text = "";
+		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < 12; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+		for (var i = 0; i < 12; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  return text;
-}
+		return text;
+	}
 
 	fileChangedHandler = (event) => {
-  this.setState({selectedFile: event.target.files[0]});
-}
+		this.setState({selectedFile: event.target.files[0]});
+	}
 
 
 	uploadHandler = (up) => {
 		up.preventDefault();
-	  const formData = new FormData()
+		const formData = new FormData()
 		//to do empty file
 		if(this.state.selectedFile){
 			EXIF.getData(this.state.selectedFile, function() {
@@ -63,64 +63,64 @@ class UploadWindow extends React.Component {
 
 
 
-	  formData.append('image', this.state.selectedFile, this.makeid())
-		fetch('/upload', {
-		method: 'POST',
-		body: formData,
-	})
-	.then(function(res) {
-	    return res.json();
-	})
-	.then(function(parsedData) {
-		if(parsedData.imageUrl){
-			this.setState(
-				{photoURL: parsedData.imageUrl,
-				long: longitude,
-				lat: latitude});
-		console.log(this.state.photoURL);
-		console.log(this.state.lat,this.state.long);
-		this.uploadmongodb();
-	} else {
-		alert("Upload fail please try again");
-	}
-
-	}.bind(this))
-	.catch(error => {
-	      console.error(error);
-	    });		}	else {
-					alert("Please select a file to upload");
+			formData.append('image', this.state.selectedFile, this.makeid())
+			fetch('/upload', {
+				method: 'POST',
+				body: formData,
+			})
+			.then(function(res) {
+				return res.json();
+			})
+			.then(function(parsedData) {
+				if(parsedData.imageUrl){
+					this.setState(
+						{photoURL: parsedData.imageUrl,
+							long: longitude,
+							lat: latitude});
+					console.log(this.state.photoURL);
+					console.log(this.state.lat,this.state.long);
+					this.uploadmongodb();
+				} else {
+					alert("Upload fail please try again");
 				}
-	}
 
-	uploadmongodb = () =>{
-		fetch('/mongodbupload', {
-			method: 'POST',
-			  headers: {
-			    'Accept': 'application/json',
-			    'Content-Type': 'application/json',
-			  },
-			  body: JSON.stringify({
-			    src: this.state.photoURL,
-			    title: this.fileTitle.value,
+			}.bind(this))
+			.catch(error => {
+				console.error(error);
+			});		}	else {
+				alert("Please select a file to upload");
+			}
+		}
+
+		uploadmongodb = () =>{
+			fetch('/mongodbupload', {
+				method: 'POST',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					src: this.state.photoURL,
+					title: this.fileTitle.value,
 					desc: this.fileDesc.value,
 					wow: 0,
 					latitude: this.state.lat,
 					longitude: this.state.long
-			  })
+				})
 			}).catch(error => {
-				 	console.error(error);
-					alert("Upload fail please try again");
-				});
+				console.error(error);
+				alert("Upload fail please try again");
+			});
 		}
 
 
 
 
 
-	render() {
-		if (!this.props.show) {
-			return null;
-		}
+		render() {
+			if (!this.props.show) {
+				return null;
+			}
 		// The gray background
 		const backdropStyle = {
 			position: 'fixed',
@@ -145,24 +145,24 @@ class UploadWindow extends React.Component {
 
 		return (
 			<div style = { backdropStyle } >
-				<div style = { modalStyle } >
-					<h1>Share Your Photos</h1>
-					<form onSubmit={this.uploadHandler}>
-					<div>
-						<input type="file" onChange={this.fileChangedHandler} />
-					</div>
-					<div>
-						<input ref={(ref) => { this.fileTitle = ref; }} type="text" placeholder="Enter the desired title of file" />
-					</div>
-					<div>
-						<input ref={(ref) => { this.fileDesc = ref; }} type="text" placeholder="Enter the desired description of file" />
-					</div>
-					<button>Upload!</button>
-					</form>
-					<div>
-						<button onClick = { this._closeUploadWindow }>Close </button>
-					</div >
-				</div>
+			<div style = { modalStyle } >
+			<h1>Share Your Photos</h1>
+			<form onSubmit={this.uploadHandler}>
+			<div>
+			<input type="file" onChange={this.fileChangedHandler} />
+			</div>
+			<div>
+			<input ref={(ref) => { this.fileTitle = ref; }} type="text" placeholder="Enter the desired title of file" />
+			</div>
+			<div>
+			<input ref={(ref) => { this.fileDesc = ref; }} type="text" placeholder="Enter the desired description of file" />
+			</div>
+			<button>Upload!</button>
+			</form>
+			<div>
+			<button onClick = { this._closeUploadWindow }>Close </button>
+			</div >
+			</div>
 			</div >
 			);
 	}

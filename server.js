@@ -11,7 +11,6 @@ const router = express.Router();
 const imgUpload = require('./imgUpload');
 
 
-// const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -33,12 +32,12 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	});
 
 	app.post('/mongodbupload', function(request, response, next) {
-	  const data = request.body;
+		const data = request.body;
 		console.log(data);
 		dbo.collection("highlights").insertOne(data, function(err, res) {
-		if (err) throw err;
+			if (err) throw err;
+		});
 	});
-});
 
 	app.post('/usersinfo', function(request, response, next) {
 		const data = request.body;
@@ -46,8 +45,30 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		dbo.collection("users").find({email: data.email}).toArray((err, result) => {
 			if (err) throw err;
 			response.send(result);
+		});
 	});
-});
+
+	app.post('/mongodbIncWow', function(request, response, next) {
+		console.log("getting ready to wow" + request.id);
+		dbo.collection("highlights").updateOne(
+			{"_id": request.id},
+			{ $inc: {"wow": +1}}
+			);
+
+		console.log("wowed " + request.id);
+	});
+
+	app.post('/mongodbDecWow', function(request, response, next) {
+		console.log("getting ready to unwow" + request.id);
+		dbo.collection("highlights").updateOne(
+			{"_id": request.id},
+			{ $inc: {"wow": -1}}
+			);
+
+		console.log("unwowed " + request.id);
+		
+	});
+
 });
 
 
@@ -83,17 +104,17 @@ app.use('/auth', authRoutes);
 
 //UploadWindow
 const multer = Multer({
-  storage: Multer.MemoryStorage,
-  fileSize: 5 * 1024 * 1024
+	storage: Multer.MemoryStorage,
+	fileSize: 5 * 1024 * 1024
 });
 
 // Process the file upload and upload to Google Cloud Storage.
 app.post('/upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
-  const data = request.body;
-  if (request.file && request.file.cloudStoragePublicUrl) {
-    data.imageUrl = request.file.cloudStoragePublicUrl;
-  }
-  response.send(data);
+	const data = request.body;
+	if (request.file && request.file.cloudStoragePublicUrl) {
+		data.imageUrl = request.file.cloudStoragePublicUrl;
+	}
+	response.send(data);
 });
 
 
