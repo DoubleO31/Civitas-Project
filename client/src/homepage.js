@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import './styles.css';
-import Menubar from './Component/Menubar.jsx';
+// import Menubar from './Component/Menubar.jsx';
+import NavBar from './Component/NavBar.jsx';
 import Profilepic from './Component/Profilepic.jsx';
 import AppStore from './Stores/AppStore.js';
 import Highlight from './Component/Highlight.jsx';
@@ -88,7 +89,7 @@ handleClick(obj){
   render() {
     return (
       <div className="App">
-  <Menubar/>
+  <NavBar/>
   <Profilepic/>
   <UploadButton/>
   <div className="HighlightsContainer">

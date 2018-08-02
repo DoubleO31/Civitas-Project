@@ -21,7 +21,7 @@ class PhotoViewer extends React.Component {
 		return (
 		<div class='PhotoViewer'>
       <img src={this.props.selectedPhoto.src} />
-      <div style={backgroundStyle}>
+      <div class="textbox" style={backgroundStyle}>
         <div> {this.props.selectedPhoto.title}</div>
         <div>{this.props.selectedPhoto.desc}</div>
       </div>
