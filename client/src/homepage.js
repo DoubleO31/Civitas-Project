@@ -8,6 +8,7 @@ import HighlightsContainer from "./Component/HighlightsContainer.jsx";
 import UploadButton from "./Component/UploadButton.js";
 import UploadWindow from "./Component/UploadWindow.js";
 import PhotoViewer from "./Component/PhotoViewer.js";
+import GPSViewer from "./Component/GPSviwer.jsx";
 import AppActions from "./Action/AppActions.js";
 import SignUpPage from "./Component/Signup/SignUpPage.jsx";
 import LoginPage from "./Component/Login/LoginPage.jsx";
@@ -20,6 +21,7 @@ class Homepage extends Component {
     this.state = {
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
+      GPSViewerOn: AppStore.getGPSViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       photos: [],
@@ -65,6 +67,7 @@ class Homepage extends Component {
     this.setState({
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
+      GPSViewerOn: AppStore.getGPSViewerStatus(),
       signupWindowOpen: AppStore.getSignupWindowStatus(),
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       selectedPhoto: AppStore.getSelectedPhoto(),
@@ -78,6 +81,7 @@ class Homepage extends Component {
   }
 
   updatehighlights(){
+    //console.log(this.state.updatestatus);
     this.callApi2()
       .then(res => this.setState({photos: res}))
       .catch(err => console.log(err));
@@ -91,13 +95,17 @@ class Homepage extends Component {
         <Profilepic />
         {Auth.isUserAuthenticated() ? <UploadButton /> : null}
         <div className="HighlightsContainer">
-          {this.state.updatestatus ? this.updatehighlights() : (this.state.photos.length < 1 ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/> )}
+          {this.state.updatestatus ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/>}
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />
         <LoginPage show={this.state.loginWindowOpen} />
         <PhotoViewer
           show={this.state.photoViewerOn}
+          selectedPhoto={this.state.selectedPhoto}
+        />
+        <GPSViewer
+          show={this.state.GPSViewerOn}
           selectedPhoto={this.state.selectedPhoto}
         />
       </div>

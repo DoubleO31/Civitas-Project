@@ -1,6 +1,9 @@
 import React from 'react';
 import WowButton from './WowButton.jsx';
+import GPSbutton from './GPSbutton.jsx';
 import Auth from '../modules/Auth';
+import AppActions from '../Action/AppActions.js';
+
 
 let Highlight = function statelessFunctionComponentClass(props) {
   let source = props.source;
@@ -10,6 +13,8 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let arrID = props.arrID;
   let wow = props.wow;
   let id = props.id;
+  let lat = props.latitude;
+  let long = props.longitude;
   let averageColour = props.averageColour;
 
   let style = {
@@ -58,7 +63,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
     {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
-
+    {lat&&long? <GPSbutton lat = {lat} long= {long}/> : null}
     </span>
     );
 };

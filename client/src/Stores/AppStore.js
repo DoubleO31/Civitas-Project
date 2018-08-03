@@ -8,6 +8,7 @@ let _uploadWindowOpen = false;
 let _photoViewerOn = false;
 let _signupWindowOn = false;
 let _loginWindowOn = false;
+let _GPSViewerOn = false;
 let _wowed = false;
 var bgColor = null;
 
@@ -15,6 +16,8 @@ var _photos = [];
 var _selectedPhoto = {};
 var _wowCount = 0;
 var update = false;
+var lat = 0;
+var long = 0;
 
 function setSelectedPhoto(obj) {
   _selectedPhoto = obj;
@@ -35,6 +38,13 @@ function saveuserinfo(data) {
 
 function updatehighlights() {
   update = true;
+}
+
+function loadGPSDetails(data) {
+  //var gps = localStorage.getItem(data);
+  if(data){
+  lat = data[0];
+  long = data[1];}
 }
 
 class Appstore extends EventEmitter {
@@ -60,6 +70,10 @@ class Appstore extends EventEmitter {
 
   getPhotoViewerStatus() {
     return _photoViewerOn;
+  }
+
+  getGPSViewerStatus() {
+    return _GPSViewerOn;
   }
 
   getSignupWindowStatus() {
@@ -89,6 +103,14 @@ class Appstore extends EventEmitter {
     } else {
       return update;
     }
+  }
+
+  getlat(){
+    return lat;
+  }
+
+  getlong(){
+    return long;
   }
 }
 
@@ -164,6 +186,17 @@ _appStore.dispatchToken = AppDispatcher.register(action => {
 
     case "updatehighlights":
       updatehighlights();
+      _appStore.emitChange();
+      break;
+
+    case "GPSViewerOff":
+      _GPSViewerOn = false;
+      _appStore.emitChange();
+      break;
+
+    case "GPSViewerOn":
+      loadGPSDetails(action.data);
+      _GPSViewerOn = true;
       _appStore.emitChange();
       break;
 
