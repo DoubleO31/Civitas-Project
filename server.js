@@ -9,8 +9,7 @@ const storage = require('@google-cloud/storage');
 var path = require('path');
 const router = express.Router();
 const imgUpload = require('./imgUpload');
-var color = require('dominant-color');
-
+const colorThief = require('./DominantColour.js');
 
 // const fs = require('fs');
 const app = express();
@@ -26,48 +25,50 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	if (err) throw err;
 	var dbo = db.db("civitas");
 
-// retrieving all highlights from MongoDB, only happen once in the beginning
+	// retrieving all highlights from MongoDB, only happen once in the beginning
 	dbo.collection("highlights").find({}).toArray((err, result) => {
 		if (err) throw err;
-		app.get('/api/highlights', function(req, res){
+		app.get('/api/highlights', function(req, res) {
 			res.send(result);
 		});
 	});
 
 
-var storage = Multer.diskStorage({
-	destination: (req, file, callback) => {
-		callback(null, 'temp/image-uploads')
-	},
-	filename: (req, file, callback) => {
-		callback(null, file.fieldname + '-' + Date.now() + file.originalname)
-	}
-});
+	var storage = Multer.diskStorage({
+		destination: (req, file, callback) => {
+			callback(null, 'temp/image-uploads')
+		},
+		filename: (req, file, callback) => {
+			callback(null, file.fieldname + '-' + Date.now() + file.originalname)
+		}
+	});
 
 var imageUpload = Multer({storage: storage});
 
-app.post('/mongodbupload', imageUpload.single('image'), (req, res, next) => {
-console.log("req.file:");
-	console.log(req.file.path);
-	console.log("req.body:");
-	console.log(req.body);
-});
+	app.post('/mongodbupload', imageUpload.single('image'), (req, res, next) => {
+		console.log("req.file:");
+		console.log(req.file.path);
+		console.log("req.body:");
+		console.log(req.body);
 
-// app.post('/mongodbupload',(req, res) => {
-// 	console.log("req");
-// 	console.log(req);
-// 	res.sendStatus(200);
-// })
+		var data = req.body;
+		data.averageColour = colorThief.getDominantColour(req.file.path);
 
-// processing highlight upload, data already processed
-// 	app.post('/mongodbupload', function(request, response, next) {
-// 	  const data = request.body;
-// 		console.log("Server /mongodbupload: request.body");
-// 		console.log(data);
-// 		dbo.collection("highlights").insertOne(data, function(err, res) {
-// 		if (err) throw err;
-// 	});
-// });
+		console.log(data);
+		dbo.collection("highlights").insertOne(data, (err, res) => {
+			if (err) throw err;
+		});
+	});
+
+	// processing highlight upload, data already processed
+	// 	app.post('/mongodbupload', function(request, response, next) {
+	// 	  const data = request.body;
+	// 		console.log("Server /mongodbupload: request.body");
+	// 		console.log(data);
+	// 		dbo.collection("highlights").insertOne(data, function(err, res) {
+	// 		if (err) throw err;
+	// 	});
+	// });
 
 	app.post('/usersinfo', function(request, response, next) {
 		const data = request.body;
@@ -77,8 +78,8 @@ console.log("req.file:");
 		dbo.collection("users").find({email: data.email}).toArray((err, result) => {
 			if (err) throw err;
 			response.send(result);
+		});
 	});
-});
 });
 
 
@@ -114,18 +115,18 @@ app.use('/auth', authRoutes);
 
 //UploadWindow
 const multer = Multer({
-  storage: Multer.MemoryStorage,
-  fileSize: 5 * 1024 * 1024
+	storage: Multer.MemoryStorage,
+	fileSize: 5 * 1024 * 1024
 });
 
 // Process the file upload and upload to Google Cloud Storage.
 app.post('/upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
-  const data = request.body;
+	const data = request.body;
 
-  if (request.file && request.file.cloudStoragePublicUrl) {
-    data.imageUrl = request.file.cloudStoragePublicUrl;
-  }
-  response.send(data);
+	if (request.file && request.file.cloudStoragePublicUrl) {
+		data.imageUrl = request.file.cloudStoragePublicUrl;
+	}
+	response.send(data);
 });
 
 

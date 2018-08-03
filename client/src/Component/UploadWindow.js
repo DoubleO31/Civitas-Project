@@ -16,8 +16,8 @@ class UploadWindow extends React.Component {
 	}
 	this.uploadHandler = this.uploadHandler.bind(this);
 	}
-
 	_closeUploadWindow = () => {
+		
 		AppActions.closeUploadWindow();
 	}
 
@@ -65,6 +65,7 @@ class UploadWindow extends React.Component {
 			});
 
 			console.log("Uploading to gcs");
+			console.log(this.state.selectedFile);
 			formData.append('image', this.state.selectedFile, this.makeid());
 			fetch('/upload', {
 					method: 'POST',
