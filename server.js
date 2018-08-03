@@ -9,6 +9,7 @@ const storage = require('@google-cloud/storage');
 var path = require('path');
 const router = express.Router();
 const imgUpload = require('./imgUpload');
+var color = require('dominant-color');
 
 
 // const fs = require('fs');
@@ -25,6 +26,7 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 	if (err) throw err;
 	var dbo = db.db("civitas");
 
+	// retrieving all highlights from MongoDB, only happen once in the beginning
 	dbo.collection("highlights").find({}).toArray((err, result) => {
 		if (err) throw err;
 		app.get('/api/highlights', function(req, res){
@@ -32,13 +34,24 @@ MongoClient.connect(uri, { userNewUrlParser: true }, (err, db) => {
 		});
 	});
 
-	app.post('/mongodbupload', function(request, response, next) {
-	  const data = request.body;
-		console.log(data);
-		dbo.collection("highlights").insertOne(data, function(err, res) {
-		if (err) throw err;
+
+	var storage = Multer.diskStorage({
+		destination: (req, file, callback) => {
+			callback(null, 'temp/image-uploads')
+		},
+		filename: (req, file, callback) => {
+			callback(null, file.fieldname + '-' + Date.now() + file.originalname)
+		}
 	});
-});
+
+	var imageUpload = Multer({ storage: storage });
+
+	app.post('/mongodbupload', imageUpload.single('image'), (req, res, next) => {
+		console.log("req.file:");
+		console.log(req.file.path);
+		console.log("req.body:");
+		console.log(req.body);
+	});
 
 	app.post('/usersinfo', function(request, response, next) {
 		const data = request.body;

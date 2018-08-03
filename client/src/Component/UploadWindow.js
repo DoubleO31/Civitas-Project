@@ -3,6 +3,7 @@ import AppActions from '../Action/AppActions.js';
 var EXIF = require('exif-js');
 var latitude;
 var longitude;
+var myImage;
 
 class UploadWindow extends React.Component {
 
@@ -25,15 +26,18 @@ class UploadWindow extends React.Component {
   var text = "";
   var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for (var i = 0; i < 12; i++)
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
+		for (var i = 0; i < 12; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  return text;
-}
+		return text;
+	}
 
 	fileChangedHandler = (event) => {
-  this.setState({selectedFile: event.target.files[0]});
-}
+		console.log("File change triggered!");
+		this.setState({
+			selectedFile: event.target.files[0]
+		});
+	}
 
 
 	uploadHandler = (up) => {
@@ -61,61 +65,56 @@ class UploadWindow extends React.Component {
 				}
 			});
 
-
-
-	  formData.append('image', this.state.selectedFile, this.makeid())
-		fetch('/upload', {
-		method: 'POST',
-		body: formData,
-	})
-	.then(function(res) {
-	    return res.json();
-	})
-	.then(function(parsedData) {
-		if(parsedData.imageUrl){
-			this.setState(
-				{photoURL: parsedData.imageUrl,
-				long: longitude,
-				lat: latitude});
-		console.log(this.state.photoURL);
-		console.log(this.state.lat,this.state.long);
-		this.uploadmongodb();
-	} else {
-		alert("Upload fail please try again");
+			console.log("Uploading to gcs");
+			formData.append('image', this.state.selectedFile, this.makeid());
+			fetch('/upload', {
+					method: 'POST',
+					body: formData,
+				})
+				.then(function(res) {
+					return res.json();
+				})
+				.then(function(parsedData) {
+					if (parsedData.imageUrl) {
+						this.setState({
+							photoURL: parsedData.imageUrl,
+							long: longitude,
+							lat: latitude
+						});
+						console.log(this.state.photoURL);
+						// console.log(this.state.lat,this.state.long);
+						this.uploadmongodb();
+					} else {
+						alert("Upload fail please try again");
+					}
+				}.bind(this))
+				.catch(error => {
+					console.error(error);
+				});
+		} else {
+			alert("Please select a file to upload");
+		}
 	}
 
-	}.bind(this))
-	.catch(error => {
-	      console.error(error);
-	    });		}	else {
-					alert("Please select a file to upload");
-				}
-	}
-
-	uploadmongodb = () =>{
+	uploadmongodb = () => {
+		const formData = new FormData();
+		formData.append('src', this.state.photoURL);
+		formData.append('title', this.fileTitle.value);
+		formData.append('desc', this.fileDesc.value);
+		formData.append('wow', 0);
+		formData.append('latitude', this.state.lat);
+		formData.append('longitude', this.state.long);
+		formData.append('image', this.state.selectedFile);
 		fetch('/mongodbupload', {
 			method: 'POST',
-			  headers: {
-			    'Accept': 'application/json',
-			    'Content-Type': 'application/json',
-			  },
-			  body: JSON.stringify({
-			    src: this.state.photoURL,
-			    title: this.fileTitle.value,
-					desc: this.fileDesc.value,
-					wow: 0,
-					latitude: this.state.lat,
-					longitude: this.state.long
-			  })
-			}).catch(error => {
-				 	console.error(error);
-					alert("Upload fail please try again");
-				});
-		}
-
-
-
-
+			body: formData,
+			// NOTE MUST NOTTTT SET header!!!
+		}).then((res) => {
+			return res.json();
+		}).catch(error => {
+			console.error(error);
+		});
+	}
 
 	render() {
 		if (!this.props.show) {

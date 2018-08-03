@@ -10,6 +10,7 @@
     "@google-cloud/storage": "^1.7.0",
     "bcrypt": "^3.0.0",
     "bcryptjs": "^2.4.3",
+    "dominant-color": "0.0.1",
     "express": "^4.16.2",
     "formidable": "^1.2.1",
     "jsonwebtoken": "^8.3.0",
