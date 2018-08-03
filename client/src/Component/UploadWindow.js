@@ -3,7 +3,6 @@ import AppActions from '../Action/AppActions.js';
 var EXIF = require('exif-js');
 var latitude;
 var longitude;
-var myImage;
 
 class UploadWindow extends React.Component {
 
