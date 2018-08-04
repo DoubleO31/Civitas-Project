@@ -18,11 +18,12 @@
   margin-top: 6px;
   height: 80px;
   width: 80px;
-  z-index: 100;
+  z-index: 2;
   position: relative;
 }
 
 .big-cir {
+  /* transition: 1s; */
   background-color: none;
   height: 90px;
   width: 90px;

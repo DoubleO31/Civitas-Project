@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Merriweather");
 body {
   font-family: "Inconsolata", monospace;
+  transition: 0.5s;
 }
 
 button {
@@ -69,7 +70,7 @@ button {
   z-index: 1;
   top: 80%;
   left: 200%;
-  width: 200px;
+  width: 120px;
   transition: 0.5s;
 }
 
@@ -250,7 +251,7 @@ button {
 
 /* **************************************************** */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .highlight {
     width: 10em;
     height: 10em;
@@ -271,6 +272,16 @@ button {
   }
 
   .uploadVerbose {
+    display: none;
+  }
+
+.big-cir {
+  border-style: none;
+  border: none;
+  border-width: 0;
+}
+
+  .profile-picture  {
     display: none;
   }
 }
