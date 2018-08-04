@@ -11,6 +11,7 @@ const router = express.Router();
 const imgUpload = require('./imgUpload');
 const ColorThief = require('color-thief');
 const colorThief = new ColorThief();
+const fileType = require('file-type');
 
 // const fs = require('fs');
 const app = express();
@@ -90,21 +91,6 @@ MongoClient.connect(
 			res.sendStatus(200);
 		});
 
-
-		app.post('/usersinfo', function(request, response, next) {
-			const data = request.body;
-
-			console.log("Server post /userinfo: request.body");
-			console.log(data);
-			dbo.collection("users").find({
-				email: data.email
-			}).toArray((err, result) => {
-				if (err) throw err;
-				response.send(result);
-			});
-		});
-
-
 		app.post("/usersinfo", function(request, response, next) {
 			const data = request.body;
 			//console.log(data);
@@ -118,20 +104,6 @@ MongoClient.connect(
 					response.send(result);
 				});
 		});
-
-		/*
-			db.photos.update(
-		    {
-		        "_id": ObjectId("54bb201aa3a0f26f885be2a3"),
-		        "likes": { "$ne": ObjectId("54bb2244a3a0f26f885be2a4") }
-		    },
-		    {
-		        "$inc": { "likeCount": 1 },
-		        "$push": { "likes": ObjectId("54bb2244a3a0f26f885be2a4") }
-		    }
-		)
-
-			*/
 
 		app.post("/mongodbIncWow", function(request, response, next) {
 			var objid = require("mongodb").ObjectID(request.body.id);
