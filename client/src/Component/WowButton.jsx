@@ -77,8 +77,12 @@ class WowButton extends React.Component {
     }
 
     return (<button className="highlight_button right bottom" style={wowStyle} id={this.props.source} onClick={this.handleClick.bind(this)}>
+    <div className="wowSymbol">
       Wow! {<br/>}
+      </div>
+      <div className="wowCount">
       {this.state.count}
+      </div>
     </button>);
   }
 };
