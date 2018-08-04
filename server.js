@@ -75,7 +75,7 @@ MongoClient.connect(
 
       var averageColour = [0, 0, 0];
 
-      if (infoFile.ext === 'png') {
+      if (imageFileType.ext === 'png') {
         averageColour = colorThief.getColor(image);
       }
 

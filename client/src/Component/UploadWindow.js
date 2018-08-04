@@ -49,7 +49,9 @@ class UploadWindow extends React.Component {
 				var latRef = EXIF.getTag(this, "GPSLatitudeRef");
 				var long = EXIF.getTag(this, "GPSLongitude");
 				var longRef = EXIF.getTag(this, "GPSLongitudeRef");
-				if (lat && long && latRef && longRef){
+				if (lat && long && latRef && longRef &&
+          typeof lat !== 'undefined' && typeof long !== 'undefined'
+        && typeof latRef !== 'undefined' && typeof longRef !== 'undefined'){
 					if (latRef == "S") {
 						latitude = (lat[0]*-1) + (( (lat[1]*-60) + (lat[2]*-1) ) / 3600);
 					} else {
