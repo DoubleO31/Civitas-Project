@@ -44,7 +44,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
        <h3 class="overlay_title">{title}</h3>
        <p class="overlay_description">{desc}</p>
        {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
-       {lat&&long? <GPSbutton lat = {lat} long= {long}/> : null}
+       {lat&&long && lat !== 'undefined'&&long !== 'undefined' ? <GPSbutton lat = {lat} long= {long}/> : null}
      </div>
   </span>
   )

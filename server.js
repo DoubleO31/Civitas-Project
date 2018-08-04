@@ -69,18 +69,18 @@ MongoClient.connect(
 
 			var data = req.body;
 
-			// var image = fs.readFileSync(req.file.path);
+			var image = fs.readFileSync(req.file.path);
 
-      // var imageFileType = fileType(image);
+      var imageFileType = fileType(image);
 
       var averageColour = [0, 0, 0];
 
-      // if (imageFileType.ext === 'png') {
-      //   averageColour = colorThief.getColor(image);
-      // }
-      //
-			// console.log("averageColour:");
-			// console.log(averageColour);
+      if (imageFileType.ext === 'png') {
+        averageColour = colorThief.getColor(image);
+      }
+
+			console.log("averageColour:");
+			console.log(averageColour);
 
 			data.averageColour = averageColour;
 
