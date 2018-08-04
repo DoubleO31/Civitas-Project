@@ -18,11 +18,12 @@
   margin-top: 6px;
   height: 80px;
   width: 80px;
-  z-index: 100;
+  z-index: 2;
   position: relative;
 }
 
 .big-cir {
+  /* transition: 1s; */
   background-color: none;
   height: 90px;
   width: 90px;
@@ -59,9 +60,9 @@
   < !-- background-color: #66b3ff -->
 }
 
-.titles-container {
+/* .titles-container {
   margin-top: 20px;
-}
+} */
 
 #site-heading {
   font-size: 25px;
@@ -84,25 +85,6 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-
-button {
-    background-color: #242B57;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-
-}
-
-.UploadButton {
-  position: sticky;
-  top: 80%;
-  left: 200%;
-  z-index: 100;
-  width: 200px;
-}
 
 button:hover {
   opacity: 0.8;

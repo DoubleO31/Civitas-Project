@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import AppActions from '../Action/AppActions.js';
+import React from 'react';
 import AppStore from "../Stores/AppStore.js";
 
 class WowButton extends React.Component {
@@ -71,25 +70,19 @@ class WowButton extends React.Component {
   };
 
   render() {
-    var cssStyle = {
-      fontSize: '.8em',
-      fontWeight: 'bold',
-      backgroundColor: 'rgba(0,33,255,0.5)',
-      color: '#00b7ff',
-      position: 'absolute',
-      width: '3em',
-      height: '3em',
-      textAlign: 'center',
-      right: '10px',
-      top: '200px',
-      borderRadius: '15%',
-      zIndex: '0',
-      padding: '0px 0px 0px 0px'
+
+    let wowStyle = {
+      color: this.props.fontColour,
+      background: this.props.bgColour,
     }
 
-    return (<button id={this.props.source} style={cssStyle} onClick={this.handleClick.bind(this)}>
+    return (<button className="highlight_button right bottom" style={wowStyle} id={this.props.source} onClick={this.handleClick.bind(this)}>
+    <div className="wowSymbol">
       Wow! {<br/>}
+      </div>
+      <div className="wowCount">
       {this.state.count}
+      </div>
     </button>);
   }
 };

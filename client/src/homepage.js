@@ -7,13 +7,12 @@ import AppStore from "./Stores/AppStore.js";
 import HighlightsContainer from "./Component/HighlightsContainer.jsx";
 import UploadButton from "./Component/UploadButton.js";
 import UploadWindow from "./Component/UploadWindow.js";
-// import PhotoViewer from "./Component/PhotoViewer.js";
 import PhotoViewer from "./Component/PhotoViewer.jsx";
 import GPSViewer from "./Component/GPSviwer.jsx";
 import AppActions from "./Action/AppActions.js";
 import SignUpPage from "./Component/Signup/SignUpPage.jsx";
 import LoginPage from "./Component/Login/LoginPage.jsx";
-import {Link, IndexLink} from "react-router-dom";
+import Footer from "./Component/Footer.jsx";
 import Auth from "./modules/Auth";
 
 class Homepage extends Component {
@@ -62,8 +61,6 @@ class Homepage extends Component {
   }
 
   _onChange() {
-    //console.log('onchange is called');
-    //console.log(AppStore.getPhotoViewerStatus());
     this.setState({
       uploadWindowOpen: AppStore.getUploadWindowStatus(),
       photoViewerOn: AppStore.getPhotoViewerStatus(),
@@ -81,7 +78,6 @@ class Homepage extends Component {
   }
 
   updatehighlights() {
-    //console.log(this.state.updatestatus);
     this.callApi()
       .then(res => this.setState({photos: res}))
       .catch(err => console.log(err));
@@ -100,6 +96,7 @@ class Homepage extends Component {
           ) : (
             <HighlightsContainer data={this.state.photos} />
           )}
+          <Footer />
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />
@@ -113,6 +110,8 @@ class Homepage extends Component {
           selectedPhoto={this.state.selectedPhoto}
         />
       </div>
+
+
     );
   }
 }

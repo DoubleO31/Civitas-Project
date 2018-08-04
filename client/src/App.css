@@ -1,6 +1,18 @@
 @import url("https://fonts.googleapis.com/css?family=Inconsolata|Merriweather");
 body {
   font-family: "Inconsolata", monospace;
+  transition: 0.5s;
+}
+
+button {
+  background-color: #242B57;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.5em;
 }
 
 .App {
@@ -54,6 +66,12 @@ body {
 
 .UploadButton {
   margin: 50px;
+  position: sticky;
+  z-index: 1;
+  top: 80%;
+  left: 200%;
+  width: 120px;
+  transition: 0.5s;
 }
 
 .PhotoViewer {
@@ -61,18 +79,26 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  /* z-index: 2; */
   color: white;
 }
 
 .PhotoViewer img {
-  width: 50em;
+  /* max-width: 90vh; */
+  max-height: 75vh;
+}
+
+.HighlightsContainer {
+  display: block;
+  margin-top: 4em;
 }
 
 .highlight {
+  /* border-radius: 0.1em; */
+  transition: 1s;
   position: relative;
-  width: 20em;
-  height: 20em;
+  width: 16em;
+  height: 16em;
   background-size: cover;
   background-position: center;
   display: inline-flex;
@@ -106,6 +132,13 @@ body {
   transform: translateY(0%);
 }
 
+.highlight_textbox {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  display: grid;
+}
+
 .highlight_title {
   font-size: 1.2em;
 }
@@ -114,9 +147,46 @@ body {
   font-size: 1.1em;
 }
 
-.textbox {
+.highlight_button {
+  font-size: 0.8em;
+  font: "Inconsolata";
+  /* background-color: rgba(36, 43, 87, 0); */
+  font-weight: bold;
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 0;
+  padding: 0px 0px 0px 0px;
+}
+
+.highlight_button:hover {
+  filter: brightness(85%);
+}
+
+.highlight_button:active {
+  box-shadow: 1px 3px #666;
+  transform: translateY(2px);
+}
+
+.right {
+  right: 0.8em;
+}
+
+.bottom {
+  bottom: 0px;
+}
+
+.left {
+  left: 10px;
+}
+
+.PhotoVewerTextbox {
   padding: 0.5em;
   font-size: 1.2em;
+  z-index: 5;
+  /* margin: 0.5em; */
 }
 
 .logo-picture {
@@ -124,7 +194,51 @@ body {
   margin-right: auto;
   width: 160px;
   height: 50%;
-  z-index: 100;
+  z-index: 2;
+}
+
+.GoogleMapContainer {
+  max-height: 75vh;
+  margin: auto;
+  height: 25em;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
+}
+
+.padding50 {
+  padding: 50px;
+}
+
+.modal {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  max-width: 500px;
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+#Footer {
+  margin-top: 8em;
+  padding-top: 4em;
+  height: 8em;
+  width: 100%;
+  position: static;
+  background: #242B57;
+  display: block;
+  color: #E0E0E0;
+}
+
+#Footer p {
+  font-family: "Inconsolata", monospace;
 }
 
 @keyframes App-logo-spin {
@@ -134,4 +248,41 @@ body {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* **************************************************** */
+
+@media only screen and (max-width: 800px) {
+  .highlight {
+    width: 10em;
+    height: 10em;
+  }
+  .overlay_description {
+    display: none;
+  }
+  .wowSymbol {
+    display: none;
+  }
+
+  /* .highlight_button {
+    opacity: 1;
+  } */
+
+  .UploadButton {
+    width: 80px;
+  }
+
+  .uploadVerbose {
+    display: none;
+  }
+
+.big-cir {
+  border-style: none;
+  border: none;
+  border-width: 0;
+}
+
+  /* .profile-picture  {
+    display: none;
+  } */
 }

@@ -4,10 +4,6 @@ import AppActions from '../Action/AppActions.js';
 
 
 class Menubar extends React.Component {
-  constructor(props){
-    super(props);
-  }
-
   _closeLoginWindow = () => {
     AppActions.loginWindowOff();
   }

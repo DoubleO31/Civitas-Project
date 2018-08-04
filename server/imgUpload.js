@@ -3,7 +3,7 @@ const storage = require('@google-cloud/storage');
 const fs = require('fs')
 const fileType = require('file-type');
 
-const gcs = storage({projectId: 'civitas-211123', keyFilename: 'keyfile.json'});
+const gcs = storage({projectId: 'civitas-211123', keyFilename: './keyfile.json'});
 
 const bucketName = 'civitasphoto'
 const bucket = gcs.bucket(bucketName);
@@ -20,7 +20,6 @@ ImgUpload.uploadToGcs = (req, res, next) => {
   const infoFile = fileType(req.file.buffer);
   if (!infoFile)
     return next();
-    console.log(infoFile.ext);
   if (infoFile.ext != 'png' && infoFile.ext != 'jpg' && infoFile.ext != 'jpeg' && infoFile.ext != 'gif')
     return next();
 

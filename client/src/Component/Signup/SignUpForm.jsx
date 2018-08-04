@@ -1,30 +1,10 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppActions from '../../Action/AppActions.js';
-
-const backdropStyle = {
-  position: 'fixed',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  backgroundColor: 'rgba(0,0,0,0.3)',
-  padding: 50,
-};
-
-const modalStyle = {
-  backgroundColor: '#fff',
-  borderRadius: 5,
-  maxWidth: 500,
-  minHeight: 300,
-  margin: '0 auto',
-  padding: 30
-};
 
 function closesignupWindow() {
   AppActions.signupWindowOff();
@@ -37,8 +17,8 @@ const SignUpForm = ({
   user,
 }) => (
 
-  <div style = { backdropStyle } >
-    <div style = { modalStyle } >
+  <div className="padding50 backdrop" >
+    <div className="modal" >
 
   <MuiThemeProvider>
   <Card className="container">

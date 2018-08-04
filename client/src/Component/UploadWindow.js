@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import AppActions from '../Action/AppActions.js';
 var EXIF = require('exif-js');
 var latitude;
@@ -52,13 +52,13 @@ class UploadWindow extends React.Component {
 				if (lat && long && latRef && longRef &&
           typeof lat !== 'undefined' && typeof long !== 'undefined'
         && typeof latRef !== 'undefined' && typeof longRef !== 'undefined'){
-					if (latRef == "S") {
+					if (latRef === "S") {
 						latitude = (lat[0]*-1) + (( (lat[1]*-60) + (lat[2]*-1) ) / 3600);
 					} else {
 						latitude = lat[0] + (( (lat[1]*60) + lat[2] ) / 3600);
 					}
 
-					if (longRef == "W") {
+					if (longRef === "W") {
 						longitude = (long[0]*-1) + (( (long[1]*-60) + (long[2]*-1) ) / 3600);
 					} else {
 						longitude = long[0] + (( (long[1]*60) + long[2] ) / 3600);
@@ -90,6 +90,8 @@ class UploadWindow extends React.Component {
             this.setState({selectedFile: null});
             alert("Upload Successful");
             AppActions.closeUploadWindow();
+						longitude = null;
+						latitude = null;
 					} else {
 						alert("Upload fail please try again");
 					}
@@ -126,31 +128,10 @@ class UploadWindow extends React.Component {
 		if (!this.props.show) {
 			return null;
 		}
-		// The gray background
-		const backdropStyle = {
-			position: 'fixed',
-			top: 0,
-			bottom: 0,
-			left: 0,
-			right: 0,
-			backgroundColor: 'rgba(0,0,0,0.3)',
-			padding: 50
-		};
-
-		// The modal "window"
-		const modalStyle = {
-			backgroundColor: '#fff',
-			borderRadius: 5,
-			maxWidth: 500,
-			minHeight: 300,
-			margin: '0 auto',
-			padding: 30
-		};
-
 
 		return (
-			<div style = { backdropStyle } >
-				<div style = { modalStyle } >
+			<div className="backdrop padding50" >
+				<div className="modal">
 					<h1>Share Your Photos</h1>
 					<form onSubmit={this.uploadHandler}>
 					<div>
