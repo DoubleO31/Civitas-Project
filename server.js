@@ -9,7 +9,6 @@ const storage = require('@google-cloud/storage');
 var path = require('path');
 const router = express.Router();
 const imgUpload = require('./imgUpload');
-var color = require('dominant-color');
 
 
 // const fs = require('fs');
