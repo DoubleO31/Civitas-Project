@@ -24,7 +24,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   var luminance = 0.299 * averageColour[0] + 0.587 * averageColour[1] + 0.114 * averageColour[2];
   // console.log("averageColour brightness:");
   // console.log(luminance);
-  var fontColor = (luminance > 160)
+  var fontColour = (luminance > 160)
     ? '#020202'
     : '#FAFAFA';
   // console.log("fontColor:");
@@ -32,7 +32,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
   let overlayStyle = {
     background: bgColour,
-    color: fontColor
+    color: fontColour
   }
 
   return (<span className="highlight" style={highlightStyle} onClick={props.onClick}>
@@ -40,8 +40,8 @@ let Highlight = function statelessFunctionComponentClass(props) {
       <div className='highlight_textbox'>
         <h3 className="overlay_title">{title}</h3>
         <p className="overlay_description">{desc}</p>
-        { Auth.isUserAuthenticated() ? <WowButton id={id} wow={wow}/> : null }
-        { lat && long && lat !== 'undefined' && long !== 'undefined' ? <GPSbutton lat={lat} long={long}/> : null }
+        { Auth.isUserAuthenticated() ? <WowButton id={id} wow={wow} fontColour={fontColour}/> : null }
+        { lat && long && lat !== 'undefined' && long !== 'undefined' ? <GPSbutton lat={lat} long={long} fontColour={fontColour}/> : null }
         </div>
     </div>
   </span>)

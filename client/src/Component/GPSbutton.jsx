@@ -17,23 +17,14 @@ class GPSbutton extends React.Component {
   };
 
   render() {
-    var cssStyle = {
-      fontSize: '.8em',
-      fontWeight: 'bold',
-      backgroundColor: 'rgba(0,33,255,0.5)',
-      color: '#00b7ff',
-      position: 'absolute',
-      width: '3em',
-      height: '3em',
-      textAlign: 'center',
-      left: '10px',
-      top: '200px',
-      borderRadius: '15%',
-      zIndex: '0',
-      padding: '0px 0px 0px 0px'
+
+    let gpsButtonStyle = {
+      color : this.props.fontColour,
     }
 
-    return (<button style={cssStyle} onClick={this.handleClick.bind(this)}>
+    return (
+
+      <button className="highlight_button left bottom" style={gpsButtonStyle} onClick={this.handleClick.bind(this)}>
       GPS
     </button>);
   }

@@ -70,23 +70,12 @@ class WowButton extends React.Component {
   };
 
   render() {
-    var cssStyle = {
-      fontSize: '.8em',
-      fontWeight: 'bold',
-      backgroundColor: 'rgba(0,33,255,0.5)',
-      color: '#00b7ff',
-      position: 'absolute',
-      width: '3em',
-      height: '3em',
-      textAlign: 'center',
-      right: '10px',
-      top: '200px',
-      borderRadius: '15%',
-      zIndex: '0',
-      padding: '0px 0px 0px 0px'
+
+    let wowStyle = {
+      color: this.props.fontColour,
     }
 
-    return (<button id={this.props.source} style={cssStyle} onClick={this.handleClick.bind(this)}>
+    return (<button className="highlight_button right bottom" style={wowStyle} id={this.props.source} onClick={this.handleClick.bind(this)}>
       Wow! {<br/>}
       {this.state.count}
     </button>);

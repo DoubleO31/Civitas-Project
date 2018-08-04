@@ -3,6 +3,17 @@ body {
   font-family: "Inconsolata", monospace;
 }
 
+button {
+  background-color: #242B57;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0.2em;
+}
+
 .App {
   /* this is making logo to stay in the middle */
   text-align: center;
@@ -110,7 +121,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 90%;
-  display: block;
+  display: grid;
 }
 
 .highlight_title {
@@ -119,6 +130,32 @@ body {
 
 .highlight_description {
   font-size: 1.1em;
+}
+
+.highlight_button {
+  font-size: 0.8em;
+  font: "Inconsolata";
+  background-color: rgba(36, 43, 87, 0.5);
+  font-weight: bold;
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 0;
+  padding: 0px 0px 0px 0px;
+}
+
+.right {
+  right: 0.8em;
+}
+
+.bottom {
+  bottom: 0px;
+}
+
+.left {
+  left: 10px;
 }
 
 .PhotoVewerTextbox {
