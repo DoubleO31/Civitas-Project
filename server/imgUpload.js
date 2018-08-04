@@ -3,7 +3,7 @@ const storage = require('@google-cloud/storage');
 const fs = require('fs')
 const fileType = require('file-type');
 
-const gcs = storage({projectId: 'civitas-211123', keyFilename: 'keyfile.json'});
+const gcs = storage({projectId: 'civitas-211123', keyFilename: './keyfile.json'});
 
 const bucketName = 'civitasphoto'
 const bucket = gcs.bucket(bucketName);
