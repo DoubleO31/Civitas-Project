@@ -56,13 +56,14 @@ var imageUpload = Multer({storage: storage});
 
 		var image = fs.readFileSync(req.file.path);
 		var averageColour = colorThief.getColor(image);
-
-		var bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
+ 
+		// var bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
 
 		console.log("averageColour:");
-		console.log(bgColour);
+		console.log(averageColour);
 
-		data.averageColour = bgColour;
+		data.averageColour = averageColour;
+		// data.averageColour = bgColour;
 		// data.averageColour = "";
 
 		dbo.collection("highlights").insertOne(data, (err, res) => {
