@@ -9,7 +9,8 @@ const storage = require('@google-cloud/storage');
 var path = require('path');
 const router = express.Router();
 const imgUpload = require('./imgUpload');
-const colorThief = require('./DominantColour.js');
+const ColorThief = require('./color-thief.js');
+var colorThief = new ColorThief();
 
 // const fs = require('fs');
 const app = express();
@@ -52,9 +53,16 @@ var imageUpload = Multer({storage: storage});
 		console.log(req.body);
 
 		var data = req.body;
-		data.averageColour = colorThief.getDominantColour(req.file.path);
 
-		console.log(data);
+		var image = fs.readFileSync(req.file.path);
+		var averageColour = colorThief.getColor(image);
+
+		console.log("averageColour:");
+		console.log(averageColour);
+
+		// data.averageColour = colorThief.getDominantColour(req.file.path);
+
+		// console.log(data);
 		dbo.collection("highlights").insertOne(data, (err, res) => {
 			if (err) throw err;
 		});
