@@ -61,6 +61,9 @@ MongoClient.connect(uri, {
       } else {
       }
     });
+    dbo.collection("highlights").updateOne(
+      {src: data.src},
+      {"$set": {wow: 0}})
 
     res.sendStatus(200);
   });

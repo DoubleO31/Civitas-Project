@@ -6,7 +6,7 @@ class WowButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: parseInt(this.props.wow),
+      count: this.props.wow,
       wowed: false,
       id: this.props.id
     }
