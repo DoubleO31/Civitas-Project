@@ -20,6 +20,7 @@ class GPSbutton extends React.Component {
 
     let gpsButtonStyle = {
       color : this.props.fontColour,
+      background: this.props.bgColour,
     }
 
     return (

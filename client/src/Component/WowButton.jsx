@@ -73,6 +73,7 @@ class WowButton extends React.Component {
 
     let wowStyle = {
       color: this.props.fontColour,
+      background: this.props.bgColour,
     }
 
     return (<button className="highlight_button right bottom" style={wowStyle} id={this.props.source} onClick={this.handleClick.bind(this)}>
