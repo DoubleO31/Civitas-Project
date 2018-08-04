@@ -90,6 +90,8 @@ class UploadWindow extends React.Component {
             this.setState({selectedFile: null});
             alert("Upload Successful");
             AppActions.closeUploadWindow();
+						longitude = null;
+						latitude = null;
 					} else {
 						alert("Upload fail please try again");
 					}
