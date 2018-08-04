@@ -20,7 +20,7 @@ class Menubar extends React.Component {
         <div className="top-menu-container">
           <img className="logo-picture"
             id="logo-picture"
-            src="./logo.png"
+            src="https://storage.googleapis.com/civitasphoto/Logo.PNG"
             alt="logo"
           />
         </div>

@@ -25,7 +25,7 @@ class Profilepic extends React.Component {
         <div className="big-cir">
         <img className="profile-picture"
           id="profile-picture"
-          src="./profile.png"
+          src="https://storage.googleapis.com/civitasphoto/profile.PNG"
           alt="profile"
         />
         {Auth.isUserAuthenticated() ? (

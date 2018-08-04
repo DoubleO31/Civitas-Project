@@ -26,22 +26,22 @@ class Homepage extends Component {
       loginWindowOpen: AppStore.getLoginWindowStatus(),
       photos: [],
       selectedPhoto: AppStore.getSelectedPhoto(),
-      updatestatus:false
+      updatestatus: false
     };
     this._onChange = this._onChange.bind(this);
   }
 
   callApi = async () => {
-    const response = await fetch("/api/highlights");
-    const body = await response.json();
-
-    if (response.status !== 200) throw Error(body.message);
-
-    return body;
-  };
-
-  callApi2 = async () => {
-    const response = await fetch("/api/highlights2");
+    const response = await fetch("/api/highlights", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        A: []
+      })
+    });
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
@@ -58,7 +58,6 @@ class Homepage extends Component {
 
   componentWillUnmount() {
     AppStore.removeChangeListener(this._onChange);
-
   }
 
   _onChange() {
@@ -80,12 +79,12 @@ class Homepage extends Component {
     AppActions.photoViewerOn();
   }
 
-  updatehighlights(){
+  updatehighlights() {
     //console.log(this.state.updatestatus);
-    this.callApi2()
+    this.callApi()
       .then(res => this.setState({photos: res}))
       .catch(err => console.log(err));
-      return <HighlightsContainer data={this.state.photos}/>
+    return <HighlightsContainer data={this.state.photos} />;
   }
 
   render() {
@@ -95,7 +94,11 @@ class Homepage extends Component {
         <Profilepic />
         {Auth.isUserAuthenticated() ? <UploadButton /> : null}
         <div className="HighlightsContainer">
-          {this.state.updatestatus ? this.updatehighlights() : <HighlightsContainer data={this.state.photos}/>}
+          {this.state.updatestatus ? (
+            this.updatehighlights()
+          ) : (
+            <HighlightsContainer data={this.state.photos} />
+          )}
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />
