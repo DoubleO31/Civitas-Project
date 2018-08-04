@@ -12,6 +12,7 @@ import GPSViewer from "./Component/GPSviwer.jsx";
 import AppActions from "./Action/AppActions.js";
 import SignUpPage from "./Component/Signup/SignUpPage.jsx";
 import LoginPage from "./Component/Login/LoginPage.jsx";
+import Footer from "./Component/Footer.jsx";
 import Auth from "./modules/Auth";
 
 class Homepage extends Component {
@@ -95,6 +96,7 @@ class Homepage extends Component {
           ) : (
             <HighlightsContainer data={this.state.photos} />
           )}
+          <Footer />
         </div>
         <UploadWindow show={this.state.uploadWindowOpen} />
         <SignUpPage show={this.state.signupWindowOpen} />
@@ -108,6 +110,8 @@ class Homepage extends Component {
           selectedPhoto={this.state.selectedPhoto}
         />
       </div>
+
+
     );
   }
 }

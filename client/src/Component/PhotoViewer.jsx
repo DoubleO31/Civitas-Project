@@ -27,30 +27,17 @@ class PhotoViewer extends React.Component {
 		if (!this.props.show) {
 			return null;
 		}
-		return ( <
-			div className = 'PhotoViewer' >
-			<
-			img src = {
-				this.props.selectedPhoto.src
-			}
-      alt=""
-			/> <
-			div className = "PhotoViewerTextbox"
-			style = {
-				backgroundStyle
-			} >
-			<
-			div > {
-				this.props.selectedPhoto.title
-			} < /div> <
-			div > {
-				this.props.selectedPhoto.desc
-			} < /div> <
-			/div> <
-			button onClick = {
-				this._closePhotoViewer
-			} > Close Viewer < /button> <
-			/div>
+		return (
+			<div className="backdrop">
+				<div className='PhotoViewer'>
+					<img src={ this.props.selectedPhoto.src } alt="" />
+					<div className = "PhotoViewerTextbox" style={backgroundStyle } >
+						<div> { this.props.selectedPhoto.title }</div>
+						<div> {this.props.selectedPhoto.desc} </div>
+					</div>
+					< button onClick = { this._closePhotoViewer } > Close Viewer < /button>
+				< /div>
+			</div>
 		);
 	}
 

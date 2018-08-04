@@ -77,7 +77,12 @@ button {
 }
 
 .PhotoViewer img {
-  width: 50em;
+  /* max-width: 90vh; */
+  max-height: 75vh;
+}
+
+.HighlightsContainer {
+  display: block;
 }
 
 .highlight {
@@ -177,7 +182,7 @@ button {
 }
 
 .GoogleMapContainer {
-  max-height : 75vh;
+  max-height: 75vh;
   margin: auto;
   height: 25em;
 }
@@ -193,6 +198,30 @@ button {
 
 .padding50 {
   padding: 50px;
+}
+
+.modal {
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  max-width: 500px;
+  min-height: 300px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+#Footer {
+  margin-top: 50px;
+  padding: 20px;
+  height: 8em;
+  width: 100%;
+  position: static;
+  background: #242B57;
+  display: block;
+  color: #D0D0D0;
+}
+
+#Footer p {
+  font-family: "Inconsolata", monospace;
 }
 
 @keyframes App-logo-spin {

@@ -6,15 +6,6 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppActions from '../../Action/AppActions.js';
 
-const modalStyle = {
-  backgroundColor: '#fff',
-  borderRadius: 5,
-  maxWidth: 500,
-  minHeight: 300,
-  margin: '0 auto',
-  padding: 30
-};
-
 function closeloginWindow() {
   AppActions.loginWindowOff();
 };
@@ -33,7 +24,7 @@ const LoginForm = ({
   user
 }) => (
   <div className="padding50 backdrop" >
-    <div style = { modalStyle } >
+    <div className="modal" >
     <MuiThemeProvider>
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>

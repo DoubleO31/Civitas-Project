@@ -129,20 +129,9 @@ class UploadWindow extends React.Component {
 			return null;
 		}
 
-		// The modal "window"
-		const modalStyle = {
-			backgroundColor: '#fff',
-			borderRadius: 5,
-			maxWidth: 500,
-			minHeight: 300,
-			margin: '0 auto',
-			padding: 30
-		};
-
-
 		return (
 			<div className="backdrop" >
-				<div style = { modalStyle } >
+				<div className="modal">
 					<h1>Share Your Photos</h1>
 					<form onSubmit={this.uploadHandler}>
 					<div>
