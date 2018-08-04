@@ -146,6 +146,11 @@ button {
   padding: 0px 0px 0px 0px;
 }
 
+.highlight_button:active {
+  box-shadow: 1px 3px #666;
+  transform: translateY(2px);
+}
+
 .right {
   right: 0.8em;
 }
