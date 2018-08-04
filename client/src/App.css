@@ -70,7 +70,7 @@ button {
   z-index: 1;
   top: 80%;
   left: 200%;
-  width: 200px;
+  width: 120px;
   transition: 0.5s;
 }
 
@@ -89,7 +89,6 @@ button {
 }
 
 .HighlightsContainer {
-  margin-top: 8em;
   display: block;
 }
 
@@ -252,7 +251,7 @@ button {
 
 /* **************************************************** */
 
-@media only screen and (max-width: 65px) {
+@media only screen and (max-width: 700px) {
   .highlight {
     width: 10em;
     height: 10em;
@@ -277,8 +276,8 @@ button {
   }
 
 .big-cir {
-  /* border-style: none; */
-  /* border: none; */
+  border-style: none;
+  border: none;
   border-width: 0;
 }
 
