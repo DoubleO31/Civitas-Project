@@ -9,8 +9,8 @@ const storage = require("@google-cloud/storage");
 const path = require("path");
 const router = express.Router();
 const imgUpload = require('./imgUpload');
-const ColorThief = require('color-thief');
-const colorThief = new ColorThief();
+// const ColorThief = require('color-thief');
+// const colorThief = new ColorThief();
 const fileType = require('file-type');
 
 // const fs = require('fs');
@@ -69,18 +69,18 @@ MongoClient.connect(
 
 			var data = req.body;
 
-			var image = fs.readFileSync(req.file.path);
+			// var image = fs.readFileSync(req.file.path);
 
-      var imageFileType = fileType(image);
+      // var imageFileType = fileType(image);
 
       var averageColour = [0, 0, 0];
 
-      if (imageFileType.ext === 'png') {
-        averageColour = colorThief.getColor(image);
-      }
-
-			console.log("averageColour:");
-			console.log(averageColour);
+      // if (imageFileType.ext === 'png') {
+      //   averageColour = colorThief.getColor(image);
+      // }
+      //
+			// console.log("averageColour:");
+			// console.log(averageColour);
 
 			data.averageColour = averageColour;
 
