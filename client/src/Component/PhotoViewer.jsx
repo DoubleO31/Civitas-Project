@@ -50,7 +50,7 @@ class PhotoViewer extends React.Component {
 				this.props.selectedPhoto.src
 			}
 			/> <
-			div class = "textbox"
+			div class = "PhotoViewerTextbox"
 			style = {
 				backgroundStyle
 			} >
