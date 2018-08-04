@@ -90,7 +90,7 @@ button {
 
 .HighlightsContainer {
   display: block;
-  margin-top: 8em;
+  margin-top: 4em;
 }
 
 .highlight {
@@ -264,9 +264,9 @@ button {
     display: none;
   }
 
-  .highlight_button {
+  /* .highlight_button {
     opacity: 1;
-  }
+  } */
 
   .UploadButton {
     width: 80px;
