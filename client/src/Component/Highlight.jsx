@@ -63,7 +63,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
     <div id={highlightTitleName} style = {titleStyle}>{title}</div>
     <div id={highlightDescName} style = {descStyle}>{desc}</div>
     {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
-    {lat&&long? <GPSbutton lat = {lat} long= {long}/> : null}
+    {lat&&long&&lat !== 'undefined'&&long !== 'undefined'? <GPSbutton lat = {lat} long= {long}/> : null}
     </span>
     );
 };
