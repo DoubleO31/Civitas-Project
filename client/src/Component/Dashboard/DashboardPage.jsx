@@ -2,24 +2,9 @@ import React from "react";
 import Auth from "../../modules/Auth";
 import Menubar from "../Menubar.jsx";
 import Appstore from "../../Stores/AppStore.js";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
 import AppActions from "../../Action/AppActions.js";
 import {Link} from "react-router-dom";
 
-const MyMapComponent = withScriptjs(
-  withGoogleMap(props => (
-    <GoogleMap defaultZoom={8} defaultCenter={{lat: -34.397, lng: 150.644}}>
-      {props.isMarkerShown && (
-        <Marker position={{lat: -34.397, lng: 150.644}} />
-      )}
-    </GoogleMap>
-  ))
-);
 
 class DashboardPage extends React.Component {
   constructor(props) {
@@ -28,7 +13,6 @@ class DashboardPage extends React.Component {
     this.state = {
       useremail: "",
       userinfo: "",
-      isMarkerShown: false
     };
   }
 
@@ -61,8 +45,6 @@ class DashboardPage extends React.Component {
           .catch(err => console.log(err));
       }
     );
-
-    this.delayedShowMarker();
   }
 
   display() {
@@ -71,19 +53,9 @@ class DashboardPage extends React.Component {
     }
   }
 
-  delayedShowMarker = () => {
-    setTimeout(() => {
-      this.setState({isMarkerShown: true});
-    }, 3000);
-  };
-
-  handleMarkerClick = () => {
-    this.setState({isMarkerShown: false});
-    this.delayedShowMarker();
-  };
-
   _logout = () => {
     AppActions.logout();
+    AppActions.loginWindowOff();
   };
 
   /**
@@ -99,15 +71,10 @@ class DashboardPage extends React.Component {
         <div style={{position: "fixed", top: 100, color: "white"}}>
           <h1>Welcome back {this.display()}!</h1>
         </div>
-        <button onClick={this._logout} ><Link to="/" >Log out</Link></button>
-        <MyMapComponent
-          isMarkerShown={this.state.isMarkerShown}
-          onMarkerClick={this.handleMarkerClick}
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx55KjQx3iDjCF4RTdo4PD_WfEWLiADVE&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{height: `100%`}} />}
-          containerElement={<div style={{height: `400px`}} />}
-          mapElement={<div style={{height: `100%`}} />}
-        />
+        <div style={{position: "fixed", top: 150, color: "white"}}>
+          <Link to="/" ><button onClick={this._logout} >Log out</button></Link>
+        </div>
+
       </div>
     );
   }
