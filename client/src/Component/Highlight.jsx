@@ -6,6 +6,7 @@ import AppActions from '../Action/AppActions.js';
 
 
 let Highlight = function statelessFunctionComponentClass(props) {
+
   let source = props.source;
   let link = props.link;
   let title = props.title;
@@ -17,55 +18,36 @@ let Highlight = function statelessFunctionComponentClass(props) {
   let long = props.longitude;
   let averageColour = props.averageColour;
 
-  let style = {
-    position: 'relative',
-    width: '400px',
-    height: '400px',
+  let highlightStyle = {
     background: `url(${source})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    display: 'inline-flex',
-    padding: '0px 0px 0px 0px',
-    margin: '5px 5px 5px 5px',
   };
 
-  let picStyle = {
-    position: 'center',
-    width: '400px',
-    height: '400px',
-    alignItems: 'center',
-    justifyContent: 'center'
+  var bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
+  var luminance = 0.299 * averageColour[0] + 0.587 * averageColour[1] + 0.114 * averageColour[2];
+  console.log("averageColour brightness:"); 
+  console.log(luminance);
+  var fontColor = (luminance > 160) ? '#020202' : '#FAFAFA';
+  console.log("fontColor:");
+  console.log(fontColor);
+
+  let overlayStyle = {
+    background: bgColour,
+    color: fontColor,
   }
 
-  let titleStyle = {
-    position: 'absolute',
-    fontSize:'2em',
-    background: averageColour,
-    textAlign: 'center',
-    top: '5px',
-    width: '400px'
-  }
 
-  let descStyle = {
-    fontSize: '1.1em',
-    position: 'absolute',
-    bottom: '0px',
-    backgroundColor: averageColour,
-
-  }
-
-  let highlightTitleName = source + title + "title";
-  let highlightDescName = source + title + "desc";
-
-
-  return (
-    <span style = {style} onClick={props.onClick}>
-    <div id={highlightTitleName} style = {titleStyle}>{title}</div>
-    <div id={highlightDescName} style = {descStyle}>{desc}</div>
-    {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
-    {lat&&long? <GPSbutton lat = {lat} long= {long}/> : null}
-    </span>
-    );
+  return(
+  <span class="highlight" style={highlightStyle} onClick={props.onClick}>
+     <div class="highlight_overlay" style={overlayStyle}>
+       <h3 class="overlay_title">{title}</h3>
+       <p class="overlay_description">{desc}</p>
+       {Auth.isUserAuthenticated() ? <WowButton id = {id} wow = {wow}/>: null}
+       {lat&&long? <GPSbutton lat = {lat} long= {long}/> : null}
+     </div>
+  </span>
+  )
 };
 
 export default Highlight;

@@ -8,8 +8,11 @@ const memoryStorage = require("multer");
 const storage = require("@google-cloud/storage");
 const path = require("path");
 const router = express.Router();
-const imgUpload = require("./imgUpload");
+const imgUpload = require('./imgUpload');
+const ColorThief = require('color-thief');
+const colorThief = new ColorThief();
 
+// const fs = require('fs');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -41,13 +44,59 @@ MongoClient.connect(
         });
     });
 
-    app.post("/mongodbupload", function(request, response, next) {
-      const data = request.body;
-      //console.log(data);
-      dbo.collection("highlights").insertOne(data, function(err, res) {
-        if (err) throw err;
-      });
-    });
+    var storage = Multer.diskStorage({
+  		destination: (req, file, callback) => {
+  			callback(null, 'temp/image-uploads')
+  		},
+  		filename: (req, file, callback) => {
+  			callback(null, file.fieldname + '-' + Date.now() + file.originalname)
+  		}
+  	});
+
+  var imageUpload = Multer({storage: storage});
+
+  	app.post('/mongodbupload', imageUpload.single('image'), (req, res, next) => {
+  		console.log("req.file:");
+  		console.log(req.file.path);
+  		console.log("req.body:");
+  		console.log(req.body);
+
+  		var data = req.body;
+
+  		var image = fs.readFileSync(req.file.path);
+  		var averageColour = colorThief.getColor(image);
+
+
+  		console.log("averageColour:");
+  		console.log(averageColour);
+
+  		data.averageColour = averageColour;
+  		// data.averageColour = bgColour;
+  		// data.averageColour = "";
+
+  		dbo.collection("highlights").insertOne(data, (err, res) => {
+  			if (err) {
+  				throw err;
+  			} else {
+  				console.log("Upload to MongoDB success. Returning 200 status.");
+  			}
+  		});
+
+  		res.sendStatus(200);
+  	});
+
+
+  	app.post('/usersinfo', function(request, response, next) {
+  		const data = request.body;
+
+  		console.log("Server post /userinfo: request.body");
+  		console.log(data);
+  		dbo.collection("users").find({email: data.email}).toArray((err, result) => {
+  			if (err) throw err;
+  			response.send(result);
+  		});
+  	});
+  });
 
     app.post("/usersinfo", function(request, response, next) {
       const data = request.body;
@@ -166,21 +215,18 @@ app.use("/auth", authRoutes);
 
 //UploadWindow
 const multer = Multer({
-  storage: Multer.MemoryStorage,
-  fileSize: 5 * 1024 * 1024
+	storage: Multer.MemoryStorage,
+	fileSize: 5 * 1024 * 1024
 });
 
 // Process the file upload and upload to Google Cloud Storage.
-app.post("/upload", multer.single("image"), imgUpload.uploadToGcs, function(
-  request,
-  response,
-  next
-) {
-  const data = request.body;
-  if (request.file && request.file.cloudStoragePublicUrl) {
-    data.imageUrl = request.file.cloudStoragePublicUrl;
-  }
-  response.send(data);
+app.post('/upload', multer.single('image'), imgUpload.uploadToGcs, function(request, response, next) {
+	const data = request.body;
+
+	if (request.file && request.file.cloudStoragePublicUrl) {
+		data.imageUrl = request.file.cloudStoragePublicUrl;
+	}
+	response.send(data);
 });
 
 // Handle React routing, return all requests to React app

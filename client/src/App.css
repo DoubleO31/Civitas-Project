@@ -1,4 +1,10 @@
+@import url("https://fonts.googleapis.com/css?family=Inconsolata|Merriweather");
+body {
+  font-family: "Inconsolata", monospace;
+}
+
 .App {
+  /* this is making logo to stay in the middle */
   text-align: center;
 }
 
@@ -22,6 +28,30 @@
   font-size: large;
 }
 
+/* NAV BAR */
+.nav-bar {
+  background: #242B57;
+  display: block;
+}
+
+.nav-bar #logo-picture {
+  /* margin-left: 5%; */
+  /* margin-right: auto; */
+  width: 10em;
+  /* height: 50%; */
+  /* z-index: 100; */
+}
+
+.nav-bar .logo-picture {
+  // this is not working. Dont know why
+  left: 2em;
+}
+
+.nav-bar li {
+  display: inline-block;
+}
+
+
 .UploadButton {
   margin: 50px;
 }
@@ -32,11 +62,64 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  color: white;
 }
 
-.PhotoViewer div {
-  color: white;
-  background-color: #999999;
+.PhotoViewer img {
+  width: 50em;
+}
+
+.highlight {
+  position: relative;
+  width: 20em;
+  height: 20em;
+  background-size: cover;
+  background-position: center;
+  display: inline-flex;
+  padding: 0px 0px 0px 0px;
+
+}
+
+.highlight:hover {
+  cursor: pointer;
+}
+
+.highlight_overlay {
+/* background: rgba(229, 182, 177, 0.9); */
+height: 100%;
+width: 100%;
+grid-column: 1 / -1;
+grid-row: 1 / -1;
+position: relative;
+display: grid;
+justify-content: center;
+align-items: center;
+position: absolute;
+/* transition: 1s; */
+-webkit-transition: 1s;
+opacity: 0;
+transform
+transition: all 0.3s ease-in-out;
+}
+
+.highlight_overlay:hover {
+  display: grid;
+  opacity: 0.9;
+  transform: translateY(0%);
+
+}
+
+.highlight_title {
+  font-size: 1.2em;
+}
+
+.highlight_description {
+  font-size: 1.1em;
+}
+
+.textbox {
+  padding: 0.5em;
+  font-size: 1.2em;
 }
 
 @keyframes App-logo-spin {
