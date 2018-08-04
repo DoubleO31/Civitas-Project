@@ -19,11 +19,11 @@ let Highlight = function statelessFunctionComponentClass(props) {
 
   var bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
   var luminance = 0.299 * averageColour[0] + 0.587 * averageColour[1] + 0.114 * averageColour[2];
-  console.log("averageColour brightness:"); 
-  console.log(luminance);
+  // console.log("averageColour brightness:");
+  // console.log(luminance);
   var fontColor = (luminance > 160) ? '#020202' : '#FAFAFA';
-  console.log("fontColor:");
-  console.log(fontColor);
+  // console.log("fontColor:");
+  // console.log(fontColor);
 
   let overlayStyle = {
     background: bgColour,
