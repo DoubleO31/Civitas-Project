@@ -90,6 +90,7 @@ button {
 
 .HighlightsContainer {
   display: block;
+  margin-top: 8em;
 }
 
 .highlight {
