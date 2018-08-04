@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import AppActions from '../Action/AppActions.js';
+import React from 'react';
 import AppStore from "../Stores/AppStore.js";
 
 class WowButton extends React.Component {

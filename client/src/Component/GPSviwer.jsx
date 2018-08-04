@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import AppActions from '../Action/AppActions.js';
 import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps";
 import AppStore from "../Stores/AppStore.js";
@@ -71,10 +71,6 @@ class GPSviwer extends React.Component {
   }
 
   render() {
-    let cssStyle = {
-      height: "30em"
-    }
-
     if (!this.props.show) {
       return null;
     }

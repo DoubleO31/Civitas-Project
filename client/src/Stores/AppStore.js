@@ -10,9 +10,7 @@ let _signupWindowOn = false;
 let _loginWindowOn = false;
 let _GPSViewerOn = false;
 let _wowed = false;
-var bgColor = null;
 
-var _photos = [];
 var _selectedPhoto = {};
 var _wowCount = 0;
 var update = false;
@@ -41,7 +39,6 @@ function updatehighlights() {
 }
 
 function loadGPSDetails(data) {
-  //var gps = localStorage.getItem(data);
   if(data){
   lat = data[0];
   long = data[1];}

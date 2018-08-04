@@ -1,11 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import AppActions from  '../Action/AppActions.js';
 
 class UploadButton extends React.Component {
-
-	constructor(props) {
-		super(props);
-	}
 
 
 	_openUploadWindow = () => {
@@ -15,7 +11,7 @@ class UploadButton extends React.Component {
 	}
 
 	render() {
-		return ( < button class='UploadButton' onClick = { this._openUploadWindow } >
+		return ( < button className='UploadButton' onClick = { this._openUploadWindow } >
 			Upload Your Photo
 			</button>
 		);

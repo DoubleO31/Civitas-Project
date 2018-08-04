@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AppActions from '../Action/AppActions.js';
-import AppStore from "../Stores/AppStore.js";
 
 class GPSbutton extends React.Component {
 

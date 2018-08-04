@@ -1,5 +1,4 @@
 import React from "react";
-import Auth from "../../modules/Auth";
 import Menubar from "../Menubar.jsx";
 import Appstore from "../../Stores/AppStore.js";
 import AppActions from "../../Action/AppActions.js";

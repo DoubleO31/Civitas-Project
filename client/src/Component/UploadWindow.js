@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React from "react";
 import AppActions from '../Action/AppActions.js';
 var EXIF = require('exif-js');
 var latitude;
@@ -52,13 +52,13 @@ class UploadWindow extends React.Component {
 				if (lat && long && latRef && longRef &&
           typeof lat !== 'undefined' && typeof long !== 'undefined'
         && typeof latRef !== 'undefined' && typeof longRef !== 'undefined'){
-					if (latRef == "S") {
+					if (latRef === "S") {
 						latitude = (lat[0]*-1) + (( (lat[1]*-60) + (lat[2]*-1) ) / 3600);
 					} else {
 						latitude = lat[0] + (( (lat[1]*60) + lat[2] ) / 3600);
 					}
 
-					if (longRef == "W") {
+					if (longRef === "W") {
 						longitude = (long[0]*-1) + (( (long[1]*-60) + (long[2]*-1) ) / 3600);
 					} else {
 						longitude = long[0] + (( (long[1]*60) + long[2] ) / 3600);

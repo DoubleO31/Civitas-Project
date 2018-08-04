@@ -5,10 +5,6 @@ import { Link } from 'react-router-dom';
 
 class Profilepic extends React.Component {
 
-  constructor(props) {
-		super(props);
-	}
-
   _openLoginWindow = () => {
     AppActions.loginWindowOn();
   }

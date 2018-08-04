@@ -2,15 +2,12 @@ import React from 'react';
 import WowButton from './WowButton.jsx';
 import GPSbutton from './GPSbutton.jsx';
 import Auth from '../modules/Auth';
-import AppActions from '../Action/AppActions.js';
 
 let Highlight = function statelessFunctionComponentClass(props) {
 
   let source = props.source;
-  let link = props.link;
   let title = props.title;
   let desc = props.desc;
-  let arrID = props.arrID;
   let wow = props.wow;
   let id = props.id;
   let lat = props.latitude;
@@ -38,10 +35,10 @@ let Highlight = function statelessFunctionComponentClass(props) {
     color: fontColor
   }
 
-  return (<span class="highlight" style={highlightStyle} onClick={props.onClick}>
-    <div class="highlight_overlay" style={overlayStyle}>
-      <h3 class="overlay_title">{title}</h3>
-      <p class="overlay_description">{desc}</p>
+  return (<span className="highlight" style={highlightStyle} onClick={props.onClick}>
+    <div className="highlight_overlay" style={overlayStyle}>
+      <h3 className="overlay_title">{title}</h3>
+      <p className="overlay_description">{desc}</p>
       {
         Auth.isUserAuthenticated()
           ? <WowButton id={id} wow={wow}/>
