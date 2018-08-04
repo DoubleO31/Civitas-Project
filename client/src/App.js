@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, BrowserRouter as Redirect, Switch} from "react-router-dom";
+import {Route, BrowserRouter as Router, Link, Redirect, Switch} from "react-router-dom";
 import Auth from './modules/Auth';
 import Homepage from './homepage.js';
 import DashboardPage from './Component/Dashboard/DashboardPage.jsx';
@@ -22,7 +22,7 @@ class App extends Component {
   render() {
     return (<div>
       <Switch>
-        <Route path="/" component={Homepage}/>
+        <Route path="/" exact="exact" component={Homepage}/>
         <ProtectedRoute path="/dashboard" component={DashboardPage}/>
       </Switch>
     </div>);
