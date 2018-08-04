@@ -8,9 +8,7 @@ const memoryStorage = require("multer");
 const storage = require("@google-cloud/storage");
 const path = require("path");
 const router = express.Router();
-const imgUpload = require('./imgUpload');
-// const ColorThief = require('color-thief');
-// const colorThief = new ColorThief();
+const imgUpload = require('./server/imgUpload');
 const fileType = require('file-type');
 
 // const fs = require('fs');
@@ -196,13 +194,10 @@ passport.use("local-login", localLoginStrategy);
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require("./server/middleware/auth-check");
-//app.use('/api', authCheckMiddleware);
 
 // routes
 const authRoutes = require("./server/routes/auth");
-const apiRoutes = require("./server/routes/api");
 app.use("/auth", authRoutes);
-//app.use('/api', apiRoutes);
 
 //UploadWindow
 const multer = Multer({

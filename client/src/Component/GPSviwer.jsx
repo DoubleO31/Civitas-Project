@@ -4,13 +4,13 @@ import {withScriptjs, withGoogleMap, GoogleMap, Marker} from "react-google-maps"
 import AppStore from "../Stores/AppStore.js";
 
 const MyMapComponent = withScriptjs(withGoogleMap(props => (<GoogleMap defaultZoom={8} defaultCenter={{
-    lat: props.lat,
-    lng: props.long
+    lat: parseFloat(props.lat),
+    lng: parseFloat(props.long)
   }}>
   {
     props.isMarkerShown && (<Marker position={{
-        lat: props.lat,
-        lng: props.long
+        lat: parseFloat(props.lat),
+        lng: parseFloat(props.long)
       }}/>)
   }
 </GoogleMap>)));
