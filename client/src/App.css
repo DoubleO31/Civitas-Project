@@ -71,8 +71,8 @@ body {
 
 .highlight {
   position: relative;
-  width: 20em;
-  height: 20em;
+  width: 16em;
+  height: 16em;
   background-size: cover;
   background-position: center;
   display: inline-flex;
@@ -106,6 +106,13 @@ body {
   transform: translateY(0%);
 }
 
+.highlight_textbox {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  display: block;
+}
+
 .highlight_title {
   font-size: 1.2em;
 }
@@ -114,7 +121,7 @@ body {
   font-size: 1.1em;
 }
 
-.textbox {
+.PhotoVewerTextbox {
   padding: 0.5em;
   font-size: 1.2em;
 }

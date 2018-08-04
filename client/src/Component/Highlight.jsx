@@ -35,20 +35,14 @@ let Highlight = function statelessFunctionComponentClass(props) {
     color: fontColor
   }
 
-  return (<span className="highlight" style={highlightStyle} onClick={props.onClick}>
-    <div className="highlight_overlay" style={overlayStyle}>
-      <h3 className="overlay_title">{title}</h3>
-      <p className="overlay_description">{desc}</p>
-      {
-        Auth.isUserAuthenticated()
-          ? <WowButton id={id} wow={wow}/>
-          : null
-      }
-      {
-        lat && long && lat !== 'undefined' && long !== 'undefined'
-          ? <GPSbutton lat={lat} long={long}/>
-          : null
-      }
+  return (<span class="highlight" style={highlightStyle} onClick={props.onClick}>
+    <div class="highlight_overlay" style={overlayStyle}>
+      <div class='highlight_textbox'>
+        <h3 class="overlay_title">{title}</h3>
+        <p class="overlay_description">{desc}</p>
+        { Auth.isUserAuthenticated() ? <WowButton id={id} wow={wow}/> : null }
+        { lat && long && lat !== 'undefined' && long !== 'undefined' ? <GPSbutton lat={lat} long={long}/> : null }
+        </div>
     </div>
   </span>)
 };
