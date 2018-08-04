@@ -70,15 +70,19 @@ MongoClient.connect(
 			var data = req.body;
 
 			var image = fs.readFileSync(req.file.path);
-			var averageColour = colorThief.getColor(image);
 
+      var imageFileType = fileType(image);
+
+      var averageColour = [0, 0, 0];
+
+      if (infoFile.ext === 'png') {
+        averageColour = colorThief.getColor(image);
+      }
 
 			console.log("averageColour:");
 			console.log(averageColour);
 
 			data.averageColour = averageColour;
-			// data.averageColour = bgColour;
-			// data.averageColour = "";
 
 			dbo.collection("highlights").insertOne(data, (err, res) => {
 				if (err) {
