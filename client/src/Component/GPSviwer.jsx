@@ -15,15 +15,6 @@ const MyMapComponent = withScriptjs(withGoogleMap(props => (<GoogleMap defaultZo
   }
 </GoogleMap>)));
 
-const backdropStyle = {
-  position: 'fixed',
-  top: 180,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  backgroundColor: 'rgba(0,0,0,0.3)'
-};
-
 const modalStyle = {
   backgroundColor: '#fff',
   borderRadius: 5,
@@ -58,8 +49,6 @@ class GPSviwer extends React.Component {
 
 	}
 
-
-
   delayedShowMarker = () => {
     setTimeout(() => {
       this.setState({isMarkerShown: true});
@@ -74,9 +63,21 @@ class GPSviwer extends React.Component {
     if (!this.props.show) {
       return null;
     }
-    return (<div style={backdropStyle}>
+    let containerStyle = {
+      'max-width': '100%',
+      'max-height': '100vh',
+      margin: 'auto',
+      height: '200px'
+    }
+
+
+    return (<div className="backdrop padding50">
       <div style={modalStyle}>
-        <MyMapComponent isMarkerShown={this.state.isMarkerShown} googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx55KjQx3iDjCF4RTdo4PD_WfEWLiADVE&v=3.exp&libraries=geometry,drawing,places" loadingElement={<div style = {{height: `100%`}}/>} containerElement={<div style = {{height: `600px`}}/>} mapElement={<div style = {{height: `100%`}}/>} lat={this.state.lat} long={this.state.long}/>
+        <MyMapComponent isMarkerShown={this.state.isMarkerShown} googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCx55KjQx3iDjCF4RTdo4PD_WfEWLiADVE&v=3.exp&libraries=geometry,drawing,places"
+          loadingElement={<div style = {{height: '100%'}}/>}
+          containerElement={<div className='GoogleMapContainer' />}
+          mapElement={<div style = {{height: `100%`}}/>}
+          lat={this.state.lat} long={this.state.long} />
         <button onClick={this._closeGPSViewer}>Close Viewer
         </button>
       </div>

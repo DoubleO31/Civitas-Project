@@ -6,16 +6,6 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppActions from '../../Action/AppActions.js';
 
-const backdropStyle = {
-  position: 'fixed',
-  top: 0,
-  bottom: 0,
-  left: 0,
-  right: 0,
-  backgroundColor: 'rgba(0,0,0,0.3)',
-  padding: 50,
-};
-
 const modalStyle = {
   backgroundColor: '#fff',
   borderRadius: 5,
@@ -36,7 +26,7 @@ const SignUpForm = ({
   user,
 }) => (
 
-  <div style = { backdropStyle } >
+  <div className="padding50 backdrop" >
     <div style = { modalStyle } >
 
   <MuiThemeProvider>
