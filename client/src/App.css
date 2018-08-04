@@ -194,7 +194,7 @@ button {
   margin-right: auto;
   width: 160px;
   height: 50%;
-  z-index: 100;
+  z-index: 2;
 }
 
 .GoogleMapContainer {
@@ -252,7 +252,7 @@ button {
 
 /* **************************************************** */
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   .highlight {
     width: 10em;
     height: 10em;
@@ -282,7 +282,7 @@ button {
   border-width: 0;
 }
 
-  .profile-picture  {
+  /* .profile-picture  {
     display: none;
-  }
+  } */
 }

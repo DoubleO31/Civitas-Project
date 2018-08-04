@@ -130,7 +130,7 @@ class UploadWindow extends React.Component {
 		}
 
 		return (
-			<div className="backdrop" >
+			<div className="backdrop padding50" >
 				<div className="modal">
 					<h1>Share Your Photos</h1>
 					<form onSubmit={this.uploadHandler}>
