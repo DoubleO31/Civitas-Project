@@ -59,9 +59,9 @@
   < !-- background-color: #66b3ff -->
 }
 
-.titles-container {
+/* .titles-container {
   margin-top: 20px;
-}
+} */
 
 #site-heading {
   font-size: 25px;
@@ -84,16 +84,6 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-
-
-
-.UploadButton {
-  position: sticky;
-  top: 80%;
-  left: 200%;
-  z-index: 100;
-  width: 200px;
-}
 
 button:hover {
   opacity: 0.8;

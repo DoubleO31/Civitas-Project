@@ -26,7 +26,7 @@ let Highlight = function statelessFunctionComponentClass(props) {
   // console.log(luminance);
   var fontColour = (luminance > 160)
     ? '#020202'
-    : '#FAFAFA';
+    : '#F0F0F0';
   // console.log("fontColor:");
   // console.log(fontColor);
 

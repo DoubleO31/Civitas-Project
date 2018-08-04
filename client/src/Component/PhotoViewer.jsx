@@ -16,7 +16,7 @@ class PhotoViewer extends React.Component {
 			var averageColour = this.props.selectedPhoto.averageColour;
 			bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
 			var luminance = 0.299 * averageColour[0] + 0.587 * averageColour[1] + 0.114 * averageColour[2];
-			fontColour = (luminance > 160) ? '#020202' : '#FAFAFA';
+			fontColour = (luminance > 160) ? '#020202' : '#F0F0F0';
 		}
 
 		let backgroundStyle = {

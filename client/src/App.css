@@ -65,7 +65,12 @@ button {
 
 .UploadButton {
   margin: 50px;
-  z-index: 0;
+  position: sticky;
+  z-index: 1;
+  top: 80%;
+  left: 200%;
+  width: 200px;
+  transition: 0.5s;
 }
 
 .PhotoViewer {
@@ -87,6 +92,8 @@ button {
 }
 
 .highlight {
+  /* border-radius: 0.1em; */
+  transition: 1s;
   position: relative;
   width: 16em;
   height: 16em;
@@ -177,6 +184,7 @@ button {
   padding: 0.5em;
   font-size: 1.2em;
   z-index: 5;
+  /* margin: 0.5em; */
 }
 
 .logo-picture {
@@ -200,6 +208,7 @@ button {
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
+  z-index: 5;
 }
 
 .padding50 {
@@ -250,6 +259,18 @@ button {
     display: none;
   }
   .wowSymbol {
+    display: none;
+  }
+
+  .highlight_button {
+    opacity: 1;
+  }
+
+  .UploadButton {
+    width: 80px;
+  }
+
+  .uploadVerbose {
     display: none;
   }
 }
