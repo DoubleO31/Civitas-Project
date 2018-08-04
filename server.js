@@ -9,8 +9,8 @@ const storage = require('@google-cloud/storage');
 var path = require('path');
 const router = express.Router();
 const imgUpload = require('./imgUpload');
-const ColorThief = require('./color-thief.js');
-var colorThief = new ColorThief();
+const ColorThief = require('color-thief');
+const colorThief = new ColorThief();
 
 // const fs = require('fs');
 const app = express();
@@ -57,21 +57,31 @@ var imageUpload = Multer({storage: storage});
 		var image = fs.readFileSync(req.file.path);
 		var averageColour = colorThief.getColor(image);
 
+		var bgColour = "rgba(" + averageColour[0] + ", " + averageColour[1] + ", " + averageColour[2] + ', 0.8)';
+
 		console.log("averageColour:");
-		console.log(averageColour);
+		console.log(bgColour);
 
-		// data.averageColour = colorThief.getDominantColour(req.file.path);
+		data.averageColour = bgColour;
+		// data.averageColour = "";
 
-		// console.log(data);
 		dbo.collection("highlights").insertOne(data, (err, res) => {
-			if (err) throw err;
+			if (err) {
+				throw err;
+			} else {
+				console.log("Upload to MongoDB success. Returning 200 status.");
+			}
 		});
+
+		res.sendStatus(200);
 	});
+
+
 
 	// processing highlight upload, data already processed
 	// 	app.post('/mongodbupload', function(request, response, next) {
 	// 	  const data = request.body;
-	// 		console.log("Server /mongodbupload: request.body");
+	// 		console.log("Server /mongodbupload:    request.body");
 	// 		console.log(data);
 	// 		dbo.collection("highlights").insertOne(data, function(err, res) {
 	// 		if (err) throw err;
